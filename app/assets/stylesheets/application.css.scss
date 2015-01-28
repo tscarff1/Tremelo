@@ -1,0 +1,248 @@
+/*
+*= require_self
+*= require_tree .
+*/
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "font-awesome";
+
+/* mixins, variables, etc. */
+
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+/* ==== Google font ==== */
+@import url(http://fonts.googleapis.com/css?family=Questrial|Montserrat);
+
+body {
+  width: 100%;
+  height: 100%;
+  font-weight: 300;
+  color: #666;
+  background-color: #fff;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+h1, h2, h3 {
+  font-family: Montserrat, sans-serif;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+p {
+  margin: 0 0 20px;
+  font-size: 16px;
+  line-height: 1.6em;
+}
+
+p.lead {
+  font-weight: 600;
+}
+
+.light {
+    font-weight: 400;
+}
+
+address {
+  margin-left: 0;
+  padding: 0;
+}
+
+
+/* misc */
+hr {
+  margin-top: 10px;
+}
+
+/* margins */
+.marginbot-0{margin-bottom:0 !important;}
+.marginbot-10{margin-bottom:10px !important;}
+.marginbot-20{margin-bottom:20px !important;}
+.marginbot-30{margin-bottom:30px !important;}
+.marginbot-40{margin-bottom:40px !important;}
+.marginbot-50{margin-bottom:50px !important;}
+
+/* ===========================
+--- General sections
+============================ */
+
+.home-section {
+  padding-top: 110px;
+  padding-bottom: 110px;
+  display:block;
+  position:relative;
+  z-index:120;
+}
+
+
+.section-heading h2 {
+  font-size: 40px;
+}
+.section-heading i {
+  margin-bottom: 20px;
+}
+
+
+/* --- section bg var --- */
+
+.bg-white {
+  background: #fff;
+}
+
+.bg-gray {
+  background: #f8f8f8;
+}
+
+
+.bg-dark {
+  background: #575757;
+}
+
+/* --- section color var --- */
+
+.text-light {
+  color: #fff;
+}
+
+
+/* ===========================
+--- Home Page
+============================ */
+
+.intro {
+  width:100%;
+  position:relative;
+  background-position: center center;
+  background-repeat: none;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+#intro { 
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.5), 
+      rgba(0, 0, 0, 0.5)
+    ), url(image-path('homepage_bg.jpg'));
+    background-size: cover;
+}
+
+.intro .slogan {
+  padding:250px 0 60px;
+  text-align: center;
+  
+}
+.intro .slogan h1 {
+  color: #fff;
+  line-height: 1.1em;
+  margin-bottom: 20px;
+   font-size: 40px;
+}
+.intro .slogan p {
+  color: #eee;
+  margin-bottom: 50px;
+  font-size: 20px;
+}
+
+
+.brand-heading {
+    font-size: 40px;
+}
+
+.intro-text {
+    font-size: 18px;
+}
+
+/* ===========================
+--- Elements
+============================ */
+
+.btn {
+  font-size: 16px;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding: 15px 12px;
+  border: 3px solid white;
+
+  &:hover, &:active { 
+    background: white;
+  }
+}
+
+.btn-block {
+  font-size: 18px;
+  background: orange;
+  border-color: orange;
+  color: none;
+  margin-bottom: 7px;
+
+  &:hover, &:active { 
+    background: #FFB301;
+    border-color: #FFB301;
+    color: white;
+  }
+}
+
+/* Media queries */
+
+@media(min-width:767px) {
+
+    .intro {
+        height: 100%;
+        padding: 0;
+    }
+
+    .brand-heading {
+        font-size: 100px;
+    }
+  
+    .intro-text {
+        font-size: 25px;
+    }
+
+
+}
+@media (max-width:768px) {
+  
+  .team.boxed-grey {
+    margin-bottom: 30px;
+  }
+  
+  .boxed-grey {
+    margin-bottom: 30px;
+  }
+  .intro .slogan {
+    padding:100px 0 60px;
+    
+  }
+  
+}
+
+@media (max-width:480px) {
+
+  .intro .slogan {
+    padding:170px 0 60px;
+    
+  }
+  
+}
+
+/* miscellaneous */
+
+.debug_dump {
+  clear: both;
+  float: left;
+  width: 100%;
+  margin-top: 45px;
+  @include box_sizing;
+  }

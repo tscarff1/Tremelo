@@ -1,0 +1,364 @@
+/* ============================
+--- Menu
+============================= */
+
+/* Variables */
+
+$border-color: #866400;
+$background-color: #424035;
+$search-text-color: #FFDE79;
+
+$font-family: Questrial, Arial, sans-serif;
+
+*,
+*:after,
+*::before {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+}
+
+/* Navbar */
+
+#logo {
+  font-family: Montserrat, sans-serif;
+  font-size: 22px;
+  border-right: 1px solid $border-color;
+}
+
+.gn-menu-main,
+.gn-menu-main ul {
+    margin: 0;
+    padding: 0;
+    background: $background-color;
+    color: orange;
+    list-style: none;
+    text-transform: none;
+    font-weight: 400;
+    font-family: $font-family;
+    line-height: 60px;
+    z-index:150;
+}
+
+.gn-menu-main {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    font-size: 13px;
+}
+
+.gn-menu-main a {
+    display: block;
+    height: 100%;
+    color: orange;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.no-touch .gn-menu-main a:hover,
+.no-touch .gn-menu li.gn-search-item:hover,
+.no-touch .gn-menu li.gn-search-item:hover a {
+    background: orange;
+    color: $background-color;
+}
+
+.gn-menu-main > li {
+    display: block;
+    float: left;
+    height: 100%;
+    text-align: center;
+}
+
+/* icon-only trigger (menu item) */
+
+.gn-menu-main li.gn-trigger {
+    position: relative;
+    width: 60px;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border-right: 1px solid $border-color;
+}
+
+.gn-menu-main > li:last-child {
+    float: right;
+    border-right: none;
+}
+
+.gn-menu-main > li > a {
+    padding: 0 30px;
+    font-weight: bold;
+}
+
+.gn-menu-main:after {
+    display: table;
+    clear: both;
+    content: "";
+}
+
+
+.gn-menu-wrapper {
+    position: fixed;
+    background: $background-color;
+    top: 60px;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    width: 60px;
+    -webkit-transform: translateX(-60px);
+    -moz-transform: translateX(-60px);
+    transform: translateX(-60px);
+    -webkit-transition: -webkit-transform 0.3s, width 0.3s;
+    -moz-transition: -moz-transform 0.3s, width 0.3s;
+    transition: transform 0.3s, width 0.3s;
+
+}
+
+.gn-scroller {
+    position: absolute;
+    overflow-y: scroll;
+    width: 370px;
+    height: 100%;
+}
+
+.gn-menu {
+    text-align: left;
+    font-size: 18px;
+
+    li {
+        border-bottom: 1px solid $border-color;
+    }
+}
+
+.gn-submenu li {
+    overflow: hidden;
+    height: 0;
+    -webkit-transition: height 0.3s;
+    -moz-transition: height 0.3s;
+    transition: height 0.3s;
+}
+
+// fix this
+.gn-submenu li a {
+    color: #c1c9d1;
+}
+
+.gn-search-item {
+    border-top: 1px solid $border-color;
+}
+
+input.gn-search {
+    position: relative;
+    z-index: 10;
+    padding-left: 60px;
+    outline: none;
+    border: none;
+    background: transparent;
+    color: $search-text-color;
+    font-weight: 300;
+    font-family: $font-family;
+    cursor: pointer;
+}
+
+/* placeholder */
+
+.gn-search::-webkit-input-placeholder {
+    color: $search-text-color
+}
+
+.gn-search:-moz-placeholder {
+    color: $search-text-color
+}
+
+.gn-search::-moz-placeholder {
+    color: $search-text-color
+}
+
+.gn-search:-ms-input-placeholder {
+    color: $search-text-color
+}
+
+/* hide placeholder when active in Chrome */
+
+.gn-search:focus::-webkit-input-placeholder,
+.no-touch .gn-menu li.gn-search-item:hover .gn-search:focus::-webkit-input-placeholder {
+    color: transparent
+}
+
+input.gn-search:focus {
+    cursor: text
+}
+
+.no-touch .gn-menu li.gn-search-item:hover input.gn-search {
+    color: $background-color
+}
+
+/* placeholder */
+
+.no-touch .gn-menu li.gn-search-item:hover .gn-search::-webkit-input-placeholder {
+    color: $background-color
+}
+
+.no-touch .gn-menu li.gn-search-item:hover .gn-search:-moz-placeholder {
+    color: $background-color
+}
+
+.no-touch .gn-menu li.gn-search-item:hover .gn-search::-moz-placeholder {
+    color: $background-color
+}
+
+.no-touch .gn-menu li.gn-search-item:hover .gn-search:-ms-input-placeholder {
+    color: $background-color
+}
+
+.gn-menu-main a.gn-icon-search {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 60px;
+}
+
+.gn-icon::before {
+    display: inline-block;
+    width: 60px;
+    font-size: 20px;
+    text-align: center;
+    text-transform: none;
+    font-weight: normal;
+    font-style: normal;
+    font-variant: normal;
+    font-family: 'FontAwesome';
+    line-height: 1;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+}
+
+.gn-icon-search::before {
+    content: "\f002"
+}
+
+.gn-icon-profile::before {
+    content: "\f007"
+}
+
+.gn-icon-login::before {
+    content: "\f090"
+}
+
+.gn-icon-logout::before {
+    content: "\f08b"
+}
+
+.gn-icon-help::before {
+    content: "\f059"
+}
+
+.gn-icon-about::before {
+    content: "\f05a"
+}
+
+.gn-icon-contact::before {
+    content: "\f01c"
+}
+
+/* if an icon anchor has a span, hide the span */
+
+.gn-icon span {
+    width: 0;
+    height: 0;
+    display: block;
+    overflow: hidden;
+}
+
+.gn-icon-menu.gn-selected {
+	background: orange;
+
+	&:before {
+		background: $background-color;
+		box-shadow: 0 3px orange, 0 -6px $background-color, 
+		0 -9px orange, 0 -12px $background-color;
+	}
+}
+
+.gn-icon-menu::before {
+	margin-left: -15px;
+	vertical-align: -2px;
+	width: 30px;
+	height: 3px;
+	background: orange;
+	box-shadow: 0 3px $background-color, 0 -6px orange, 
+	0 -9px $background-color, 0 -12px orange;
+	content: '';
+}
+
+.no-touch .gn-icon-menu:hover::before,
+.no-touch .gn-icon-menu.gn-selected:hover::before {
+	background: $background-color;
+	box-shadow: 0 3px orange, 0 -6px $background-color, 
+	0 -9px orange, 0 -12px $background-color;
+}
+
+/* styles for opening menu */
+
+.gn-menu-wrapper.gn-open-all,
+.gn-menu-wrapper.gn-open-part {
+    -webkit-transform: translateX(0px);
+    -moz-transform: translateX(0px);
+    transform: translateX(0px);
+}
+
+.gn-menu-wrapper.gn-open-all {
+    width: 340px;
+}
+
+.gn-menu-wrapper.gn-open-all .gn-submenu li {
+    height: 60px
+}
+
+@media screen and (max-width: 422px) { 
+  .gn-menu-wrapper.gn-open-all {
+      -webkit-transform: translateX(0px);
+      -moz-transform: translateX(0px);
+      transform: translateX(0px);
+      width: 100%;
+  }
+
+  .gn-menu-wrapper.gn-open-all .gn-scroller {
+      width: 130%;
+  }
+}
+
+/* ============================
+--- Social Icons
+============================= */
+
+.company-social {
+    margin: 3px 5px 0 0;
+
+    ul { height: 0 }
+
+	li {
+		display: inline-block;
+		margin:0 !important;
+
+        &:hover {
+            background: $background-color;
+        }
+	}
+
+	a {
+		font-size: 22px;
+		margin: 0;
+		padding: 0;
+		width: 40px;
+		line-height: 40px;
+		text-align: center;
+        background: none;
+		color: orange;
+	}
+}
