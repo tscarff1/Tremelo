@@ -48,7 +48,7 @@ RSpec.describe User, :type => :model do
     it "downcases an email before saving" do
       user = User.new(valid_attributes)
       user.email = "SEAN@TREMELO.COM"
-      expect(user.save).to be_true
+      expect(user.save).to be_truthy
       expect(user.email).to eq("sean@tremelo.com")
     end
   end
