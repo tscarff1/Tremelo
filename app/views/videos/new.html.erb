@@ -1,0 +1,17 @@
+<h1>Videos#new</h1>
+<p>Find me in app/views/videos/new.html.erb</p>
+
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+	<%= form_for(@video, :html => {:multipart => true}) do |f| %>
+		<%= f.label :video %>
+		<%= f.file_field :video %>
+		<br>
+		<%= f.label :band_id %>
+		<%= f.text_field :band_id %>
+		<br>
+		<%= f.submit "Upload your video!", class: "btn btn-primary"%>
+	<% end %>
+	</div>
+</div>
+
