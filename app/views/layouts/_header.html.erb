@@ -1,0 +1,94 @@
+<header>
+
+<div class="container">
+      <ul id="gn-menu" class="gn-menu-main">
+        <li class="gn-trigger">
+          <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+          <nav class="gn-menu-wrapper">
+            <div class="gn-scroller">
+              <ul class="gn-menu">
+
+                <li class="gn-search-item">
+                  <input placeholder="Search" type="search" class="gn-search">
+                  <a class="gn-icon gn-icon-search"><span>Search</span></a>
+                </li>
+
+                <!-- Uncomment this later -->
+                <%# if logged_in? %>
+
+                  <li>
+                    <%= link_to "Profile", '#',#current_user,
+                      class: "gn-icon gn-icon-profile" %>
+                  </li>
+
+                  <ul class="gn-submenu">
+                    <li>
+                      <%= link_to "Log Out", '#',#logout_path, method: "delete",
+                      class: "gn-icon gn-icon-logout" %>
+                    </li>
+                  </ul>
+
+                <!-- And this -->
+                <%# else %>
+
+                  <li>
+                    <%= link_to "Log In", '#',#login_path, 
+                    class: "gn-icon gn-icon-login" %>
+                  </li>
+
+                <!-- And this -->
+                <%# end %>
+
+                <li>
+                  <%= link_to "About", about_path, 
+                    class: "gn-icon gn-icon-about" %>
+                </li>
+
+                <li>
+                  <%= link_to "Help", help_path, 
+                    class: "gn-icon gn-icon-help" %>
+                </li>
+
+                <li>
+                  <%= mail_to "taybrown9000@gmail.com", "Contact",
+                    :class => "gn-icon gn-icon-contact" %>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </li>
+        <li><%= link_to "tremelo", root_path, id: "logo" %></li>
+        <li>
+        <div class="company-social">
+          <ul>
+
+            <li>
+              <a href="#" target="_blank">
+                <i class="fa fa-facebook"></i>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" target="_blank">
+                <i class="fa fa-twitter"></i>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" target="_blank">
+                <i class="fa fa-soundcloud"></i>
+              </a>
+            </li>
+
+            <li>
+              <a href="#" target="_blank">
+                <i class="fa fa-google-plus"></i>
+              </a>
+            </li>
+
+          </ul>
+          </div>
+        </li>
+      </ul>
+  </div>
+</header>
