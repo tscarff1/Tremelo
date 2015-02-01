@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'static_pages#home'
 
   get 'about' => 'static_pages#about'
@@ -6,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :bands
   resources :videos
+  resources :userbands
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
