@@ -25,5 +25,16 @@
   <%= @user.password_digest %>
 </p>
 
+<h4><strong> Bands </strong></h4>
+<% userbands = UserBand.where(user_id: @user.id) %>
+<% if userbands.empty? %>
+  <p> <%= @user.display_name %> does not belong to any bands - yet </p>
+<% else %>
+  <% userbands.each do |userband| %>
+    <% band = Band.find(userband.band_id) %>
+      <%= band.name %>
+  <%end%>
+<%end%>
+
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
