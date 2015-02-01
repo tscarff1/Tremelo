@@ -32,6 +32,18 @@ ActiveRecord::Schema.define(version: 20150201191355) do
     t.datetime "updated_at"
   end
 
+  create_table "users", force: true do |t|
+    t.string   "display_name"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "password_digest"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", using: :btree
+
   create_table "videos", force: true do |t|
     t.string   "video_file_name"
     t.string   "video_content_type"
