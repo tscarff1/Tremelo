@@ -1,2 +1,23 @@
-<h1>StaticPages#home</h1>
-<p>Find me in app/views/static_pages/home.html.erb</p>
+<section id="intro" class="intro">
+    <div class="slogan">
+        <h1>This is Tremelo.</h1>
+        <p>Share your music life with others</p>
+
+      <!-- Uncomment this later -->
+      <%# if !logged_in? %>
+
+        <div class="container">
+            <div class="row">
+              <%= link_to " Log In", '#',#login_path, 
+              class: "btn fa gn-icon-login" %>
+              <h4 id="home">OR</h4>
+              <%= link_to " Register now", '#',#register_path, 
+              class: "btn fa fa-pencil-square-o" %>
+            </div>
+        </div>
+
+      <!-- And this -->
+      <%# end %>
+
+    </div>  
+</section>

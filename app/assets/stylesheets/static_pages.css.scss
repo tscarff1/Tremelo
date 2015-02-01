@@ -1,3 +1,64 @@
-// Place all the styles related to the Static_Pages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+/* ============================
+--- Home Page
+============================= */
+
+h4#home {
+    margin: 20px 0 20px 0;
+    padding: 0;
+    color: #F4F4F4;
+    letter-spacing: 2px;
+}
+
+/* ============================
+--- Forms
+============================= */
+
+h1.page-heading {
+    text-align: center;
+    font-size: 38px;
+}
+
+/* ============================
+--- Containers
+============================= */
+
+.page {
+    margin-top: 60px;
+}
+
+/* ============================
+--- Error Messages
+============================= */
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px;
+    margin-bottom: 0px;
+    background-color: #c00;
+    color: #fff;
+  }
+  ul li {
+    font-size: 12px;
+    list-style: square;
+  }
+}
