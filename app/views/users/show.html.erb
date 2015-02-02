@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Display name:</strong>
+  <%= @user.display_name %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @user.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @user.last_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+
+<p>
+  <strong>Password digest:</strong>
+  <%= @user.password_digest %>
+</p>
+
+<h4><strong> Bands </strong></h4>
+<% userbands = UserBand.where(user_id: @user.id) %>
+<% if userbands.empty? %>
+  <p> <%= @user.display_name %> does not belong to any bands - yet </p>
+<% else %>
+  <ul>
+  <% userbands.each do |userband| %>
+    <% band = Band.find(userband.band_id) %>
+      <li><%= link_to band.name, band %></li>
+  <%end%>
+</ul>
+<%end%>
+<br>
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
