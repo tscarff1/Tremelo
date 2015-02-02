@@ -1,4 +1,10 @@
-<h1>Temporary Create a Band</h1>
+<br><br><br><br>
+<% if !@userband.nil? %>
+<% user = User.find(@userband.user_id) %>
+<% session[:user_id] = user.id %>
+<h1> <%= user.display_name %>'s new BAND! </h1>
+<p> <%= session[:user_id] %> </p>
+
 <p>This page will be significantly different later</p>
 
 <div class="row">
@@ -18,3 +24,5 @@
 		<%end%>
 	</div>
 </div>
+
+<%end%>
