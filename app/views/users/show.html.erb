@@ -30,11 +30,13 @@
 <% if userbands.empty? %>
   <p> <%= @user.display_name %> does not belong to any bands - yet </p>
 <% else %>
+  <ul>
   <% userbands.each do |userband| %>
     <% band = Band.find(userband.band_id) %>
-      <%= band.name %>
+      <li><%= link_to band.name, band %></li>
   <%end%>
+</ul>
 <%end%>
-
+<br>
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
