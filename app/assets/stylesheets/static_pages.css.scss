@@ -33,6 +33,15 @@ h4#home {
 }
 
 /* ============================
+--- Help Page
+============================= */
+
+.help-header {
+  @extend .about-header;
+  background: url(image-path('helppage_bg.jpg')) center center no-repeat scroll;
+}
+
+/* ============================
 --- Forms
 ============================= */
 
