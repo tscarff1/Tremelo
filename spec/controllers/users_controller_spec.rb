@@ -23,7 +23,8 @@ RSpec.describe UsersController, :type => :controller do
   before :all do
     #Create a list of users to write to a file
     users_obj = [
-      User.new(display_name: )
+      User.new(display_name: "Test User 1", first_name: "Tyler", last_name: "Scarff"
+        )
     ]
 
   end

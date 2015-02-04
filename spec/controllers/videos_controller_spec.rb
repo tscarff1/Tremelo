@@ -18,8 +18,9 @@ RSpec.describe VideosController, :type => :controller do
 
   describe "GET show" do
     it "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
+      video = FactoryGirl.create(:video)
+      get :show, id: video
+      response.should render_template :show
     end
   end
 
