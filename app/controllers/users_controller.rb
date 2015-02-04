@@ -50,6 +50,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def leave_band
+      @userband = UserBand.find(params[:userband_id])
+      @band = Band.find(@userband.band_id)
+      @user = User.find(@userband.user_id)
+      if @userband.destroy
+       redirect_to @user, notice: "Successfully left band #{@band.name}"
+      else
+        redirect_to @user, notice: "Unable to leave band"
+      end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user

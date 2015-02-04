@@ -19,6 +19,14 @@ require 'spec_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe UsersController, :type => :controller do
+  # What to do before anything else
+  before :all do
+    #Create a list of users to write to a file
+    users_obj = [
+      User.new(display_name: )
+    ]
+
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # User. As you add validations to User, be sure to

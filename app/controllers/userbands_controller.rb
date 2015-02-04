@@ -9,5 +9,6 @@ class UserbandsController < ApplicationController
   end
 
   def destroy
+  	
   end
 end
