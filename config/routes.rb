@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'user_bands/destroy'
+
+  get 'user_bands/edit'
+
   get "/login" => "user_sessions#new", as: :login
   delete "/logout" => "user_sessions#destroy", as: :logout
 

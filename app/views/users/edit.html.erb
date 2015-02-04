@@ -1,8 +1,25 @@
 <h1>Editing user</h1>
 
 <%= render 'form' %>
+<br><br>
+<h4><strong>Edit Bands </strong></h4>
+<h4> <%= link_to "Create a new Band", {controller: "bands", action: "new", user_id: @user.id} %></h4>
+<% userbands = UserBand.where(user_id: @user.id) %>
+<% if userbands.empty? %>
+  <p> <%= @user.display_name %> does not belong to any bands - yet </p>
+<% else %>
+  <ul>
+  <% userbands.each do |userband| %>
+    <% band = Band.find(userband.band_id) %>
+      <li><%= link_to band.name, band %>
+      	
+      </li>
 
-<%= link_to "Create a new Band", {controller: "bands", action: "new", user_id: @user.id} %>
+  <%end%>
+</ul>
+<%end%>
+
+
 <br><br>
 <%= link_to 'Show', @user %> |
 <%= link_to 'Back', users_path %>
