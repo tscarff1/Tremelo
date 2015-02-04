@@ -1,26 +1,33 @@
 class BandsController < ApplicationController
   def new
-  	@band = Band.new
-    @userband = UserBand.new(user_id: params[:user_id], 
+    if !params[:user_id].nil?
+  	  @band = Band.new
+      @userband = UserBand.new(user_id: params[:user_id], 
                             band_id: @band.id, 
                             admin_priveleges: 1)
+    else
+
+    end
   end
 
   def create
   	@band = Band.new(band_params)
     
-  	if @band.save
-  	  	flash[:success] = "Welcome to Tremelo"
+    respond_to do |format|
+      if @band.save
         @user = User.find(session[:user_id])
         session.delete(:user_id)
         @userband = UserBand.new(user_id: @user.id, band_id: @band.id, admin_priveleges: 1)
-        @userband.save
-  		redirect_to @band
-  	else
-  		render 'new'
-  	end
+          if @userband.save
+            format.html { redirect_to @band, notice: 'Welcome to Tremelo!' }
+            format.json { render :show, status: :created, location: @band }
+          end
+      else
+        format.html { render :new, user_id: session[:user_id] }
+        format.json { render json: @band.errors, status: :unprocessable_entity }
+      end
+    end
   end
-
   def edit
   	@band = Band.find(params[:id])
   end
