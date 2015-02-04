@@ -13,31 +13,28 @@
                   <a class="gn-icon gn-icon-search"><span>Search</span></a>
                 </li>
 
-                <!-- Uncomment this later -->
-                <%# if logged_in? %>
+                <% if logged_in? %>
 
                   <li>
-                    <%= link_to "Profile", '#',#current_user,
+                    <%= link_to "Profile",current_user,
                       class: "gn-icon gn-icon-profile" %>
                   </li>
 
                   <ul class="gn-submenu">
                     <li>
-                      <%= link_to "Log Out", '#',#logout_path, method: "delete",
+                      <%= link_to "Log Out",logout_path, method: "delete",
                       class: "gn-icon gn-icon-logout" %>
                     </li>
                   </ul>
 
-                <!-- And this -->
-                <%# else %>
+                <% else %>
 
                   <li>
-                    <%= link_to "Log In", '#',#login_path, 
+                    <%= link_to "Log In", login_path, 
                     class: "gn-icon gn-icon-login" %>
                   </li>
 
-                <!-- And this -->
-                <%# end %>
+                <% end %>
 
                 <li>
                   <%= link_to "About", about_path, 
