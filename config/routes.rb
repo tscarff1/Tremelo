@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get "/login" => "user_sessions#new", as: :login
-  delete "/logout" => "user_sessions#destroy", as: :logout
+  get "/register" => "users#new", as: :register
+  get "/logout" => "user_sessions#destroy", as: :logout
 
   resources :users
   resources :user_sessions, only: [:new, :create]

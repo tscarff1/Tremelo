@@ -11,7 +11,7 @@ class UserSessionsController < ApplicationController
       end
       session[:user_id] = user.id
       flash[:success] = "Thanks for logging in!"
-      redirect_to user_path
+      redirect_to user
     else
       flash[:error] = "There was a problem logging in. Please check your email and password."
       render action: 'new'
