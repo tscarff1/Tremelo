@@ -1,5 +1,6 @@
 <% provide(:title, 'Editing User') %>
-<% if params[:user_id] == session[:user_id] %>
+
+<% if @user.id == session[:user_id] %>
 <h1>Editing User</h1>
 
 <%= render 'form' %>

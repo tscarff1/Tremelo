@@ -1,126 +1,98 @@
 <% provide(:title, "My Profile") %>
-
 <div class="avatar">
-    <%= gravatar_for @user %>
+<%= gravatar_for @user %>
 </div>
-
 <div class="container">
-  <div class="row">
-
-    <div class="col-sm-10">
-     <h1><%= @user.display_name %></h1>
-     <span class="label label-success">Drummer</span>
-     <span class="label label-danger">Guitarist</span>
-     <span class="label label-info">Bassist</span>
-       
-    </div>
-
-  </div>
-
- <div class="row">
-  <div class="col-sm-3">
-    <!--left col-->
-    <ul class="list-group">
-      <li class="list-group-item text-muted" 
-      contenteditable="false">
-      Profile
-    </li>
-    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span> 2.5.2015</li>
-    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span> Yesterday</li>
-    <li class="list-group-item text-right"><span class="pull-left"><strong class="">Real name</strong></span>
-      <%= @user.first_name + " " + @user.last_name %>
-      </li>
-
-    </li>
-  </ul>
-
-<div class="panel panel-default">
-  <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i>
+<div class="row">
+<div class="col-sm-10">
+<h1><%= @user.display_name %></h1>
+<span class="label label-success">Drummer</span>
+<span class="label label-danger">Guitarist</span>
+<span class="label label-info">Bassist</span>
 </div>
-
-  <div class="panel-body">
-    <a href="#" class="">Website Here</a>
-  </div>
-
 </div>
-
+<div class="row">
+<div class="col-sm-3">
+<!--left col-->
 <ul class="list-group">
-  <li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i>
-
-  </li>
-  <li class="list-group-item text-right"><span class="pull-left"><strong class="">Shares</strong></span> 125</li>
-  <li class="list-group-item text-right"><span class="pull-left"><strong class="">Fans</strong></span> 78</li>
+<li class="list-group-item text-muted"
+contenteditable="false">
+Profile
+</li>
+<li class="list-group-item text-right"><span class="pull-left"><strong class="">Joined</strong></span> 2.5.2015</li>
+<li class="list-group-item text-right"><span class="pull-left"><strong class="">Last seen</strong></span> Yesterday</li>
+<li class="list-group-item text-right"><span class="pull-left"><strong class="">Real name</strong></span>
+<%= @user.first_name + " " + @user.last_name %>
+</li>
+</li>
 </ul>
 <div class="panel panel-default">
-  <div class="panel-heading">Social Media</div>
-  <div class="panel-body">  <i class="fa fa-facebook fa-2x"></i>  <i class="fa fa-github fa-2x"></i> 
-    <i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i>  <i class="fa fa-google-plus fa-2x"></i>
-
-  </div>
+<div class="panel-heading">Website <i class="fa fa-link fa-1x"></i>
+</div>
+<div class="panel-body">
+<a href="#" class="">Website Here</a>
 </div>
 </div>
-
+<ul class="list-group">
+<li class="list-group-item text-muted">Activity <i class="fa fa-dashboard fa-1x"></i>
+</li>
+<li class="list-group-item text-right"><span class="pull-left"><strong class="">Shares</strong></span> 125</li>
+<li class="list-group-item text-right"><span class="pull-left"><strong class="">Fans</strong></span> 78</li>
+</ul>
+<div class="panel panel-default">
+<div class="panel-heading">Social Media</div>
+<div class="panel-body"> <i class="fa fa-facebook fa-2x"></i> <i class="fa fa-github fa-2x"></i>
+<i class="fa fa-twitter fa-2x"></i> <i class="fa fa-pinterest fa-2x"></i> <i class="fa fa-google-plus fa-2x"></i>
+</div>
+</div>
+</div>
 <!--/col-3-->
 <div class="col-sm-9" contenteditable="false" style="">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      About Me
-    </div>
-    <div class="panel-body"> Blah blah blah.
-    </div>
-
-  </div>
-
-  <div class="panel panel-default">
-    <div class="panel-heading" contenteditable="false">Bands</div>
-    <div class="panel-body">
-      <div class="row">
-
-        <div class="col-md-4">
-          <div class="thumbnail">
-            <img alt="300x300" src="http://upload.wikimedia.org/wikipedia/commons/c/c0/Title_Fight.jpg">
-            
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="thumbnail">
-            <img alt="300x200" src="http://saltroads.com/wp-content/uploads/2014/09/Death_From_Above_1979.jpg">
-            
-          </div>
-        </div>
-
-        <div class="col-md-4">
-          <div class="thumbnail">
-            <img alt="300x200" src="http://static.tumblr.com/9fe5c472a547847efd5976d9358532ad/njm1oem/Uxrna7bsd/tumblr_static_cll78fiybi0w4cksg4coo8o04.jpg">
-            
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-
+<div class="panel panel-default">
+<div class="panel-heading">
+About Me
 </div>
-
+<div class="panel-body"> Blah blah blah.
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading" contenteditable="false">Bands</div>
+<div class="panel-body">
+<div class="row">
+<div class="col-md-4">
+<div class="thumbnail">
+<img alt="300x300" src="http://upload.wikimedia.org/wikipedia/commons/c/c0/Title_Fight.jpg">
+</div>
+</div>
+<div class="col-md-4">
+<div class="thumbnail">
+<img alt="300x200" src="http://saltroads.com/wp-content/uploads/2014/09/Death_From_Above_1979.jpg">
+</div>
+</div>
+<div class="col-md-4">
+<div class="thumbnail">
+<img alt="300x200" src="http://static.tumblr.com/9fe5c472a547847efd5976d9358532ad/njm1oem/Uxrna7bsd/tumblr_static_cll78fiybi0w4cksg4coo8o04.jpg">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="container">
-  <div class="row">
-
-    <h4><strong> Bands </strong></h4>
-    <% userbands = UserBand.where(user_id: @user.id) %>
-    <% if userbands.empty? %>
-    <p> <%= @user.display_name %> does not belong to any bands - yet </p>
-    <% else %>
-    <ul>
-      <% userbands.each do |userband| %>
-      <% band = Band.find(userband.band_id) %>
-      <li><%= link_to band.name, band %></li>
-      <%end%>
-    </ul>
-    <%end%>
-
-    <%= link_to 'Edit', edit_user_path(@user) %> |
-    <%= link_to 'Back', users_path %>
-
-  </div>
+<div class="row">
+<h4><strong> Bands </strong></h4>
+<% userbands = UserBand.where(user_id: @user.id) %>
+<% if userbands.empty? %>
+<p> <%= @user.display_name %> does not belong to any bands - yet </p>
+<% else %>
+<ul>
+<% userbands.each do |userband| %>
+<% band = Band.find(userband.band_id) %>
+<li><%= link_to band.name, band %></li>
+<%end%>
+</ul>
+<%end%>
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
+</div>
 </div>

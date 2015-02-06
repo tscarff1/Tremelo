@@ -84,6 +84,7 @@ GEM
     font-awesome-rails (4.3.0.0)
       railties (>= 3.2, < 5.0)
     formatador (0.2.5)
+    geocoder (1.2.7)
     guard (2.11.1)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -245,6 +246,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   factory_girl_rails
   font-awesome-rails
+  geocoder
   guard-livereload
   jbuilder (~> 2.0)
   jquery-easing-rails

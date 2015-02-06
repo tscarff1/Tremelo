@@ -2,14 +2,18 @@ require 'rails_helper'
 
 RSpec.describe BandsController, :type => :controller do
 
-  before :each do
-    band = FactoryGirl.create(:band)
-  end
-
   describe "GET new" do
     it "returns http success" do
       get :new
       expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "POST create" do
+    it "returns http success" do
+      band = FactoryGirl.create(:band)
+      post :create, id: band      
+      response.should redirect_to :show
     end
   end
 
