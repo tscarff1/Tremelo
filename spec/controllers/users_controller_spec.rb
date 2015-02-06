@@ -26,6 +26,7 @@ RSpec.describe UsersController, :type => :controller do
       User.new(display_name: "Test User 1", first_name: "Tyler", last_name: "Scarff"
         )
     ]
+  end
 
   end
 
