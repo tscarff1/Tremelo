@@ -13,9 +13,7 @@ describe "Logging In" do
     fill_in "Password", with: "password1"
     click_button "Log In"
 
-    expect(page).to have_content("sean@tremelo.com")
-    expect(page).to have_content("Display name")
-    expect(page).to have_content("Bands")
+    expect(page).to have_content("Sean")
 
   end
 
