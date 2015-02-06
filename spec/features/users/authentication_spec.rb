@@ -4,13 +4,19 @@ describe "Logging In" do
   it "logs the user in and goes to the profile page" do
     User.create(display_name: "PabloSanchez", first_name: "Sean", last_name: "Winner", email: "sean@tremelo.com", password: "password1", password_confirmation: "password1")
     visit "/"
-    click_link "Sign In"
+
+    within("//div[@id='slogan_div']") do
+      click_link "Log In"
+    end
+
     fill_in "Email Address", with: "sean@tremelo.com"
     fill_in "Password", with: "password1"
     click_button "Log In"
-    
-    expect(page).to have_content("Todo Lists")
-    expect(page).to have_content("Thanks for logging in!")
+
+    expect(page).to have_content("sean@tremelo.com")
+    expect(page).to have_content("Display name")
+    expect(page).to have_content("Bands")
+
   end
 
   it "diplays the email address in the event of a failed login" do

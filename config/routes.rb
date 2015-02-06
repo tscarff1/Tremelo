@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get "/login" => "user_sessions#new", as: :login
   get "/register" => "users#new", as: :register
   get "/logout" => "user_sessions#destroy", as: :logout
-
+  delete "/logout" => "user_sessions#destroy"
   get 'users/leave_band'
 
   resources :users
