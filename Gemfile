@@ -3,6 +3,7 @@ ruby '2.1.3'
 
 gem 'rails',                            '~> 4.1.7'
 gem 'paperclip'
+gem 'geocoder'
 gem 'bcrypt',                           '~> 3.1.7'
 gem 'pg'
 gem 'sass-rails',               '~> 4.0.3'

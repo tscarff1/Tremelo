@@ -17,7 +17,12 @@
   <%= @user.display_name %>
 </p>
 
+<h4><strong> Location </strong> </h4>
+<b> Address: </b> <%= @user.address %><br>
+<b> Latitude: </b> <%= @user.latitude %> <br>
+<b> Longitude: </b> <%= @user.longitude %> <br>
 
+<br><br>
 <h4><strong> Bands </strong></h4>
 <% userbands = UserBand.where(user_id: @user.id) %>
 <% if userbands.empty? %>

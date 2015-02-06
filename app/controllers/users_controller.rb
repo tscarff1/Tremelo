@@ -10,6 +10,9 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def change_password
+  end
+
   # POST /users
   # POST /users.json
   def create
@@ -72,6 +75,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:display_name, :first_name, :last_name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:display_name, :first_name, :last_name, :email, :address, :password, :password_confirmation)
     end
 end
