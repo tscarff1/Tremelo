@@ -54,6 +54,14 @@ h4#home {
     letter-spacing: 2px;
 }
 
+.btn.intro {
+  border: 3px solid white;
+  
+   &:hover, &:active, &:focus { 
+    background: white;
+  }
+}
+
 /* ============================
 --- About Page
 ============================= */
@@ -93,14 +101,6 @@ h4#home {
 h1.page-heading {
     text-align: center;
     font-size: 38px;
-}
-
-/* ============================
---- Containers
-============================= */
-
-.page {
-    margin-top: 60px;
 }
 
 /* ============================
