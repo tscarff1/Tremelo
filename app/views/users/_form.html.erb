@@ -31,6 +31,10 @@
 
     <%= f.label :password_confirmation, "Password (again)" %>
     <%= f.password_field :password_confirmation, class: 'form-control' %>
-    
+    <% if session[:user_id].nil? %>
     <%= f.submit "Register", class: "btn btn-primary" %>
+    <% else %>
+    <%= f.submit "Update", class: "btn btn-primary" %>
+    <% end %>
+
 <% end %>
