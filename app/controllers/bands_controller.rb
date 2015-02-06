@@ -1,8 +1,8 @@
 class BandsController < ApplicationController
   def new
-    if !params[:user_id].nil?
+    if !session[:user_id].nil?
   	  @band = Band.new
-      @userband = UserBand.new(user_id: params[:user_id], 
+      @userband = UserBand.new(user_id: session[:user_id], 
                             band_id: @band.id, 
                             admin_priveleges: 1)
     else
@@ -23,11 +23,12 @@ class BandsController < ApplicationController
             format.json { render :show, status: :created, location: @band }
           end
       else
-        format.html { render :new, user_id: session[:user_id] }
+        format.html { render :new}
         format.json { render json: @band.errors, status: :unprocessable_entity }
       end
     end
   end
+  
   def edit
   	@band = Band.find(params[:id])
   end

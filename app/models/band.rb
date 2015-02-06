@@ -3,6 +3,4 @@ class Band < ActiveRecord::Base
 		presence: true,
 		uniqueness: true
 
-	before_save :downcase_name
-
 end
