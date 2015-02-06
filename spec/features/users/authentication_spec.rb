@@ -1,8 +1,8 @@
-require "spec_helper"
+require 'rails_helper'
 
 describe "Logging In" do
-  it "logs the user in and goes to the todo lists" do
-    User.create(first_name: "Sean", last_name: "Winner", email: "sean@tremelo.com", password: "password1", password_confirmation: "password1")
+  it "logs the user in and goes to the profile page" do
+    User.create(display_name: "PabloSanchez", first_name: "Sean", last_name: "Winner", email: "sean@tremelo.com", password: "password1", password_confirmation: "password1")
     visit "/"
     click_link "Sign In"
     fill_in "Email Address", with: "sean@tremelo.com"

@@ -1,4 +1,4 @@
-require "spec_helper"
+require 'rails_helper'
 
 describe "Logging Out" do
   it "allows a signed in user to sign out" do
