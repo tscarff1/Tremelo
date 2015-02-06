@@ -56,6 +56,9 @@ class UsersController < ApplicationController
       @user = User.find(@userband.user_id)
       if @userband.destroy
        redirect_to @user, notice: "Successfully left band #{@band.name}"
+       if @band.num_members == 0
+        @band.destroy
+      end
       else
         redirect_to @user, notice: "Unable to leave band"
       end
