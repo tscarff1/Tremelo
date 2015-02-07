@@ -25,10 +25,10 @@ describe "Forgotten passswords" do
     fill_in "Password (again)", with: "mynewpassword1"
     click_button "Change Password"
     expect(page).to have_content("Password updated")
-    expect(page.current_path).to eq(todo_lists_path)
+    expect(page.current_path).to eq(root_path)
 
-    click_link "Sign Out"
-    expect(page).to have_content("You must be logged in to access that page")
+    click_link "Log Out"
+    expect(page).to have_content("You have been logged out")
     visit login_path
     fill_in "Email", with: user.email
     fill_in "Password", with: "mynewpassword1"
