@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
   before_save :downcase_email
 
   #For location
-  
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
 
