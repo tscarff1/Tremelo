@@ -5,12 +5,12 @@ class User < ActiveRecord::Base
                     uniqueness: true,
                     format: {
                       with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
-                    }
+                    },
+                    confirmation: true
 
   before_save :downcase_email
 
   #For location
-  
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
 
