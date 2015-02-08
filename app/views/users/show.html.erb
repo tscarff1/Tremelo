@@ -1,7 +1,6 @@
 <% provide(:title, "My Profile") %>
 <div class="avatar">
-<%= gravatar_for @user %>
-<%= image_tag @user.profile_picture.url(:thumb) %>
+  <%= image_tag @user.profile_picture.url(:thumb) %>
 </div>
 
 <div class="container">
