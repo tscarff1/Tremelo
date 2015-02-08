@@ -1,12 +1,66 @@
-/* ============================
+/* ===========================
 --- Home Page
-============================= */
+============================ */
+
+.intro {
+  width:100%;
+  position:relative;
+  background-position: center center;
+  background-repeat: none;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+#intro { 
+  background-image: linear-gradient(
+      rgba(0, 0, 0, 0.5), 
+      rgba(0, 0, 0, 0.5)
+    ), url(image-path('homepage_bg.jpg'));
+    background-size: cover;
+}
+
+.intro .slogan {
+  padding: 100px 0 30px;
+  text-align: center;
+  
+}
+.intro .slogan h1 {
+  color: #fff;
+  line-height: 1.1em;
+  margin-bottom: 5px;
+ font-size: 40px;
+}
+.intro .slogan p {
+  color: #eee;
+  margin-bottom: 50px;
+  font-size: 20px;
+}
+
+
+.brand-heading {
+    font-size: 40px;
+}
+
+.intro-text {
+    font-size: 18px;
+}
 
 h4#home {
     margin: 20px 0 20px 0;
     padding: 0;
     color: #F4F4F4;
     letter-spacing: 2px;
+}
+
+.btn-intro {
+  @extend .btn;
+  border: 3px solid white;
+  
+   &:hover, &:active, &:focus { 
+    background: white;
+  }
 }
 
 /* ============================
@@ -48,14 +102,6 @@ h4#home {
 h1.page-heading {
     text-align: center;
     font-size: 38px;
-}
-
-/* ============================
---- Containers
-============================= */
-
-.page {
-    margin-top: 60px;
 }
 
 /* ============================
