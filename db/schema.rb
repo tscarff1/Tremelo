@@ -50,9 +50,11 @@ ActiveRecord::Schema.define(version: 20150207191623) do
     t.string   "profile_picture_content_type"
     t.integer  "profile_picture_file_size"
     t.datetime "profile_picture_updated_at"
+    t.string   "password_reset_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["password_reset_token"], name: "index_users_on_password_reset_token", using: :btree
 
   create_table "videos", force: true do |t|
     t.string   "video_file_name"

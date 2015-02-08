@@ -16,12 +16,12 @@ describe UserSessionsController do
 
   describe "POST 'create'" do
     context "with correct credentials" do
-      let!(:user) { User.create(first_name: "Sean", last_name: "Winner", email: "sean@tremelo.com", password: "password1", password_confirmation: "password1") }
+      let!(:user) { User.create(display_name: "JohnnyBoy", first_name: "Sean", last_name: "Winner", email: "sean@tremelo.com", password: "password1", password_confirmation: "password1") }
 
       it "redirects to the user path" do
         post :create, email: "sean@tremelo.com", password: "password1"
         expect(response).to be_redirect
-        expect(response).to redirect_to(user_path)
+        expect(response).to redirect_to(user_path(user))
       end
 
       it "finds the user" do

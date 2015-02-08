@@ -12,6 +12,7 @@ describe "Signing up" do
     fill_in "First Name", with: "Sean"
     fill_in "Last Name", with: "Winner"
     fill_in "Email", with: "sean@tremelo.com"
+    fill_in "Email Confirmation", with: "sean@tremelo.com"
     fill_in "Password", with: "password1"
     fill_in "Password (again)", with: "password1"
     click_button "Register"
