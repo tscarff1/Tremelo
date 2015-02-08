@@ -37,6 +37,13 @@
   </span>
   <%= @user.first_name + " " + @user.last_name %>
   </li>
+
+  <li class="list-group-item text-right">
+    <span class="pull-left">
+      <strong class="">Address</strong> 
+    </span> 
+    <%= @user.address %>
+  </li>
 </ul>
 
 <!-- Personal Website Panel -->
@@ -124,6 +131,28 @@
       </div>
     </div>
   </div>
+  <!-- Nearby Users -->
+  <div class="panel panel-default">
+    <div class="panel-heading" contenteditable="false">
+      Nearby Users
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-md-4">
+          <ul>
+            <% if !@user.nearbys(20).nil? %>
+              <% for nearby_user in @user.nearbys(20) %>
+                <li> <%= link_to nearby_user.display_name, nearby_user%> 
+                  (<%= nearby_user.distance.round(2) %> miles )</li>
+              <%end%>
+            <%else%>
+              No nearby users.
+            <%end%>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <!-- Tyler's code for incorporating bands -->
 <div class="container">
@@ -141,6 +170,8 @@
           </ul>
     <%end%>
 <%end%>
+
+ 
 <br>
 
 <!-- Prevent anyone but the correct user from even seeing the edit link -->
