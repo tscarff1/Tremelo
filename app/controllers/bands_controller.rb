@@ -16,7 +16,6 @@ class BandsController < ApplicationController
     respond_to do |format|
       if @band.save
         @user = User.find(session[:user_id])
-        session.delete(:user_id)
         @userband = UserBand.new(user_id: @user.id, band_id: @band.id, admin_priveleges: 1)
           if @userband.save
             format.html { redirect_to @band, notice: 'Welcome to Tremelo!' }
