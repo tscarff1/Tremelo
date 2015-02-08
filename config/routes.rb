@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   get "/register" => "users#new", as: :register
   get "/logout" => "user_sessions#destroy", as: :logout
   delete "/logout" => "user_sessions#destroy"
-  get 'users/leave_band'
-
+  
+  get 'users/leave_band' => "users#leave_band"
+  get 'users/upload_pic' => "users#upload_pic"
   resources :users
   resources :user_sessions, only: [:new, :create]
   resources :password_resets, only: [:new, :create, :edit, :update]

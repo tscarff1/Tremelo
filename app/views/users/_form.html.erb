@@ -1,4 +1,4 @@
-<%= form_for(@user) do |f| %>
+<%= form_for @user do |f| %>
   <%= render 'shared/error_messages' %>
 
     <%= f.label :display_name, "Display Name" %>
@@ -13,8 +13,10 @@
     <%= f.label :email %>
     <%= f.text_field :email, class: 'form-control' %>
 
-    <%= f.label :email_confirmation, "Email Confirmation" %>
-    <%= f.text_field :email_confirmation, class: 'form-control' %>
+    <!-- 
+     f.label :email_confirmation, "Email Confirmation" %>
+     f.text_field :email_confirmation, class: 'form-control' %>
+    -->
 
     <%= f.label :about_me, "About Me" %>
     <%= f.text_area :about_me, :size => "10x5", class: 'form-control' %>

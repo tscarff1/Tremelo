@@ -1,5 +1,8 @@
 <h1> Upload a profile picture! </h1>
+<!-- This line is needed since the page is not associated with a particular user in the params -->
+<% @user = User.find(session[:user_id]) %>
 
-<%= form_for @user, :url => users_path, :html => { :multipart => true } do |form| %>
-  <%= form.file_field :avatar %>
+<%= form_for @user,  :html => { :multipart => true } do |f| %>
+  <%= f.file_field :profile_picture %>
+  <%= f.submit "Add Picture", class: "btn btn-block" %>
 <% end %>
