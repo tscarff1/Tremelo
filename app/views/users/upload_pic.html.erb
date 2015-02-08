@@ -3,6 +3,6 @@
 <% @user = User.find(session[:user_id]) %>
 
 <%= form_for @user,  :html => { :multipart => true } do |f| %>
-  <%= f.file_field :profile_picture %>
+  <%= f.file_field :profile_picture, accept: 'image/png, image/gif, image/jpeg, image/bmp' %>
   <%= f.submit "Add Picture", class: "btn btn-block" %>
 <% end %>
