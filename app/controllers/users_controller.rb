@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :upload_pic]
 
   # GET /users/new
   def new
@@ -11,6 +11,9 @@ class UsersController < ApplicationController
   end
 
   def change_password
+  end
+
+  def upload_pic
   end
 
   # POST /users

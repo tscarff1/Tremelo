@@ -37,5 +37,8 @@
 <%end%>
 <br>
 
+<!-- Prevent anyone but the correct user from even seeing the edit link -->
+<% if @user.id == session[:user_id] %>
 <%= link_to 'Edit', edit_user_path(@user) %> |
+<% end %>
 <%= link_to 'Back', users_path %>
