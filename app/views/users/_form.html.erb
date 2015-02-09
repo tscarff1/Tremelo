@@ -13,8 +13,10 @@
     <%= f.label :email %>
     <%= f.text_field :email, class: 'form-control' %>
 
-    <%= f.label :email_confirmation, "Email Confirmation" %>
-    <%= f.email_field :email_confirmation, class: 'form-control' %>
+    <% if session[:user_id].nil? %>
+        <%= f.label :email_confirmation, "Email Confirmation" %>
+        <%= f.email_field :email_confirmation, class: 'form-control' %>
+    <%end%>
 
     <%= f.label :about_me, "About Me" %>
     <%= f.text_area :about_me, :size => "10x5", class: 'form-control' %>
@@ -29,11 +31,13 @@
 
     <br>
 
-    <%= f.label :password %>
-    <%= f.password_field :password, class: 'form-control' %>
+    <% if session[:user_id].nil? %>
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
 
-    <%= f.label :password_confirmation, "Password (again)" %>
-    <%= f.password_field :password_confirmation, class: 'form-control' %>
+        <%= f.label :password_confirmation, "Password (again)" %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+    <% end %>
 
     <% if session[:user_id].nil? %>
     <%= f.submit "Register", class: "btn btn-block" %>
