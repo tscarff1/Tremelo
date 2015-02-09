@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :upload_pic, :update_pic, :update, :destroy]
 
   # GET /users/new
   def new
@@ -47,6 +47,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def update_pic
+    respond_to do |format|
+      if @user.update_pic(picture_params)
+        format.html {redirect_to @user, notice: 'Profile picture has been successfully changed.'}
+        format.json {render :show, status: :ok, location: @user}
+      else
+        format.html {render :upload_pic}
+        format.json {render json: @user.errors, status: :unprocessable_entity}
+      end
+    end
+  end
+
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
@@ -80,6 +92,12 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:display_name, :first_name, :last_name, :email, 
-                            :email_confirmation, :password, :password_confirmation, :profile_picture)
+                            :email_confirmation, 
+                            :password, :password_confirmation, 
+                            :profile_picture, :address)
+    end
+
+    def picture_params
+      params.require(:user).permit(:profile_picture)
     end
 end
