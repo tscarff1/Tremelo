@@ -7,5 +7,4 @@ class Band < ActiveRecord::Base
 		userbands = UserBand.where(band_id: self.id)
 		return userbands.length
 	end
-
 end
