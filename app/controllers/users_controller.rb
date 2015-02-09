@@ -41,15 +41,20 @@ class UsersController < ApplicationController
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+       if params[:profile_picture].nil?
+          format.html { render :edit }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        else
+          format.html { render :upload_pic }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
 
   def update_pic
     respond_to do |format|
-      if @user.update_pic(picture_params)
+      if @user.update(picture_params)
         format.html {redirect_to @user, notice: 'Profile picture has been successfully changed.'}
         format.json {render :show, status: :ok, location: @user}
       else

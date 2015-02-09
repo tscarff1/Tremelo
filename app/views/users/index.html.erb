@@ -1,0 +1,15 @@
+<% if !session[:user_id].nil? %>
+<%user = User.find(session[:user_id])%>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10">
+      <h1>Users near <%= user.display_name %></h1>
+      <%= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=15&markers=#{user.latitude}%2C#{user.longitude}" %>
+
+    </div>
+  </div>
+</div>
+<%else%>
+<h1>Error</h1>
+<p> Please log in</p>
+<%end%>

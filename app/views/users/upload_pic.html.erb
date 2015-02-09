@@ -2,7 +2,8 @@
 <!-- This line is needed since the page is not associated with a particular user in the params -->
 <% @user = User.find(session[:user_id]) %>
 
-<%= form_for @user,  :html => { :multipart => true } do |f| %>
+<%= form_for @user, :html => { :multipart => true} do |f| %>
+<%= render 'shared/error_messages' %>
   <%= f.file_field :profile_picture, accept: 'image/png, image/gif, image/jpeg, image/bmp' %>
   <%= f.submit "Add Picture", class: "btn btn-block" %>
 <% end %>
