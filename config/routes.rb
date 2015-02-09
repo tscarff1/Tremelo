@@ -10,7 +10,14 @@ Rails.application.routes.draw do
   
   get 'users/leave_band' => "users#leave_band"
   get 'users/upload_pic' => "users#upload_pic"
-  resources :users
+ 
+  get 'users/:id/upload_pic' => 'users#upload_pic'
+
+  resources :users do
+    collection do
+      put 'update_pic'
+    end
+  end
   resources :user_sessions, only: [:new, :create]
   resources :password_resets, only: [:new, :create, :edit, :update]
 
