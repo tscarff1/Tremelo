@@ -28,28 +28,19 @@
         </div>
 
         <ul class="list-group">
-
-          <!-- I don't know if we need this or not -->
-          <li class="list-group-item text-right">
-            <span class="pull-left">
-              <strong>Joined</strong> 
-            </span> 
-            2.9.2015 
-          </li>
-
-          <!-- We can turn this into Online / Offline -->
-          <li class="list-group-item text-right">
-            <span class="pull-left">
-              <strong class="">Last seen</strong>
-            </span> 
-            Yesterday
-          </li>
-
           <li class="list-group-item text-right">
             <span class="pull-left">
               <strong class="">Name</strong>
             </span>
             <%= @user.first_name + " " + @user.last_name %>
+          </li>
+
+          <!-- Age -->
+          <li class="list-group-item text-right">
+            <span class="pull-left">
+              <strong>Age</strong> 
+            </span> 
+            23 
           </li>
 
           <!-- Address -->
@@ -60,6 +51,14 @@
               <strong class="">Address</strong> 
             </span> 
             <%= @user.address %>
+          </li>
+
+          <!-- We can turn this into Online / Offline -->
+          <li class="list-group-item text-right">
+            <span class="pull-left">
+              <strong class="">Online</strong>
+            </span> 
+            Status Indicator Here
           </li>
 
         </ul>
