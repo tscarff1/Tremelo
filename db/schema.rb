@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150207191623) do
+ActiveRecord::Schema.define(version: 20150211045419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,6 +20,18 @@ ActiveRecord::Schema.define(version: 20150207191623) do
     t.string   "name"
     t.string   "location"
     t.string   "about_me"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "profile_picture_file_name"
+    t.string   "profile_picture_content_type"
+    t.integer  "profile_picture_file_size"
+    t.datetime "profile_picture_updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "full_address"
+  end
+
+  create_table "tags", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
   end
