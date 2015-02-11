@@ -1,0 +1,10 @@
+
+<% @band = Band.find(params[:id]) %>
+
+<h1> Upload a profile picture for <%= @band.name %>! </h1>
+
+<%= form_for @band, :html => { :multipart => true} do |f| %>
+	
+  	<%= f.file_field :profile_picture, accept: 'image/png, image/gif, image/jpeg, image/bmp' %>
+  	<%= f.submit "Add Picture", class: "btn btn-block" %>
+<% end %>
