@@ -10,9 +10,13 @@ class User < ActiveRecord::Base
 
   before_save :downcase_email
 
-  #For location
+  #For location (Geocoder)
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
+
+  #For image uploading (paperclip)
+  has_attached_file :profile_picture, :styles => { medium: "300x300", thumb: "100x100"}
+  validates_attachment_content_type :profile_picture, content_type: /\Aimage\/.*\Z/
 
   def downcase_email
     self.email = email.downcase
@@ -20,5 +24,9 @@ class User < ActiveRecord::Base
 
   def generate_password_reset_token!
     update_attribute(:password_reset_token, SecureRandom.urlsafe_base64(48))
+  end
+
+  def get_address
+    return home_address + ", "+ state
   end
 end

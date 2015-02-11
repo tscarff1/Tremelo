@@ -1,4 +1,7 @@
+
 <h1> <%= @band.name %>'s Band Page </h1>
+<!-- Current image sizes are thumb and medium, more can be defined within the band model-->
+<%= image_tag @band.profile_picture.url(:medium) %> 
 <% @userbands = UserBand.where(band_id: @band.id)%>
 <% if @userbands.empty?%>
 	<h3> No users are  member of this band</h3>

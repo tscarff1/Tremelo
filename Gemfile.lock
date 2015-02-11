@@ -253,7 +253,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   mina
-  paperclip
+  paperclip (~> 4.2)
   pg
   rails (~> 4.1.7)
   rspec-activemodel-mocks

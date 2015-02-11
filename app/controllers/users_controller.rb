@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :upload_pic, :update_pic, :update, :destroy]
 
   # GET /users/new
   def new
@@ -11,6 +11,9 @@ class UsersController < ApplicationController
   end
 
   def change_password
+  end
+
+  def upload_pic
   end
 
   # POST /users
@@ -34,13 +37,36 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    #First destroy the current profile picture if we are updating it
+    if !user_params[:profile_picture].nil?
+      @user.profile_picture.destroy
+    end
+
+    #Now update
     respond_to do |format|
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+       if params[:profile_picture].nil?
+          format.html { render :edit }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        else
+          format.html { render :upload_pic }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+    end
+  end
+
+  def update_pic
+    respond_to do |format|
+      if @user.update(picture_params)
+        format.html {redirect_to @user, notice: 'Profile picture has been successfully changed.'}
+        format.json {render :show, status: :ok, location: @user}
+      else
+        format.html {render :upload_pic}
+        format.json {render json: @user.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -77,7 +103,13 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:display_name, :first_name, :last_name, :email, 
-                            :email_confirmation, :password, :password_confirmation)
+      params.require(:user).permit(:display_name, :first_name, :last_name, :email, :about_me 
+                            :email_confirmation, 
+                            :password, :password_confirmation, 
+                            :profile_picture, :address)
+    end
+
+    def picture_params
+      params.require(:user).permit(:profile_picture)
     end
 end

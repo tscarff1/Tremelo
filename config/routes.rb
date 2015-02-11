@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :tags
+
   get 'user_bands/destroy'
 
   get 'user_bands/edit'
@@ -7,9 +9,27 @@ Rails.application.routes.draw do
   get "/register" => "users#new", as: :register
   get "/logout" => "user_sessions#destroy", as: :logout
   delete "/logout" => "user_sessions#destroy"
-  get 'users/leave_band'
+  
+  get 'users/leave_band' => "users#leave_band"
+  get 'users/upload_pic' => "users#upload_pic"
+ 
+  get 'bands/:id/upload_pic' => 'bands#upload_pic'
+  get 'bands/:id/access_error' => 'bands#access_error'
+  
+  resources :users do
+    collection do
+      put 'update_pic'
+    end
+  end
 
-  resources :users
+  resources :bands do
+    collection do
+      post 'upload_pic'
+      get 'access_error'
+    end
+  end
+  resources :userbands
+
   resources :user_sessions, only: [:new, :create]
   resources :password_resets, only: [:new, :create, :edit, :update]
 
@@ -18,9 +38,9 @@ Rails.application.routes.draw do
   get 'about' => 'static_pages#about'
   get 'help' => 'static_pages#help'
 
-  resources :bands
+  
   resources :videos
-  resources :userbands
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

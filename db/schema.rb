@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150207012816) do
+ActiveRecord::Schema.define(version: 20150211135751) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,12 +22,31 @@ ActiveRecord::Schema.define(version: 20150207012816) do
     t.string   "about_me"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "profile_picture_file_name"
+    t.string   "profile_picture_content_type"
+    t.integer  "profile_picture_file_size"
+    t.datetime "profile_picture_updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "full_address"
+  end
+
+  create_table "tags", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "user_bands", force: true do |t|
     t.integer  "user_id"
     t.integer  "band_id"
     t.integer  "admin_priveleges"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_tags", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "tag_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -44,7 +63,14 @@ ActiveRecord::Schema.define(version: 20150207012816) do
     t.float    "longitude"
     t.string   "address"
     t.string   "about_me"
+    t.string   "home_address"
+    t.string   "state"
+    t.string   "profile_picture_file_name"
+    t.string   "profile_picture_content_type"
+    t.integer  "profile_picture_file_size"
+    t.datetime "profile_picture_updated_at"
     t.string   "password_reset_token"
+    t.date     "date_of_birth"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
