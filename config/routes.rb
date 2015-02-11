@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :tags
+
   get 'user_bands/destroy'
 
   get 'user_bands/edit'
