@@ -11,14 +11,14 @@ Rails.application.routes.draw do
   delete "/logout" => "user_sessions#destroy"
   
   get 'users/leave_band' => "users#leave_band"
-  get 'users/upload_pic' => "users#upload_pic"
+  get 'users/:id/upload_pic' => "users#upload_pic"
  
   get 'bands/:id/upload_pic' => 'bands#upload_pic'
   get 'bands/:id/access_error' => 'bands#access_error'
   
   resources :users do
     collection do
-      put 'update_pic'
+      post 'update_pic'
     end
   end
 
