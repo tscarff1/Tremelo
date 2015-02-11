@@ -2,6 +2,21 @@ require 'rails_helper'
 
 describe UserSessionsController do
 
+  let(:valid_attributes) { {
+    "first_name" => "MyString",
+    "last_name" => "LastName",
+    "email" => "email@example.com",
+    "password" => "password12345",
+    "password_confirmation" => "password12345"
+
+
+  } }
+
+  let(:valid_session) { {} }
+
+
+
+
   describe "GET 'new'" do
     it "returns http success" do
       get 'new'
@@ -89,7 +104,8 @@ describe UserSessionsController do
   describe "DELETE destroy" do
     context "logged in" do
       before do
-        sign_in create(:user)
+        # sign_in create(:user)
+        post :create, {:user => valid_attributes}, valid_session
       end
 
       it "returns a redirect" do
