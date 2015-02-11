@@ -1,3 +1,5 @@
+<!-- Current image sizes are thumb and medium, more can be defined within the band model-->
+<%= image_tag @band.profile_picture.url(:medium) %> 
 <h1> <%= @band.name %>'s Band Page </h1>
 <% @userbands = UserBand.where(band_id: @band.id)%>
 <% if @userbands.empty?%>
