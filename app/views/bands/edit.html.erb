@@ -9,13 +9,21 @@
 			
 			<%= f.label :name, "Name" %>
 			<%= f.text_field :name, class: "form-control" %>
-			<br>
-			<%= f.label :location, "Location" %>
-			<%= f.text_field :location, class: "form-control" %>
+		
 			<br>
 			<%= f.label :about_me, "About Me" %>
 			<%= f.text_field :about_me, class: "form-control" %>
 			<br>
+
+			<%= f.label :full_address, "Location" %>
+    		<%= f.text_field :full_address, class: 'form-control' %>
+
+	    	<% if !@band.full_address.nil? %>
+    			<b> Latitude: </b> <%= @band.latitude %>
+    			<b> Longitude: </b> <%= @band.longitude %>
+    			<br>
+    		<% end %>
+
 			<%= f.submit "Create your Band!", class: "btn btn-primary"%>
 		<%end%>
 	</div>
