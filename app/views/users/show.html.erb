@@ -1,184 +1,216 @@
 <% provide(:title, "My Profile") %>
+
 <div class="avatar">
   <%= image_tag @user.profile_picture.url(:thumb) %>
 </div>
 
 <div class="container">
+
   <div class="row">
-    <div class="col-sm-10">
+    <div class="col-xs-10">
       <h1><%= @user.display_name %></h1>
         <span class="label label-success">Drummer</span>
         <span class="label label-danger">Guitarist</span>
         <span class="label label-info">Bassist</span>
     </div>
   </div>
-</div>
-<div class="row">
 
-<div class="col-sm-3">
-<!--left col-->
-<ul class="list-group">
-  <li class="list-group-item text-muted" contenteditable="false">
-    Profile
-  </li>
-  <li class="list-group-item text-right">
-    <span class="pull-left">
-      <strong class="">Joined</strong> 
-    </span> 
-    2.5.2015
-  </li>
-  <li class="list-group-item text-right">
-    <span class="pull-left">
-      <strong class="">Last seen</strong>
-    </span> 
-    Yesterday
-  </li>
-  <li class="list-group-item text-right"><span class="pull-left">
-    <strong class="">Real name</strong>
-  </span>
-  <%= @user.first_name + " " + @user.last_name %>
-  </li>
+  <br>
 
-  <li class="list-group-item text-right">
-    <span class="pull-left">
-      <strong class="">Address</strong> 
-    </span> 
-    <%= @user.address %>
-  </li>
-</ul>
+  <!-- Left Column -->
+  <div class="row">
+    <div class="col-sm-3">
 
-<!-- Personal Website Panel -->
-<div class="panel panel-default">
-  <div class="panel-heading">
-    Website <i class="fa fa-link fa-1x"></i>
-  </div>
-  <div class="panel-body">
-    <a href="#" class="">Website Here</a>
-  </div>
-</div>
-
-<!-- Activity Panel -->
-<ul class="list-group">
-  <li class="list-group-item text-muted">
-    Activity <i class="fa fa-dashboard fa-1x"></i>
-  </li>
-  <li class="list-group-item text-right">
-    <span class="pull-left">
-      <strong class="">Shares</strong>
-    </span> 
-    125
-  </li>
-  <li class="list-group-item text-right">
-    <span class="pull-left">
-      <strong class="">Fans</strong>
-    </span> 
-    78
-  </li>
-</ul>
-
-<!-- Social Media Panel -->
-<div class="panel panel-default">
-  <div class="panel-heading">
-    Social Media
-  </div>
-    <div class="panel-body"> 
-      <i class="fa fa-facebook fa-2x"></i> 
-      <i class="fa fa-github fa-2x"></i>
-      <i class="fa fa-twitter fa-2x"></i> 
-      <i class="fa fa-pinterest fa-2x"></i> 
-      <i class="fa fa-google-plus fa-2x"></i>
-  </div>
-</div>
-
-</div> <!-- End left side panels -->
-
-<!--/col-3-->
-<!-- Contains about me and Bands -->
-<div class="col-sm-9" contenteditable="false" style="">
-  <div class="panel panel-default">
-    <div class="panel-heading"> 
-      About Me
-    </div>
-    <div class="panel-body"> 
-      Blah blah blah.
-    </div>
-  </div>
-  <!-- Holds bands -->
-  <div class="panel panel-default">
-    <div class="panel-heading" contenteditable="false">
-      Bands
-    </div>
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-md-4">
-          <!-- Currently placeholder images -->
-          <div class="thumbnail">
-            <img alt="300x300" 
-              src="http://upload.wikimedia.org/wikipedia/commons/c/c0/Title_Fight.jpg">
-          </div>
+      <!-- Info Panel -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            Info
         </div>
-        <div class="col-md-4">
-          <div class="thumbnail">
-            <img alt="300x200" 
-              src="http://saltroads.com/wp-content/uploads/2014/09/Death_From_Above_1979.jpg">
-          </div>
+
+        <ul class="list-group">
+
+          <!-- I don't know if we need this or not -->
+          <li class="list-group-item text-right">
+            <span class="pull-left">
+              <strong>Joined</strong> 
+            </span> 
+            2.9.2015 
+          </li>
+
+          <!-- We can turn this into Online / Offline -->
+          <li class="list-group-item text-right">
+            <span class="pull-left">
+              <strong class="">Last seen</strong>
+            </span> 
+            Yesterday
+          </li>
+
+          <li class="list-group-item text-right">
+            <span class="pull-left">
+              <strong class="">Name</strong>
+            </span>
+            <%= @user.first_name + " " + @user.last_name %>
+          </li>
+
+          <!-- Address -->
+          <!-- We probably shouldn't make this 
+                publicly viewable -->
+          <li class="list-group-item text-right">
+            <span class="pull-left">
+              <strong class="">Address</strong> 
+            </span> 
+            <%= @user.address %>
+          </li>
+
+        </ul>
+      </div>
+
+      <!-- Personal Website Panel -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+        Website   <i class="fa fa-external-link"></i>
         </div>
-        <div class="col-md-4">
-          <div class="thumbnail">
-            <img alt="300x200" 
-              src="http://static.tumblr.com/9fe5c472a547847efd5976d9358532ad/njm1oem/Uxrna7bsd/tumblr_static_cll78fiybi0w4cksg4coo8o04.jpg">
+        <div class="panel-body">
+          <a href="#" class="">Website Here</a>
+        </div>
+      </div>
+
+      <!-- Activity Panel -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+            Activity <i class="fa fa-dashboard"></i>
+        </div>
+
+        <ul class="list-group">
+
+        <li class="list-group-item text-right">
+            <span class="pull-left">
+              <strong class="">Shares</strong>
+            </span> 
+            125
+          </li>
+          <li class="list-group-item text-right">
+            <span class="pull-left">
+              <strong class="">Fans</strong>
+            </span> 
+            78
+          </li>
+        </ul>
+
+      </div>
+
+      <!-- Social Media Panel -->
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          Social Media
+        </div>
+        <div class="panel-body"> 
+          <i class="fa fa-facebook-official fa-2x"></i> 
+          <i class="fa fa-github fa-2x"></i>
+          <i class="fa fa-twitter fa-2x"></i> 
+          <i class="fa fa-pinterest fa-2x"></i> 
+          <i class="fa fa-google-plus fa-2x"></i>
+        </div>
+      </div>
+
+      <!-- Prevent anyone but the correct user 
+           from seeing the edit link -->
+      <% if @user.id == session[:user_id] %>
+        <%= button_to 'Edit Profile', edit_user_path(@user),
+            class: 'btn btn-block', :method => :get %>
+      <% end %>
+
+
+    </div> <!-- End left side panels -->
+
+    <!-- About Me-->
+    <div class="col-sm-9" contenteditable="false">
+      <div class="panel panel-default">
+        <div class="panel-heading"> 
+          About Me
+        </div>
+        <div class="panel-body"> 
+          <%= @user.about_me %>
+        </div>
+      </div>
+
+      <!-- Band Panel -->
+      <div class="panel panel-default">
+        <div class="panel-heading" contenteditable="false">
+          Bands
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-4">
+              <!-- Currently placeholder images -->
+              <div class="thumbnail">
+                <img class="img-responsive" 
+                src="http://upload.wikimedia.org/wikipedia/commons/c/c0/Title_Fight.jpg">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="thumbnail">
+                <img alt="300x200" 
+                src="http://saltroads.com/wp-content/uploads/2014/09/Death_From_Above_1979.jpg">
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="thumbnail">
+                <img alt="300x200" 
+                src="http://static.tumblr.com/9fe5c472a547847efd5976d9358532ad/njm1oem/Uxrna7bsd/tumblr_static_cll78fiybi0w4cksg4coo8o04.jpg">
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-  <!-- Nearby Users -->
-  <div class="panel panel-default">
-    <div class="panel-heading" contenteditable="false">
-      Nearby Users
-    </div>
-    <div class="panel-body">
-      <div class="row">
-        <div class="col-md-4">
-          <ul>
-            <% if !@user.nearbys(20).nil? %>
-              <% for nearby_user in @user.nearbys(20) %>
+
+      <!-- Nearby Users -->
+      <div class="panel panel-default">
+        <div class="panel-heading" contenteditable="false">
+          Nearby Users
+        </div>
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-md-4">
+              <ul>
+                <% if !@user.nearbys(20).nil? %>
+                <% for nearby_user in @user.nearbys(20) %>
                 <li> <%= link_to nearby_user.display_name, nearby_user%> 
                   (<%= nearby_user.distance.round(2) %> miles )</li>
+                  <%end%>
+                  <%else%>
+                  No nearby users.
+                  <%end%>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Tyler's code for incorporating bands -->
+      <div class="container">
+        <div class="row">
+          <h4><strong> Bands </strong></h4>
+
+          <% userbands = UserBand.where(user_id: @user.id) %>
+          <% if userbands.empty? %>
+            <p> 
+              <%= @user.display_name %> does not belong to any bands - yet
+            </p>
+          <% else %>
+            <ul>
+              <% userbands.each do |userband| %>
+              <% band = Band.find(userband.band_id) %>
+              <li><%= link_to band.name, band %></li>
               <%end%>
-            <%else%>
-              No nearby users.
-            <%end%>
-          </ul>
+            </ul>
+          <%end%>
+
         </div>
       </div>
-    </div>
-  </div>
-</div>
 
-<!-- Tyler's code for incorporating bands -->
-<div class="container">
-  <div class="row">
-    <h4><strong> Bands </strong></h4>
-    
-    <% userbands = UserBand.where(user_id: @user.id) %>
-    <% if userbands.empty? %>
-        <p> <%= @user.display_name %> does not belong to any bands - yet </p>
-    <% else %>
-      <ul>
-        <% userbands.each do |userband| %>
-          <% band = Band.find(userband.band_id) %>
-          <li><%= link_to band.name, band %></li>
-          </ul>
-    <%end%>
-<%end%>
-
- 
 <br>
 
-<!-- Prevent anyone but the correct user from even seeing the edit link -->
-<% if @user.id == session[:user_id] %>
-  <%= link_to 'Edit', edit_user_path(@user) %> |
-<% end %>
-<%= link_to 'Back', users_path %>
 
