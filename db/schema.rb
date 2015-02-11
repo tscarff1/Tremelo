@@ -46,11 +46,11 @@ ActiveRecord::Schema.define(version: 20150207191623) do
     t.string   "about_me"
     t.string   "home_address"
     t.string   "state"
+    t.string   "password_reset_token"
     t.string   "profile_picture_file_name"
     t.string   "profile_picture_content_type"
     t.integer  "profile_picture_file_size"
     t.datetime "profile_picture_updated_at"
-    t.string   "password_reset_token"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

@@ -1,4 +1,5 @@
 <% provide(:title, "My Profile") %>
+
 <div class="avatar">
   <%= image_tag @user.profile_picture.url(:thumb) %>
 </div>
@@ -43,7 +44,7 @@
     <span class="pull-left">
       <strong class="">Address</strong> 
     </span> 
-    <%= @user.address %>
+    <%= @user.address %>Test
   </li>
 </ul>
 
