@@ -1,6 +1,8 @@
 class BandsController < ApplicationController
 
-  before_action :set_band, only: [:show, :edit, :upload_pic, :update_pic, :update, :destroy]
+  before_action :set_band, only: [:show, :edit, :upload_pic, :update_pic, :update, 
+    :destroy, :access_error]
+  before_action :verify_admin, only: [:edit, :upload_pic]
 
   def new
     if !session[:user_id].nil?
@@ -53,15 +55,16 @@ class BandsController < ApplicationController
   end
 
   def edit
-  	@band = Band.find(params[:id])
   end
 
   def upload_pic
-    @band = Band.find(params[:id])
   end
 
   def show
-  	@band = Band.find(params[:id])
+  end
+
+  def access_error
+
   end
 
   private
@@ -72,4 +75,24 @@ class BandsController < ApplicationController
   	def band_params
   		params.require(:band).permit(:name, :location, :about_me, :profile_picture)
   	end
+
+    #Method to make sure the logged in user has access to the page
+    def verify_admin
+      #First make sure we are even logged in
+      if session[:user_id].nil?
+        redirect_to action: "access_error", id:@band.id
+      else
+        @userband = UserBand.find_by(user_id: session[:user_id], band_id: @band.id)
+
+        #first verify that the user is a member of the band
+        if @userband.nil?
+          redirect_to action: "access_error", id:@band.id
+        else
+          if @userband.admin_priveleges == 0
+            redirect_to action: "access_error", id: @band.id
+          end
+        end
+      end
+      @user = User.find(session[:user_id])
+    end
 end

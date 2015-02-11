@@ -1,8 +1,6 @@
 <h1>Bands#edit</h1>
 <p>Temporary edit page</p>
 <% userband = UserBand.find_by(user_id: session[:user_id], band_id: @band.id) %>
-<% if !userband.nil? %>
-<% if userband.admin_priveleges == 1 %>
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
 			<% session[:band_id] = @band.id %>
@@ -27,8 +25,3 @@
 <br><br>
 
 <%= link_to "Add a member to this band" %>
-<% end %>
-<% else %>
-	<h1> Error</h1>
-	<p> You do not have access to this page.</p>
-<% end %>

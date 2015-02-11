@@ -13,9 +13,9 @@ Rails.application.routes.draw do
   get 'users/leave_band' => "users#leave_band"
   get 'users/upload_pic' => "users#upload_pic"
  
-  get 'users/:id/upload_pic' => 'users#upload_pic'
   get 'bands/:id/upload_pic' => 'bands#upload_pic'
-
+  get 'bands/:id/access_error' => 'bands#access_error'
+  
   resources :users do
     collection do
       put 'update_pic'
@@ -25,10 +25,11 @@ Rails.application.routes.draw do
   resources :bands do
     collection do
       post 'upload_pic'
+      get 'access_error'
     end
   end
   resources :userbands
-  
+
   resources :user_sessions, only: [:new, :create]
   resources :password_resets, only: [:new, :create, :edit, :update]
 
