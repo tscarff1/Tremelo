@@ -9,9 +9,10 @@
   <div class="row">
     <div class="col-xs-10">
       <h1><%= @user.display_name %></h1>
-        <span class="label label-success">Drummer</span>
-        <span class="label label-danger">Guitarist</span>
-        <span class="label label-info">Bassist</span>
+        <% for user_tag in UserTags.where(user_id: @user.id) %>
+          <% tag = Tag.find(user_tag.tag_id) %>
+          <span class="label label-success"><%= tag.content %></span>
+        <%end%>
     </div>
   </div>
 

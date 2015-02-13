@@ -1,0 +1,15 @@
+<% provide(:title, 'Edit your Tags') %>
+<h1> Edit your TAGS! </h1>
+<p> Select the tags you wish to be included on your profile </p>
+
+<%= form_tag update_tags_users_path, method: :put do %>
+	<ul>
+	<% for tag in Tag.all %>
+		<li>
+			<%= check_box_tag "tag_ids[]", tag.id %>
+			<%= tag.content %>
+		</li>
+	<% end %>
+	</ul>
+	<%= submit_tag "Add to profile" %>
+<% end %>

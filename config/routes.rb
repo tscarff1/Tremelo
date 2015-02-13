@@ -13,12 +13,15 @@ Rails.application.routes.draw do
   get 'users/leave_band' => "users#leave_band"
   get 'users/:id/upload_pic' => "users#upload_pic"
  
+  get 'users/:id/edit_tags' => "users#edit_tags"
+
   get 'bands/:id/upload_pic' => 'bands#upload_pic'
   get 'bands/:id/access_error' => 'bands#access_error'
   
   resources :users do
     collection do
       post 'update_pic'
+      put 'update_tags'
     end
   end
 
@@ -29,6 +32,7 @@ Rails.application.routes.draw do
     end
   end
   resources :userbands
+  resources :usertags
 
   resources :user_sessions, only: [:new, :create]
   resources :password_resets, only: [:new, :create, :edit, :update]

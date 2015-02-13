@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :upload_pic, :update_pic, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :upload_pic, :update_pic, 
+    :edit_tags,
+    :update, :destroy]
 
   # GET /users/new
   def new
@@ -14,6 +16,19 @@ class UsersController < ApplicationController
   end
 
   def upload_pic
+  end
+
+  def edit_tags
+  end
+
+  def update_tags
+    #for some reason it doesn't work if the following line is included in the set_user stuff
+    @user = User.find(session[:user_id])
+    for i in params[:tag_ids]
+      user_tag = UserTags.new(user_id: @user.id, tag_id: i)
+      user_tag.save
+    end
+    redirect_to @user
   end
 
   # POST /users
