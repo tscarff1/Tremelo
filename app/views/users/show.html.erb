@@ -11,7 +11,7 @@
       <h1><%= @user.display_name %></h1>
         <% for user_tag in UserTags.where(user_id: @user.id) %>
           <% tag = Tag.find(user_tag.tag_id) %>
-          <span class="label label-success"><%= tag.content %></span>
+          <span class="label label-success" style="background-color: rgb(100,200,100)"><%= tag.content %></span>
         <%end%>
     </div>
   </div>

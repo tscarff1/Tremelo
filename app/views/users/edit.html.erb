@@ -6,8 +6,6 @@
 
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-
-        <% if @user.id == session[:user_id] %>
             <%= render 'form' %>
         <br><br>
 
@@ -38,11 +36,6 @@
         <br><br>
         <%= link_to 'Show', @user %> |
         <%= link_to 'Back', users_path %>
-        <% else %>
-        <h2> ERROR </h2>
-        <p> You do not have access to this page.</p>
-        <%end %>
-
         </div>
     </div>
 </div>
