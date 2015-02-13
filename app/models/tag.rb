@@ -1,6 +1,9 @@
 class Tag < ActiveRecord::Base
 	validates :content, presence: true,
-                    uniqueness: {case_sensitive: false}
+                    uniqueness: {case_sensitive: false},
+                    format: {
+                      with: /^[a-zA-Z]+$/, multiline: true #Allow only alphabetical characters
+                    }
     before_save :downcase_content
 	
     def downcase_content
