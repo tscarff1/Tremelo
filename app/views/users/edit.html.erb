@@ -33,8 +33,8 @@
         </ul>
         <%end%>
         <br><br>
-        <%= link_to "Add Profile Picture",{controller: "users", action: "upload_pic"} %>
-
+        <%= link_to "Add Profile Picture",{controller: "users", action: "upload_pic"} %><br>
+        <%= link_to "Edit Tags", {controller: "users", action: "edit_tags"} %>
         <br><br>
         <%= link_to 'Show', @user %> |
         <%= link_to 'Back', users_path %>
