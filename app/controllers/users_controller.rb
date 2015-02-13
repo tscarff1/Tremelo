@@ -21,15 +21,7 @@ class UsersController < ApplicationController
   def edit_tags
   end
 
-  def update_tags
-    #for some reason it doesn't work if the following line is included in the set_user stuff
-    @user = User.find(session[:user_id])
-    for i in params[:tag_ids]
-      user_tag = UserTags.new(user_id: @user.id, tag_id: i)
-      user_tag.save
-    end
-    redirect_to @user
-  end
+
 
   # POST /users
   # POST /users.json
@@ -71,6 +63,16 @@ class UsersController < ApplicationController
         end
       end
     end
+  end
+
+  def update_tags
+    #for some reason it doesn't work if the following line is included in the set_user stuff
+    @user = User.find(session[:user_id])
+    for i in params[:tag_ids]
+      user_tag = UserTags.new(user_id: @user.id, tag_id: i)
+      user_tag.save
+    end
+    redirect_to @user
   end
 
   def update_pic
