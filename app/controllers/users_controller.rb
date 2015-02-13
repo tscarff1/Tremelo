@@ -68,6 +68,12 @@ class UsersController < ApplicationController
   def update_tags
     #for some reason it doesn't work if the following line is included in the set_user stuff
     @user = User.find(session[:user_id])
+
+    #First let's clear out all existing UserTags
+    for user_tag_old in UserTags.where(user_id: @user.id)
+      user_tag_old.destroy
+    end
+
     for i in params[:tag_ids]
       user_tag = UserTags.new(user_id: @user.id, tag_id: i)
       user_tag.save

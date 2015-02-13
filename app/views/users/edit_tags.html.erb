@@ -6,8 +6,13 @@
 	<ul>
 	<% for tag in Tag.all %>
 		<li>
-			<%= check_box_tag "tag_ids[]", tag.id %>
-			<%= tag.content %>
+			<% usertag = UserTags.find_by(user_id: @user.id, tag_id: tag.id) %>
+			<% if usertag.nil? %>
+				<%= check_box_tag "tag_ids[]", tag.id%>
+			<% else %>
+				<%= check_box_tag "tag_ids[]", tag.id, checked: true%>
+			<%end%>
+				<%= tag.content %>
 		</li>
 	<% end %>
 	</ul>

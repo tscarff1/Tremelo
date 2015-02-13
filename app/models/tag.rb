@@ -23,14 +23,14 @@ class Tag < ActiveRecord::Base
 	def get_green
 		# 122 is the ascii value of 'z'
 		if !content.nil?
-			green = ((content[-1].ord * 1.5)/220.0 * 255).to_i
+			green = ((content[-1].ord * 1.5)/350.0 * 255).to_i
 		end
 	end
 
 	def get_blue
 		#25 is the max difference between the first and last characters
 		if !content.nil?
-			blue = (content[1].ord/170.0 * 255).to_i
+			blue = ((content[1].ord * 2)/600.0 * 255).to_i
 		end
 	end
 
