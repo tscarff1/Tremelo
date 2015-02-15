@@ -114,12 +114,21 @@ class UsersController < ApplicationController
   end
 
   def search_results
+    name_results = []
     if !params[:name].nil?
-      name = params[:name]
+      name_results = User.where(display_name: params[:name])
     end
-
-    @result = User.find_by(display_name: name)
-
+    tag_results = []
+    if(!params[:tag_ids].nil?)
+      for user in User.all
+        if user.has_at_least_one_tag_from? (params[:tag_ids])
+          tag_results.push(user)
+        end
+      end
+    end
+    
+    #@results is the interection of arrays produced by previous searches, ignoring empty results    
+    @results = [ tag_results, name_results ].tap{ |a| a.delete( [] ) }.reduce( :& ) || []
   end
 
   private
