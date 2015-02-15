@@ -17,11 +17,15 @@ Rails.application.routes.draw do
 
   get 'bands/:id/upload_pic' => 'bands#upload_pic'
   get 'bands/:id/access_error' => 'bands#access_error'
+
+  get 'search_user' => 'users#search'
+  get 'users/search_results' => 'users#search_results'
   
   resources :users do
     collection do
       post 'update_pic'
       put 'update_tags'
+      post 'search_results'
     end
   end
 

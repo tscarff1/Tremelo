@@ -8,21 +8,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  # GET /users/1/edit
-  def edit
-  end
-
-  def change_password
-  end
-
-  def upload_pic
-  end
-
-  def edit_tags
-  end
-
-
-
   # POST /users
   # POST /users.json
   def create
@@ -38,6 +23,20 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # GET /users/1/edit
+  def edit
+  end
+
+  def edit_tags
+  end
+
+
+  def change_password
+  end
+
+  def upload_pic
   end
 
   # PATCH/PUT /users/1
@@ -109,6 +108,18 @@ class UsersController < ApplicationController
       else
         redirect_to @user, notice: "Unable to leave band"
       end
+  end
+
+  def search
+  end
+
+  def search_results
+    if !params[:name].nil?
+      name = params[:name]
+    end
+
+    @result = User.find_by(display_name: name)
+
   end
 
   private
