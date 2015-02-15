@@ -1,0 +1,18 @@
+<% provide(:title, 'User Search') %>
+<h1> Search for a user! </h1>
+
+<%= form_tag search_results_users_path, method: :post do %>
+
+<%= label_tag "Display Name" %>
+	<%= text_field_tag "name" %>
+	<br>
+
+	<% for tag in Tag.all %>
+		<li>
+			<%= check_box_tag "tag_ids[]", tag.id %>
+			<%= tag.content %>
+		</li>
+	<% end %>
+
+	<%= submit_tag "Search" %>
+<%end %>
