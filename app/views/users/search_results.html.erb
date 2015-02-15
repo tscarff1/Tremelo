@@ -1,2 +1,14 @@
 <% provide(:title, 'User search results') %>
-<%= link_to "#{@result.display_name}", @result %>
+
+<% if @results.empty? %>
+
+<h2> No results </h2>
+
+<% else %>
+
+	<% for result in @results %>
+	<ul>
+		<li> <%= link_to "#{result.display_name}", result %></li>
+	</ul>
+	<%end%>
+<%end%>
