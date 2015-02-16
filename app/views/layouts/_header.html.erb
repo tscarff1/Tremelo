@@ -8,10 +8,18 @@
             <div class="gn-scroller">
               <ul class="gn-menu">
 
-                <li class="gn-search-item">
-                  <input placeholder="Search" type="search" class="gn-search">
-                  <a class="gn-icon gn-icon-search"><span>Search</span></a>
-                </li>
+              <!-- Search function -->
+                <%= form_tag search_results_users_path, method: :post do %>
+
+                  <li class="gn-search-item">
+                    <%= text_field_tag "display_name", nil,
+                        class: "gn-search",
+                        placeholder: "Search" %>
+                    <!-- <input placeholder="Search" type="search" class="gn-search"> -->
+                    <a class="gn-icon gn-icon-search"></a>
+                  </li>
+
+                <% end %>
 
                 <% if logged_in? %>
 
