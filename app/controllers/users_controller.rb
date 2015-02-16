@@ -125,7 +125,7 @@ class UsersController < ApplicationController
     name_results = []
     if !params[:name].empty?
       @searching_by.push("display name")
-      name_results = User.where(display_name: params[:name])
+      name_results = User.where(display_name: params[:display_name])
     end
 
     location_results = []
