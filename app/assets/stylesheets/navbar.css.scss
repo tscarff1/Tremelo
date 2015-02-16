@@ -57,6 +57,7 @@ $font-family: Questrial, Arial, sans-serif;
     }
 }
 
+// controls most of the link colors on the menu
 .gn-menu-main {
     position: fixed;
     top: 0;
@@ -82,8 +83,19 @@ $font-family: Questrial, Arial, sans-serif;
         }
     }
 
+    .gn-submenu a {
+        color: #c1c9d1;
+
+        &:visited { color: #c1c9d1; }
+        
+        &:hover {
+            background: #c1c9d1;
+            color: $background-color;
+        }
+    }
+
     .company-social {
-        a { color: #666; }
+        color: #666;
     }
 }
 
@@ -157,14 +169,10 @@ $font-family: Questrial, Arial, sans-serif;
 .gn-submenu li {
     overflow: hidden;
     height: 0;
+    font-size: 18px;
     -webkit-transition: height 0.3s;
     -moz-transition: height 0.3s;
     transition: height 0.3s;
-}
-
-// fix this
-.gn-submenu li a {
-    color: #c1c9d1;
 }
 
 .gn-search-item {

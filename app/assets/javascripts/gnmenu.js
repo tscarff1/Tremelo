@@ -90,3 +90,15 @@
 	window.gnMenu = gnMenu;
 
 } )( window );
+
+// function to grab enter key input on search textfield
+$(function() {
+    $("form text").keypress(function (e) {
+        if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) {
+            $('button[type=submit] .default').click();
+            return false;
+        } else {
+            return true;
+        }
+    });
+});
