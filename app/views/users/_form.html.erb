@@ -1,6 +1,7 @@
 <%= form_for @user do |f| %>
   <%= render 'shared/error_messages' %>
 
+    <!-- Check if username is available -->
     <div class="form-group">
         <div class="row">
             <div class="col-xs-4 col-md-4">
@@ -35,8 +36,12 @@
 
     <% if session[:user_id].nil? %>
         <div class="form-group">
+            <div class="row">
+                <div class="col-xs-8 col-md-8">
             <%= f.label :email_confirmation, "Email Confirmation" %>
             <%= f.email_field :email_confirmation, class: 'form-control' %>
+                </div>
+            </div>
         </div>
     <%end%>
 
@@ -67,7 +72,7 @@
                 </div>
 
                 <div class="col-xs-4 col-md-4">
-                    <%= f.label :password_confirmation, "Password (again)" %>
+                    <%= f.label :password_confirmation, "Password Confirmation" %>
                     <%= f.password_field :password_confirmation, class: 'form-control' %>
                 </div>
             </div>
@@ -79,5 +84,7 @@
     <% else %>
     <%= f.submit "Update", class: "btn btn-block" %>
     <% end %>
+
+    <br>
 
 <% end %>
