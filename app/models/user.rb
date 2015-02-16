@@ -30,6 +30,11 @@ class User < ActiveRecord::Base
     return home_address + ", "+ state
   end
 
+  def num_tags
+    usertags = UserTags.where(user_id: self.id)
+    return usertags.count
+  end
+
   def get_tags
     usertags = UserTags.where(user_id: self.id)
     tags = []
@@ -41,12 +46,23 @@ class User < ActiveRecord::Base
   end
 
   def has_at_least_one_tag_from?(tag_ids)
-      for tag_id in tag_ids
-        if !UserTags.find_by(tag_id: tag_id, user_id: self.id).nil?
-          return true
-        end
+    for tag_id in tag_ids
+      if !UserTags.find_by(tag_id: tag_id, user_id: self.id).nil?
+        return true
       end
-
-      return false
     end
+
+    return false
+  end
+
+  def get_matching_tag_ids(tag_ids)
+    usertags = UserTags.find_by(user_id: self.id)
+    matching = []
+    for usertag in UserTags
+      if tag_ids.include?(usertag.id)
+        matching.push(usertag.id)
+      end
+    end
+    return matching
+  end
 end

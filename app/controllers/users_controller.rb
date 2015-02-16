@@ -120,21 +120,41 @@ class UsersController < ApplicationController
   end
 
   def search_results
+    @searching_by = []
+    #Display name results
     name_results = []
-    if !params[:name].nil?
+    if !params[:name].empty?
+      @searching_by.push("display name")
       name_results = User.where(display_name: params[:name])
     end
+
+    #Instrument tag results
     tag_results = []
     if(!params[:tag_ids].nil?)
+      @searching_by.push("instrument tags")
       for user in User.all
         if user.has_at_least_one_tag_from? (params[:tag_ids])
           tag_results.push(user)
         end
       end
     end
+
+    location_results = []
+    if (!params[:location].empty? && !params[:distance].empty?)
+      @searching_by.push("location")
+      temp_user = User.new(address: params[:location])
+      temp_user.save
+      if(!temp_user.nearbys(params[:distance].to_i).nil?)
+        for user in temp_user.nearbys(params[:distance].to_i)
+          location_results.push(user)
+        end
+      end
+      temp_user.destroy
+    end
     
     #@results is the interection of arrays produced by previous searches, ignoring empty results    
-    @results = [ tag_results, name_results ].tap{ |a| a.delete( [] ) }.reduce( :& ) || []
+    all_results = [tag_results, name_results, location_results]
+    @results = all_results.tap{ |a| a.delete( [] ) }.reduce( :& ) || []
   end
 
   private

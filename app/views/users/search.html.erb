@@ -3,16 +3,25 @@
 
 <%= form_tag search_results_users_path, method: :post do %>
 
-<%= label_tag "Display Name" %>
+	<%= label_tag "Display Name" %><br>
 	<%= text_field_tag "name" %>
-	<br>
+	<br><br>
 
+	<%= label_tag "Instrument Tags"%> (returns users with any instrument tags checked)
 	<% for tag in Tag.all %>
 		<li>
 			<%= check_box_tag "tag_ids[]", tag.id %>
 			<%= tag.content %>
 		</li>
 	<% end %>
+	<br>
+
+	<%= label_tag "Location (city, state):" %><br>
+	<%= text_field_tag "location"%>
+	<br>
+	<%= label_tag "Allowed distance" %><br>
+	<%= text_field_tag "distance"%>
+	<br><br>
 
 	<%= submit_tag "Search" %>
 <%end %>
