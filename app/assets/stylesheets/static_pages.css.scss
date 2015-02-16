@@ -26,25 +26,28 @@
   text-align: center;
   
 }
-.intro .slogan h1 {
+
+#header {
   color: #fff;
   line-height: 1.1em;
   margin-bottom: 5px;
- font-size: 40px;
+  font-size: 40px;
+  letter-spacing: -0.03em;
 }
+
 .intro .slogan p {
   color: #eee;
   margin-bottom: 50px;
   font-size: 20px;
 }
 
-
 .brand-heading {
-    font-size: 40px;
+  font-size: 40px;
 }
 
 .intro-text {
-    font-size: 18px;
+  font-size: 18px;
+
 }
 
 h4#home {
@@ -58,9 +61,15 @@ h4#home {
   @extend .btn;
   border: 3px solid white;
   
-   &:hover, &:active, &:focus { 
-    background: white;
+  &:visited {
+    color: white;
   }
+
+  &:hover, &:active, &:focus { 
+    background: white;
+    color: #666;
+  }
+
 }
 
 /* ============================
