@@ -7,6 +7,8 @@
 	<%= text_field_tag "name" %>
 	<br><br>
 
+
+
 	<%= label_tag "Instrument Tags"%> (returns users with any instrument tags checked)
 	<% for tag in Tag.all %>
 		<li>
@@ -14,6 +16,11 @@
 			<%= tag.content %>
 		</li>
 	<% end %>
+	
+<!-- This will be a checkbox that decides whether to search instrument tags -->
+	<!-- With AND or OR functionality -->
+	<%= label_tag "Find users with exactly these tags: " %>
+	<%= check_box_tag "exact_tags"%><br>
 	<br>
 
 	<%= label_tag "Location (city, state):" %><br>

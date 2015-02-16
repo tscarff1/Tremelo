@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     collection do
       post 'update_pic'
       put 'update_tags'
+      get 'search'
       post 'search_results'
     end
   end
