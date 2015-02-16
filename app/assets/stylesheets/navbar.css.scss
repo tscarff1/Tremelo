@@ -96,6 +96,11 @@ $font-family: Questrial, Arial, sans-serif;
 
     .company-social {
         color: #666;
+
+        a {
+            &:visited { color: #666; }
+            &:hover { color : $link-color; }
+        }
     }
 }
 
