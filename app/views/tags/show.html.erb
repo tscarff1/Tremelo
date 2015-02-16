@@ -1,8 +1,3 @@
-<style>
-  body{
-    background-color:'<%= @tag.get_color %>';
-  }
-  </style>
 
 <p id="notice"><%= notice %></p>
 <!-- 		style="background-color:rgb(#{@tag.get_red}, #{@tag.get_green}, #{@tag.get_blue})"> -->
@@ -10,11 +5,8 @@
 <%= @red   =  @tag.get_red %><br>
 <%= green =  @tag.get_green %><br>
 <%= blue  =  @tag.get_blue %><br>
-<%= color = @tag.get_color %><br>
-<% red = 215%>
-<span class="label label-danger" style="background-color #{color}" >
-	<%= @tag.content%>
-</span>
+
+
 <br>
 <%= link_to 'Edit', edit_tag_path(@tag) %> |
 <%= link_to 'Back', tags_path %>

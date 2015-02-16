@@ -47,11 +47,20 @@ class User < ActiveRecord::Base
   def has_tags?(tag_ids)
     user_tags = self.get_tags
     for tag_id in tag_ids
-      if (!user_tags.include?(tag_id))
+      if (!user_tags.include?(tag_id.to_i))
         return false
       end
     end
     return true
+  end
+
+  def has_tag?(tag_id)
+    user_tags = self.get_tags
+    if (!user_tags.include?(tag_id))
+      return false
+    else
+      return true
+    end
   end
 
   def has_at_least_one_tag_from?(tag_ids)

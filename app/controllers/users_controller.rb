@@ -123,7 +123,7 @@ class UsersController < ApplicationController
     @searching_by = []
     #Display name results
     name_results = []
-    if !params[:name].empty?
+    if !params[:display_name].empty?
       @searching_by.push("display name")
       name_results = User.where(display_name: params[:display_name])
     end
