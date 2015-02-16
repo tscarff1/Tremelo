@@ -22,13 +22,11 @@
         <div class="checkbox">
           <%= label_tag :remember_me do %>
           <%= check_box_tag :remember_me %>
-            Remember me on this computer
+          Remember me on this computer
           <% end %>
         </div>
 
         <%= submit_tag "Log In", class: "btn btn-block" %>
-        <%= link_to "Forgot Password", new_password_reset_path %>
-
 
       <% end %>
 

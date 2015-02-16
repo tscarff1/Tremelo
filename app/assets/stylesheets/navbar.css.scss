@@ -4,6 +4,7 @@
 
 /* Variables */
 
+$link-color: orange;
 $border-color: #866400;
 $background-color: #424035;
 $search-text-color: #FFDE79;
@@ -13,9 +14,9 @@ $font-family: Questrial, Arial, sans-serif;
 *,
 *:after,
 *::before {
-		-webkit-box-sizing: border-box;
-		-moz-box-sizing: border-box;
-		box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 /* Navbar */
@@ -23,7 +24,14 @@ $font-family: Questrial, Arial, sans-serif;
 #logo {
   font-family: Montserrat, sans-serif;
   font-size: 22px;
+  letter-spacing: -0.06em;
+  color: $link-color;
   border-right: 1px solid $border-color;
+
+  &:hover {
+    background: $link-color;
+    color: $background-color;
+  }
 }
 
 .gn-menu-main,
@@ -31,13 +39,22 @@ $font-family: Questrial, Arial, sans-serif;
     margin: 0;
     padding: 0;
     background: $background-color;
-    color: orange;
+    color: $link-color;
     list-style: none;
     text-transform: none;
     font-weight: 400;
     font-family: $font-family;
     line-height: 60px;
     z-index:150;
+}
+
+.gn-menu {
+    text-align: left;
+    font-size: 18px;
+
+    li {
+        border-bottom: 1px solid $border-color;
+    }
 }
 
 .gn-menu-main {
@@ -47,20 +64,32 @@ $font-family: Questrial, Arial, sans-serif;
     width: 100%;
     height: 60px;
     font-size: 13px;
+
+    a {
+        display: block;
+        height: 100%;
+        color: $link-color;
+        text-decoration: none;
+        cursor: pointer;
+
+        &:visited {
+            color: $link-color;
+        }
+
+        &:hover {
+            color: $background-color;
+            background: $link-color;
+        }
+    }
+
+    .company-social {
+        a { color: #666; }
+    }
 }
 
-.gn-menu-main a {
-    display: block;
-    height: 100%;
-    color: orange;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.no-touch .gn-menu-main a:hover,
 .no-touch .gn-menu li.gn-search-item:hover,
 .no-touch .gn-menu li.gn-search-item:hover a {
-    background: orange;
+    background: $link-color;
     color: $background-color;
 }
 
@@ -101,7 +130,6 @@ $font-family: Questrial, Arial, sans-serif;
     content: "";
 }
 
-
 .gn-menu-wrapper {
     position: fixed;
     background: $background-color;
@@ -124,15 +152,6 @@ $font-family: Questrial, Arial, sans-serif;
     overflow-y: scroll;
     width: 370px;
     height: 100%;
-}
-
-.gn-menu {
-    text-align: left;
-    font-size: 18px;
-
-    li {
-        border-bottom: 1px solid $border-color;
-    }
 }
 
 .gn-submenu li {
@@ -276,12 +295,12 @@ input.gn-search:focus {
 }
 
 .gn-icon-menu.gn-selected {
-	background: orange;
+	background: $link-color;
 
 	&:before {
 		background: $background-color;
-		box-shadow: 0 3px orange, 0 -6px $background-color, 
-		0 -9px orange, 0 -12px $background-color;
+		box-shadow: 0 3px $link-color, 0 -6px $background-color, 
+		0 -9px $link-color, 0 -12px $background-color;
 	}
 }
 
@@ -290,17 +309,17 @@ input.gn-search:focus {
 	vertical-align: -2px;
 	width: 30px;
 	height: 3px;
-	background: orange;
-	box-shadow: 0 3px $background-color, 0 -6px orange, 
-	0 -9px $background-color, 0 -12px orange;
+	background: $link-color;
+	box-shadow: 0 3px $background-color, 0 -6px $link-color, 
+	0 -9px $background-color, 0 -12px $link-color;
 	content: '';
 }
 
 .no-touch .gn-icon-menu:hover::before,
 .no-touch .gn-icon-menu.gn-selected:hover::before {
 	background: $background-color;
-	box-shadow: 0 3px orange, 0 -6px $background-color, 
-	0 -9px orange, 0 -12px $background-color;
+	box-shadow: 0 3px $link-color, 0 -6px $background-color, 
+	0 -9px $link-color, 0 -12px $background-color;
 }
 
 /* styles for opening menu */
@@ -338,27 +357,27 @@ input.gn-search:focus {
 ============================= */
 
 .company-social {
-    margin: 3px 5px 0 0;
+    margin: 5px 5px 0 0;
 
     ul { height: 0 }
 
-	li {
-		display: inline-block;
-		margin:0 !important;
+    li {
+        display: inline-block;
+        margin: 0 !important;
+    }
+
+    a {
+        font-size: 15px;
+        margin: 0;
+        padding: 0;
+        width: 45px;
+        line-height: 0px;
+        text-align: center;
+        color: #666;
 
         &:hover {
+            color: $link-color;
             background: $background-color;
         }
-	}
-
-	a {
-		font-size: 22px;
-		margin: 0;
-		padding: 0;
-		width: 40px;
-		line-height: 40px;
-		text-align: center;
-        background: none;
-		color: orange;
 	}
 }

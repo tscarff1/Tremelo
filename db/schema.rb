@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150211135751) do
+ActiveRecord::Schema.define(version: 20150213055537) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20150211135751) do
   create_table "tags", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "content"
   end
 
   create_table "user_bands", force: true do |t|
@@ -65,12 +66,13 @@ ActiveRecord::Schema.define(version: 20150211135751) do
     t.string   "about_me"
     t.string   "home_address"
     t.string   "state"
+    t.string   "password_reset_token"
     t.string   "profile_picture_file_name"
     t.string   "profile_picture_content_type"
     t.integer  "profile_picture_file_size"
     t.datetime "profile_picture_updated_at"
-    t.string   "password_reset_token"
     t.date     "date_of_birth"
+    t.integer  "zipcode"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

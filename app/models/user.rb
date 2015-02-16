@@ -29,4 +29,24 @@ class User < ActiveRecord::Base
   def get_address
     return home_address + ", "+ state
   end
+
+  def get_tags
+    usertags = UserTags.where(user_id: self.id)
+    tags = []
+    for usertag in usertags
+      tag_content = Tag.find(usertag.tag_id).content
+      tags.push(tag_content)
+    end
+    return tags
+  end
+
+  def has_at_least_one_tag_from?(tag_ids)
+      for tag_id in tag_ids
+        if !UserTags.find_by(tag_id: tag_id, user_id: self.id).nil?
+          return true
+        end
+      end
+
+      return false
+    end
 end

@@ -14,8 +14,18 @@ class Band < ActiveRecord::Base
 		bands = Band.all
 		for band in bands
 			if band.num_members == 0
-				band.destroy
+				delete_band(band.id)
 			end
+		end
+	end
+
+	def delete_band(id)
+		if (Band.exists?(id))
+			Band.find(id).destroy
+		end
+		#Now we delete associations to the band
+		for userband in UserBand.where(band_id: id)
+			userband.destroy
 		end
 	end
 

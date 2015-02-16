@@ -1,19 +1,11 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :upload_pic, :update_pic, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :upload_pic, :update_pic, 
+    :edit_tags,
+    :update, :destroy]
 
   # GET /users/new
   def new
     @user = User.new
-  end
-
-  # GET /users/1/edit
-  def edit
-  end
-
-  def change_password
-  end
-
-  def upload_pic
   end
 
   # POST /users
@@ -32,6 +24,20 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  # GET /users/1/edit
+  def edit
+  end
+
+  def edit_tags
+  end
+
+
+  def change_password
+  end
+
+  def upload_pic
   end
 
   # PATCH/PUT /users/1
@@ -57,6 +63,22 @@ class UsersController < ApplicationController
         end
       end
     end
+  end
+
+  def update_tags
+    #for some reason it doesn't work if the following line is included in the set_user stuff
+    @user = User.find(session[:user_id])
+
+    #First let's clear out all existing UserTags
+    for user_tag_old in UserTags.where(user_id: @user.id)
+      user_tag_old.destroy
+    end
+
+    for i in params[:tag_ids]
+      user_tag = UserTags.new(user_id: @user.id, tag_id: i)
+      user_tag.save
+    end
+    redirect_to @user
   end
 
   def update_pic
@@ -93,6 +115,27 @@ class UsersController < ApplicationController
       else
         redirect_to @user, notice: "Unable to leave band"
       end
+  end
+
+  def search
+  end
+
+  def search_results
+    name_results = []
+    if !params[:name].nil?
+      name_results = User.where(display_name: params[:name])
+    end
+    tag_results = []
+    if(!params[:tag_ids].nil?)
+      for user in User.all
+        if user.has_at_least_one_tag_from? (params[:tag_ids])
+          tag_results.push(user)
+        end
+      end
+    end
+    
+    #@results is the interection of arrays produced by previous searches, ignoring empty results    
+    @results = [ tag_results, name_results ].tap{ |a| a.delete( [] ) }.reduce( :& ) || []
   end
 
   private
