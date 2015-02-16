@@ -8,21 +8,29 @@
             <div class="gn-scroller">
               <ul class="gn-menu">
 
-                <li class="gn-search-item">
-                  <input placeholder="Search" type="search" class="gn-search">
-                  <a class="gn-icon gn-icon-search"><span>Search</span></a>
-                </li>
+              <!-- Search function -->
+                <%= form_tag search_results_users_path, method: :post do %>
+
+                  <li class="gn-search-item">
+                    <%= text_field_tag "display_name", nil,
+                        class: "gn-search",
+                        placeholder: "Search" %>
+                    <!-- <input placeholder="Search" type="search" class="gn-search"> -->
+                    <a class="gn-icon gn-icon-search"></a>
+                  </li>
+
+                <% end %>
 
                 <% if logged_in? %>
 
                   <li>
-                    <%= link_to "Profile",current_user,
+                    <%= link_to "Profile", current_user,
                       class: "gn-icon gn-icon-profile" %>
                   </li>
 
                   <ul class="gn-submenu">
                     <li>
-                      <%= link_to "Log Out",logout_path, method: "delete",
+                      <%= link_to "Log Out", logout_path, method: "delete",
                       class: "gn-icon gn-icon-logout" %>
                     </li>
                   </ul>

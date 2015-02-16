@@ -124,20 +124,9 @@ class UsersController < ApplicationController
     @searching_by = []
     #Display name results
     name_results = []
-    if !params[:name].empty?
+    if !params[:display_name].empty?
       @searching_by.push("display name")
-      name_results = User.where(display_name: params[:name])
-    end
-
-    #Instrument tag results
-    tag_results = []
-    if(!params[:tag_ids].nil?)
-      @searching_by.push("instrument tags")
-      for user in User.all
-        if user.has_at_least_one_tag_from? (params[:tag_ids])
-          tag_results.push(user)
-        end
-      end
+      name_results = User.where(display_name: params[:display_name])
     end
 
     location_results = []
@@ -152,10 +141,39 @@ class UsersController < ApplicationController
       end
       temp_user.destroy
     end
-    
+
     #@results is the interection of arrays produced by previous searches, ignoring empty results    
-    all_results = [tag_results, name_results, location_results]
+    all_results = [name_results, location_results]
     @results = all_results.tap{ |a| a.delete( [] ) }.reduce( :& ) || []
+
+
+    #Instrument tag results
+    # Due to the fact that the array will remain empty if no tags are found, this needs to come last
+    tag_results = []
+    if(!params[:tag_ids].nil?)
+      @searching_by.push("instrument tags")
+      for user in User.all
+        if (params[:exact_tags].nil?)
+          if user.has_at_least_one_tag_from?(params[:tag_ids])
+            tag_results.push(user)
+          end
+        else
+          if user.has_tags?(params[:tag_ids])
+            tag_results.push(user)
+          end
+        end
+      end
+
+      #This next line is why this has to be last
+      if (@results.empty?)
+        @results = tag_results
+      else
+        @results = @results & tag_results
+      end
+    end
+
+    #End of the eternal search method
+    #Now it's really the end
   end
 
   private

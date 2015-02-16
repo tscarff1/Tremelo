@@ -22,13 +22,13 @@ class Tag < ActiveRecord::Base
 
 	def get_green
 		if !content.nil?
-			green = ((content[-1].ord * 1.5)/350.0 * 255).to_i
+			green = (((content[-1].ord + content[1].ord) * 1.5)/600.0 * 255 - 20).abs.to_i
 		end
 	end
 
 	def get_blue
 		if !content.nil?
-			blue = ((content[1].ord * 2)/600.0 * 255).to_i
+			blue = (((content[1].ord + content[0].ord)* 2)/1100.0 * 255 - 40).abs.to_i
 		end
 	end
 end
