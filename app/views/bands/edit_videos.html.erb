@@ -1,0 +1,11 @@
+<h1>Bands#edit_videos</h1>
+<p>Temporary edit page</p>
+
+<%= form_tag update_videos_band_path, method: :put do %>
+
+	<%= label_tag "Enter the link to your video: "%>
+	<%= text_field_tag "video_link" %>
+
+	<%= submit_tag "Submit Video" %>
+
+<% end %>

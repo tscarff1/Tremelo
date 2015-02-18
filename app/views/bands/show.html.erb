@@ -15,7 +15,9 @@
 	</ul>
 <% end %>
 
-<%= @band.video_link_html %>
+<% for video in BandVideo.where(band_id: @band.id) %>
+	<%= video.video_link_html %>
+<% end %>
 
 <% loggedin_userband = UserBand.find_by(user_id: session[:user_id], band_id: @band.id) %>
 <% if !loggedin_userband.nil?%>

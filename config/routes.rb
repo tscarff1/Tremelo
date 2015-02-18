@@ -15,11 +15,13 @@ Rails.application.routes.draw do
  
   get 'users/:id/edit_tags' => "users#edit_tags"
 
+  get 'search_user' => 'users#search'
+  get 'users/search_results' => 'users#search_results'
+
   get 'bands/:id/upload_pic' => 'bands#upload_pic'
   get 'bands/:id/access_error' => 'bands#access_error'
 
-  get 'search_user' => 'users#search'
-  get 'users/search_results' => 'users#search_results'
+  
   
   resources :users do
     collection do
@@ -31,8 +33,13 @@ Rails.application.routes.draw do
   end
 
   resources :bands do
-    collection do
+    member do
       post 'upload_pic'
+      get 'edit_videos'
+      put 'update_videos'
+    end
+
+    collection do
       get 'access_error'
     end
   end

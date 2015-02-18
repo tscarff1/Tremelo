@@ -24,13 +24,12 @@
     			<br>
     		<% end %>
 
-    		<%= f.label :video_link, "Link a video!" %>
-    		<%= f.text_field :video_link, class: "form-control" %>
-
 			<%= f.submit "Create your Band!", class: "btn btn-primary"%>
 		<%end%>
 	</div>
 </div>
+<br><br>
+<%= link_to "Add a video", edit_videos_band_path(@band) %>
 <br><br>
 <%= link_to "Add/Change the band's Profile Picture",{controller: "bands", action: "upload_pic"} %>
 <br><br>

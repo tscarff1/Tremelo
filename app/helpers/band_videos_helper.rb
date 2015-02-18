@@ -1,0 +1,2 @@
+module BandVideosHelper
+end

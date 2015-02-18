@@ -1,8 +1,8 @@
 class BandsController < ApplicationController
 
   before_action :set_band, only: [:show, :edit, :upload_pic, :update_pic, :update, 
-    :destroy, :access_error]
-  before_action :verify_admin, only: [:edit, :upload_pic]
+    :destroy, :access_error, :edit_videos, :update_videos]
+  before_action :verify_admin, only: [:edit, :upload_pic, :edit_videos]
 
   def new
     if !session[:user_id].nil?
@@ -58,6 +58,15 @@ class BandsController < ApplicationController
   end
 
   def upload_pic
+  end
+
+  def edit_videos
+  end
+
+  def update_videos
+    bandvideo = BandVideo.new(band_id: @band.id, video_link: params[:video_link])
+    bandvideo.save
+    redirect_to @band
   end
 
   def show
