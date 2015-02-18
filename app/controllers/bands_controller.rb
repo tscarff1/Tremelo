@@ -64,8 +64,20 @@ class BandsController < ApplicationController
   end
 
   def update_videos
-    bandvideo = BandVideo.new(band_id: @band.id, video_link: params[:video_link])
-    bandvideo.save
+
+    if (!params[:video_link].empty? && !params[:video_name].empty?)
+      bandvideo = BandVideo.new(band_id: @band.id, video_link: params[:video_link], 
+        video_name: params[:video_name])
+      bandvideo.save
+    end
+
+    if(!params[:video_ids].nil?)
+      for video_id in params[:video_ids]
+        video = BandVideo.find(video_id)
+        video.destroy
+      end
+    end
+
     redirect_to @band
   end
 

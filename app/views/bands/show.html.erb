@@ -15,7 +15,9 @@
 	</ul>
 <% end %>
 
+<h2> Videos </h4>
 <% for video in BandVideo.where(band_id: @band.id) %>
+	<h4> <%= video.video_name %> </h4><br>
 	<%= video.video_link_html %>
 <% end %>
 
