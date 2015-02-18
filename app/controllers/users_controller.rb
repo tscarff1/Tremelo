@@ -129,7 +129,9 @@ class UsersController < ApplicationController
     end
 
     location_results = []
-    if (!params[:location].empty? && !params[:distance].empty?)
+
+      if (!params[:location].nil? && 
+        !params[:location].empty? && !params[:distance].empty?)
       @searching_by.push("location")
       temp_user = User.new(address: params[:location])
       temp_user.save
