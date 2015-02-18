@@ -73,7 +73,8 @@ class BandsController < ApplicationController
     end
 
   	def band_params
-  		params.require(:band).permit(:name, :location, :about_me, :profile_picture, :full_address)
+  		params.require(:band).permit(:name, :location, :about_me, :profile_picture,
+       :full_address, :video_link)
   	end
 
     #Method to make sure the logged in user has access to the page

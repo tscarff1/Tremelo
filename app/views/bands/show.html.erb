@@ -14,9 +14,12 @@
 	<%end%>
 	</ul>
 <% end %>
+
+<%= @band.video_link_html %>
+
 <% loggedin_userband = UserBand.find_by(user_id: session[:user_id], band_id: @band.id) %>
 <% if !loggedin_userband.nil?%>
-<% if loggedin_userband.admin_priveleges == 1 %>
-<%= link_to 'Edit', edit_band_path(@band) %>
-<%end%>
+	<% if loggedin_userband.admin_priveleges == 1 %>
+		<%= link_to 'Edit', edit_band_path(@band) %>
+	<%end%>
 <%end%>

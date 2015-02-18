@@ -9,6 +9,15 @@ class Band < ActiveRecord::Base
 	geocoded_by :full_address
 	after_validation :geocode, :if => :full_address_changed?
 
+	  #For youtube video embedding
+  	auto_html_for :video_link do
+    	html_escape
+    	image
+    	youtube(width: 400, height: 250, autoplay: false)
+    	link target: "_blank", rel: "nofollow"
+    	simple_format
+  	end
+
 	#Call as Band.delete_empty_bands to delete any bands without any members
 	def self.delete_empty_bands
 		bands = Band.all
