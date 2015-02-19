@@ -1,0 +1,47 @@
+<% provide(:title, "Help - Navigating Tremelo") %>
+
+<h1> Navigating the TREMELO website </h1>
+<hr>
+
+<h2> The Home Page </h2>
+<h4> Log In </h4>
+	Have an account? User this button to get to the Tremelo log-in page and access your account!
+
+<h4> Register </h4>
+	Don't have an account yet? Click here to begin making one!
+	Want some help creating an account? 
+	<%= link_to "Just click here", {controller: "static_pages/help", 
+                    action: "creating_account"} %>
+
+<h4> Help </h4>
+	This will take you to the main help page - probably how you got here!
+
+<hr>
+<h2> The Navbar</h2>
+<p> You may have noticed 3 horizontal bars on the top-left of your screen.</p>
+<p><strong>NAVBAR IMAGE HERE</strong></p>
+<p>This is the navbar. Go ahead and mouse over it, we'll wait.</p>
+<p> You should notice that a menu popped out. This is the primary method of getting around on Tremelo. </p>
+
+<h4> The Search Bar </h4>
+<p> The first option you'll see is a SEARCH BAR. Type a user's display name in the search field and press enter to search for a user. </p>
+<p><strong>SAMPLE SEARCH IMAGE HERE</strong></p>
+<p> Tremelo has more advanced user searching, which will be covered in <strong> LINK TO SEARCHING TUTORIAL </strong>
+
+<h4> Log In </h4>
+If you have not logged in or created an account, you will see an option to log in.<br>
+To learn about creating an account, you can go to the 
+	<%= link_to "Creating your account help page", {controller: "static_pages/help", 
+                    action: "creating_account"} %>
+If you are already logged in, this will give you the option to view your profile, or to log out.
+
+<h4> About </h4>
+This link will take you to the About page for Tremelo, so you can learn all about us!
+
+<h4> Help </h4>
+This link will take you to what should be a familiar page - The main help page!
+
+<h4> Contact </h4>
+Want to report an error with the site? Have any questions about Tremelo? Or just need someone to talk to? Click on this link to see how to contact us.
+
+
