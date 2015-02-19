@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   has_attached_file :profile_picture, :styles => { medium: "300x300", thumb: "100x100"}
   validates_attachment_content_type :profile_picture, content_type: /\Aimage\/.*\Z/
 
+
+
   def downcase_email
     self.email = email.downcase
   end
@@ -30,23 +32,57 @@ class User < ActiveRecord::Base
     return home_address + ", "+ state
   end
 
+  def num_tags
+    usertags = UserTags.where(user_id: self.id)
+    return usertags.count
+  end
+
   def get_tags
     usertags = UserTags.where(user_id: self.id)
     tags = []
     for usertag in usertags
-      tag_content = Tag.find(usertag.tag_id).content
-      tags.push(tag_content)
+      tags.push(usertag.tag_id)
     end
     return tags
   end
 
-  def has_at_least_one_tag_from?(tag_ids)
-      for tag_id in tag_ids
-        if !UserTags.find_by(tag_id: tag_id, user_id: self.id).nil?
-          return true
-        end
+  def has_tags?(tag_ids)
+    user_tags = self.get_tags
+    for tag_id in tag_ids
+      if (!user_tags.include?(tag_id.to_i))
+        return false
       end
-
-      return false
     end
+    return true
+  end
+
+  def has_tag?(tag_id)
+    user_tags = self.get_tags
+    if (!user_tags.include?(tag_id))
+      return false
+    else
+      return true
+    end
+  end
+
+  def has_at_least_one_tag_from?(tag_ids)
+    for tag_id in tag_ids
+      if !UserTags.find_by(tag_id: tag_id, user_id: self.id).nil?
+        return true
+      end
+    end
+
+    return false
+  end
+
+  def get_matching_tag_ids(tag_ids)
+    usertags = UserTags.find_by(user_id: self.id)
+    matching = []
+    for usertag in UserTags
+      if tag_ids.include?(usertag.id)
+        matching.push(usertag.id)
+      end
+    end
+    return matching
+  end
 end

@@ -1,0 +1,24 @@
+<h1>Bands#edit_videos</h1>
+<p>Temporary edit page</p>
+
+<%= form_tag update_videos_band_path, method: :put do %>
+
+	<h3> Add a new video </h3><br>
+
+	<%= label_tag "Video Name:" %>
+	<%= text_field_tag "video_name" %>
+	<br>
+	<%= label_tag "Enter the link to your video: "%>
+	<%= text_field_tag "video_link" %>
+
+	<h3> Don't like an old video? Check off the videos you would like to delete </h3>
+	<ul>
+	<% for video in BandVideo.where(band_id: @band.id) %>
+		<li> <%= video.video_name %>
+			<%= check_box_tag "video_ids[]", video.id %>
+		</li>
+	<%end%> 
+	</ul>
+<%= submit_tag "Submit Changes" %>
+
+<% end %>

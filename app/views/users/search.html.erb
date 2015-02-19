@@ -3,16 +3,32 @@
 
 <%= form_tag search_results_users_path, method: :post do %>
 
-<%= label_tag "Display Name" %>
-	<%= text_field_tag "name" %>
-	<br>
+	<%= label_tag "Display Name" %><br>
+	<%= text_field_tag "display_name" %>
+	<br><br>
 
+
+
+	<%= label_tag "Instrument Tags"%> (returns users with any instrument tags checked)
 	<% for tag in Tag.all %>
 		<li>
 			<%= check_box_tag "tag_ids[]", tag.id %>
 			<%= tag.content %>
 		</li>
 	<% end %>
+	
+<!-- This will be a checkbox that decides whether to search instrument tags -->
+	<!-- With AND or OR functionality -->
+	<%= label_tag "Find users with exactly these tags: " %>
+	<%= check_box_tag "exact_tags"%><br>
+	<br>
+
+	<%= label_tag "Location (city, state):" %><br>
+	<%= text_field_tag "location"%>
+	<br>
+	<%= label_tag "Allowed distance" %><br>
+	<%= text_field_tag "distance"%>
+	<br><br>
 
 	<%= submit_tag "Search" %>
 <% end %>
