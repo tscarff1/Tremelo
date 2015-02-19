@@ -1,3 +1,5 @@
+<%= @user.get_address %>
+
 <%= form_for @user do |f| %>
   <%= render 'shared/error_messages' %>
 
@@ -52,8 +54,17 @@
 
     <!-- This should be broken up into street, city, state, etc -->
     <div class="form-group">
-        <%= f.label :address %>
-        <%= f.text_field :address, class: 'form-control' %>
+        <div class="row">
+            <div class="col-xs-4 col-md-4">
+                <%= f.label :city, "City" %>
+                <%= f.text_field :city, class: 'form-control' %>
+            </div>
+
+            <div class="col-xs-4 col-md-4">
+                <%= f.label :state, "State" %>
+                <%= f.text_field :state, class: 'form-control' %>
+            </div>
+        </div>
     </div>
 
     <% if !@user.address.nil? %>

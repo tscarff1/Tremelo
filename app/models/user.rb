@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   end
 
   def get_address
-    return home_address + ", "+ state
+    return city + ", "+ state
   end
 
   def num_tags

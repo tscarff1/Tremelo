@@ -49,6 +49,8 @@ class UsersController < ApplicationController
 
     #Now update
     respond_to do |format|
+      @user.address = @user.get_address
+      @user.save
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
@@ -188,7 +190,8 @@ class UsersController < ApplicationController
       params.require(:user).permit(:display_name, :first_name, :last_name, :email, :about_me, 
                             :email_confirmation, 
                             :password, :password_confirmation, 
-                            :profile_picture, :address)
+                            :profile_picture, 
+                            :address, :city, :state)
     end
 
     def picture_params
