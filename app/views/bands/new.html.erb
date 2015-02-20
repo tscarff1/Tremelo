@@ -1,27 +1,46 @@
+<div class="container">
+
 <% if !@userband.nil? %>
-<% user = User.find(@userband.user_id) %>
-<h1> <%= user.display_name %>'s new BAND! </h1>
+	<% user = User.find(@userband.user_id) %>
+	<h1 class="page-heading">
+		<%= user.display_name %>'s new BAND!
+	</h1>
 
-<p>This page will be significantly different later</p>
+	<p style="text-align: center">
+		This page will be significantly different later...Or will it? j/k
+	</p>
 
-<div class="row">
-	<div class="col-md-6 col-md-offset-3">
-		<%= form_for(@band) do |f| %>
+	<%= form_for(@band) do |f| %>
 			
-			<%= f.label :name, "Name" %>
-			<%= f.text_field :name, class: "form-control" %>
-			<br>
-			<%= f.label :location, "Location" %>
-			<%= f.text_field :location, class: "form-control" %>
-			<br>
-			<%= f.label :about_me, "About Me" %>
-			<%= f.text_field :about_me, class: "form-control" %>
-			<br>
-			<%= f.submit "Create your Band!", class: "btn btn-primary"%>
-		<%end%>
+	<div class="form-group">
+		<div class="row">
+			<div class="col-xs-4 col-md-4">
+				<%= f.label :name, "Name" %>
+				<%= f.text_field :name, class: "form-control" %>
+			</div>
+		</div>
 	</div>
+
+	<div class="form-group">
+		<div class="row">
+			<div class="col-xs-8 col-md-8">
+				<%= f.label :location, "Location" %>
+				<%= f.text_field :location, class: "form-control" %>
+			</div>
+		</div>
+	</div>
+
+	<div class="form-group">
+			<%= f.label :about_me, "About Me" %>
+			<%= f.text_area :about_me, :size => "10x5", class: "form-control" %>
+	</div>
+
+		<%= f.submit "Create your Band!", class: "btn btn-block"%>
+	<%end%>
+
+	<% else %>
+		<h2>ERROR</h2>
+		<p>You do not have access to this page.</p>
+	<%end%>
+
 </div>
-<% else %>
-<h2> ERROR </h2>
-<p> You do not have access to this page.</p>
-<%end%>

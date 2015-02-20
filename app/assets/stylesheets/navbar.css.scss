@@ -96,6 +96,11 @@ $font-family: Questrial, Arial, sans-serif;
 
     .company-social {
         color: #666;
+
+        a {
+            &:visited { color: #666; }
+            &:hover { color : $link-color; }
+        }
     }
 }
 
@@ -358,6 +363,18 @@ input.gn-search:focus {
   .gn-menu-wrapper.gn-open-all .gn-scroller {
       width: 130%;
   }
+}
+
+/* ============================
+--- Navbar Links
+============================= */
+
+.navbar-links {
+    display: inline-block;
+    font-family: Montserrat, sans-serif;
+    font-weight: bold;
+    font-size: 16px;
+    margin: 0 0 0 24px;
 }
 
 /* ============================
