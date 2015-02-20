@@ -54,7 +54,17 @@ Rails.application.routes.draw do
   get 'about' => 'static_pages#about'
   get 'help' => 'static_pages#help'
 
-  
+  get 'help/creating_account' => 'static_pages/help#creating_account'
+  get 'help/basic_site_nav' => 'static_pages/help#basic_site_nav'
+
+  resources :static_pages do
+    resources :help do
+      collection do
+        get 'creating_account'
+      end
+    end
+  end
+
   resources :videos
 
   # The priority is based upon order of creation: first created -> highest priority.
