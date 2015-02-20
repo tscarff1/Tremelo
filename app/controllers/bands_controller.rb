@@ -1,8 +1,13 @@
 class BandsController < ApplicationController
 
   before_action :set_band, only: [:show, :edit, :upload_pic, :update_pic, :update, 
+<<<<<<< HEAD
     :destroy, :access_error, :search_for_user, :user_search_results, :add_member]
   before_action :verify_admin, only: [:edit, :upload_pic]
+=======
+    :destroy, :access_error, :edit_videos, :update_videos]
+  before_action :verify_admin, only: [:edit, :upload_pic, :edit_videos]
+>>>>>>> 1ed1d3ff5f3a03491f90a555aa4302fa29b7e10a
 
   def new
     if !session[:user_id].nil?
@@ -67,6 +72,27 @@ class BandsController < ApplicationController
   end
 
   def upload_pic
+  end
+
+  def edit_videos
+  end
+
+  def update_videos
+
+    if (!params[:video_link].empty? && !params[:video_name].empty?)
+      bandvideo = BandVideo.new(band_id: @band.id, video_link: params[:video_link], 
+        video_name: params[:video_name])
+      bandvideo.save
+    end
+
+    if(!params[:video_ids].nil?)
+      for video_id in params[:video_ids]
+        video = BandVideo.find(video_id)
+        video.destroy
+      end
+    end
+
+    redirect_to @band
   end
 
   def show
@@ -138,7 +164,8 @@ class BandsController < ApplicationController
     end
 
   	def band_params
-  		params.require(:band).permit(:name, :location, :about_me, :profile_picture, :full_address)
+  		params.require(:band).permit(:name, :location, :about_me, :profile_picture,
+       :full_address, :video_link)
   	end
 
     #Method to make sure the logged in user has access to the page

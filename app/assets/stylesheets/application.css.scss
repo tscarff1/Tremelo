@@ -121,12 +121,17 @@ hr {
   color: white;
   text-transform: uppercase;
   letter-spacing: 2px;
-  padding: 15px 12px;
+  padding: 12px 12px;
   border: none;
+
+  &:focus {
+    color: white;
+  }
 }
 
 .btn-block {
-  font-size: 18px;
+  // font-size: 20px !important;
+  letter-spacing: 2px;
   background: orange;
   border-color: orange;
   color: none;
@@ -187,6 +192,8 @@ hr {
   }
   
 }
+
+/* Flash messages */
 
 /* miscellaneous */
 

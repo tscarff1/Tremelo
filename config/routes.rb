@@ -15,6 +15,9 @@ Rails.application.routes.draw do
 
   get 'users/:id/edit_tags' => "users#edit_tags"
 
+  get 'search_user' => 'users#search'
+  get 'users/search_results' => 'users#search_results'
+
   get 'bands/:id/upload_pic' => 'bands#upload_pic'
   get 'bands/:id/access_error' => 'bands#access_error'
   get 'bands/:id/search_for_user' => 'bands#search_for_user'
@@ -22,6 +25,8 @@ Rails.application.routes.draw do
   get 'search_user' => 'users#search'
   get 'users/search_results' => 'users#search_results'
 
+  
+  
   resources :users do
     collection do
       post 'update_pic'
@@ -40,6 +45,11 @@ Rails.application.routes.draw do
     end
     collection do
       post 'upload_pic'
+      get 'edit_videos'
+      put 'update_videos'
+    end
+
+    collection do
       get 'access_error'
     end
   end
@@ -54,7 +64,17 @@ Rails.application.routes.draw do
   get 'about' => 'static_pages#about'
   get 'help' => 'static_pages#help'
 
-  
+  get 'help/creating_account' => 'static_pages/help#creating_account'
+  get 'help/basic_site_nav' => 'static_pages/help#basic_site_nav'
+
+  resources :static_pages do
+    resources :help do
+      collection do
+        get 'creating_account'
+      end
+    end
+  end
+
   resources :videos
 
   # The priority is based upon order of creation: first created -> highest priority.
