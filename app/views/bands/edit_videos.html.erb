@@ -1,5 +1,11 @@
-<h1>Bands#edit_videos</h1>
-<p>Temporary edit page</p>
+<% provide(:title, "Editing Videos") %>
+
+<div class="container">
+
+<h1 class="page-heading">More videos, more problems</h1>
+<p class="subtitle">
+	Link your band's music videos from Youtube
+</p>
 
 <%= form_tag update_videos_band_path, method: :put do %>
 
@@ -22,3 +28,5 @@
 <%= submit_tag "Submit Changes" %>
 
 <% end %>
+
+</div>
