@@ -6,10 +6,10 @@
 			<% session[:band_id] = @band.id %>
 
 		<%= form_for(@band) do |f| %>
-			
+
 			<%= f.label :name, "Name" %>
 			<%= f.text_field :name, class: "form-control" %>
-		
+
 			<br>
 			<%= f.label :about_me, "About Me" %>
 			<%= f.text_field :about_me, class: "form-control" %>
@@ -32,4 +32,4 @@
 <%= link_to "Add/Change the band's Profile Picture",{controller: "bands", action: "upload_pic"} %>
 <br><br>
 
-<%= link_to "Add a member to this band" %>
+<%= link_to "Add a member to this band", search_for_user_band_path(@band) %>

@@ -9,18 +9,19 @@ Rails.application.routes.draw do
   get "/register" => "users#new", as: :register
   get "/logout" => "user_sessions#destroy", as: :logout
   delete "/logout" => "user_sessions#destroy"
-  
+
   get 'users/leave_band' => "users#leave_band"
   get 'users/:id/upload_pic' => "users#upload_pic"
- 
+
   get 'users/:id/edit_tags' => "users#edit_tags"
 
   get 'bands/:id/upload_pic' => 'bands#upload_pic'
   get 'bands/:id/access_error' => 'bands#access_error'
+  get 'bands/:id/search_for_user' => 'bands#search_for_user'
 
   get 'search_user' => 'users#search'
   get 'users/search_results' => 'users#search_results'
-  
+
   resources :users do
     collection do
       post 'update_pic'
@@ -31,6 +32,12 @@ Rails.application.routes.draw do
   end
 
   resources :bands do
+    member do
+      get 'search_for_user'
+      post 'user_search_results'
+      get 'user_search_results'
+      put 'add_member'
+    end
     collection do
       post 'upload_pic'
       get 'access_error'
