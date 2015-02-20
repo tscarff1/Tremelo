@@ -1,29 +1,32 @@
+<div class="container">
 
-<h1> <%= @band.name %>'s Band Page </h1>
-<!-- Current image sizes are thumb and medium, more can be defined within the band model-->
-<%= image_tag @band.profile_picture.url(:medium) %> 
-<% @userbands = UserBand.where(band_id: @band.id)%>
-<% if @userbands.empty?%>
+	<h1 class="page-heading"><%= @band.name %></h1>
+	<!-- Current image sizes are thumb and medium, more can be defined within the band model-->
+	<%= image_tag @band.profile_picture.url(:medium) %> 
+	<% @userbands = UserBand.where(band_id: @band.id)%>
+	<% if @userbands.empty?%>
 	<h3> No users are  member of this band</h3>
-<% else %>
+	<% else %>
 	<h4> Members</h4>
 	<ul>
-	<% @userbands.each do |userband| %>
+		<% @userbands.each do |userband| %>
 		<% user = User.find(userband.user_id) %>
 		<li> <%= link_to user.display_name, user%> </li>
-	<%end%>
+		<%end%>
 	</ul>
-<% end %>
+	<% end %>
 
-<h2> Videos </h4>
-<% for video in BandVideo.where(band_id: @band.id) %>
-	<h4> <%= video.video_name %> </h4><br>
-	<%= video.video_link_html %>
-<% end %>
+	<h2> Videos </h4>
+		<% for video in BandVideo.where(band_id: @band.id) %>
+		<h4> <%= video.video_name %> </h4><br>
+		<%= video.video_link_html %>
+		<% end %>
 
-<% loggedin_userband = UserBand.find_by(user_id: session[:user_id], band_id: @band.id) %>
-<% if !loggedin_userband.nil?%>
-	<% if loggedin_userband.admin_priveleges == 1 %>
+		<% loggedin_userband = UserBand.find_by(user_id: session[:user_id], band_id: @band.id) %>
+		<% if !loggedin_userband.nil?%>
+		<% if loggedin_userband.admin_priveleges == 1 %>
 		<%= link_to 'Edit', edit_band_path(@band) %>
-	<%end%>
-<%end%>
+		<%end%>
+		<%end%>
+
+	</div>
