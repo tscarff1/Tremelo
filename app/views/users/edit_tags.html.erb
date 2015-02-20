@@ -1,20 +1,28 @@
 <% provide(:title, 'Edit your Tags') %>
-<h1> Edit your TAGS! </h1>
-<p> Select the tags you wish to be included on your profile </p>
 
-<%= form_tag update_tags_users_path, method: :put do %>
+<div class="container">
+
+	<h1 class="page-heading">Edit your TAGS!</h1>
+
+	<p class="subtitle">
+		Select the tags you wish to be included on your profile
+	</p>
+
+	<%= form_tag update_tags_users_path, method: :put do %>
 	<ul>
-	<% for tag in Tag.all %>
+		<% for tag in Tag.all %>
 		<li>
 			<% usertag = UserTags.find_by(user_id: @user.id, tag_id: tag.id) %>
 			<% if usertag.nil? %>
-				<%= check_box_tag "tag_ids[]", tag.id%>
+			<%= check_box_tag "tag_ids[]", tag.id%>
 			<% else %>
-				<%= check_box_tag "tag_ids[]", tag.id, checked: true%>
+			<%= check_box_tag "tag_ids[]", tag.id, checked: true%>
 			<%end%>
-				<%= tag.content %>
+			<%= tag.content %>
 		</li>
-	<% end %>
+		<% end %>
 	</ul>
 	<%= submit_tag "Add to profile" %>
-<% end %>
+	<% end %>
+
+</div>
