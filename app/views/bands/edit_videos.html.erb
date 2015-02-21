@@ -2,31 +2,39 @@
 
 <div class="container">
 
-<h1 class="page-heading">More videos, more problems</h1>
-<p class="subtitle">
-	Link your band's music videos from Youtube
-</p>
+	<h1 class="page-heading">More Videos, More Problems</h1>
+	<p class="subtitle">
+		Link your band's music videos from Youtube
+	</p>
 
-<%= form_tag update_videos_band_path, method: :put do %>
+	<%= form_tag update_videos_band_path, class: "form-horizontal", 
+			method: :put do %>
 
-	<h3> Add a new video </h3><br>
+		<h3> Add a new video </h3>
 
-	<%= label_tag "Video Name:" %>
-	<%= text_field_tag "video_name" %>
-	<br>
-	<%= label_tag "Enter the link to your video: "%>
-	<%= text_field_tag "video_link" %>
+		<div class="form-group">
+			<%= label_tag "Video Name:", class: "col-sm-2 control-label 
+					form-control" %>
+			<div class="col-sm-10">
+				<%= text_field_tag "video_name" %>
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<%= label_tag "Enter the link to your video: "%>
+			<%= text_field_tag "video_link" %>
+		</div>
 
-	<h3> Don't like an old video? Check off the videos you would like to delete </h3>
-	<ul>
-	<% for video in BandVideo.where(band_id: @band.id) %>
-		<li> <%= video.video_name %>
-			<%= check_box_tag "video_ids[]", video.id %>
-		</li>
-	<%end%> 
-	</ul>
-<%= submit_tag "Submit Changes" %>
+		<h3> Don't like an old video? Check off the videos you would like to delete </h3>
+		<ul>
+		<% for video in BandVideo.where(band_id: @band.id) %>
+			<li> <%= video.video_name %>
+				<%= check_box_tag "video_ids[]", video.id %>
+			</li>
+		<%end%> 
+		</ul>
+	<%= submit_tag "Submit Changes" %>
 
-<% end %>
+	<% end %>
 
 </div>

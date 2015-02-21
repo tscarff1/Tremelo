@@ -1,98 +1,96 @@
 <%= form_for @user do |f| %>
 <%= render 'shared/error_messages' %>
 
-<!-- Check if username is available -->
-<div class="form-group">
-	<div class="row">
-		<div class="col-xs-4 col-md-4">
-			<%= f.label :display_name, "Display Name" %>
-			<%= f.text_field :display_name, class: 'form-control' %>
-		</div>
-	</div>
-</div>
+<div class="form-horizontal">
 
-<div class="form-group">
-	<div class="row">
-		<div class="col-xs-4 col-md-4">
-			<%= f.label :first_name, "First Name" %>
-			<%= f.text_field :first_name, class: 'form-control' %>
-		</div>
+  <!-- Check if username is available -->
+  <div class="form-group required">
+    <div class="col-xs-6 col-md-6">
+     <%= f.label :display_name, "Display Name" %>
+     <%= f.text_field :display_name, class: 'form-control',
+         required: "required" %>
+   </div>
+  </div>
 
-		<div class="col-xs-4 col-md-4">
-			<%= f.label :last_name, "Last Name" %>
-			<%= f.text_field :last_name, class: 'form-control' %>
-		</div>
-	</div>
-</div>
+  <div class="form-group">
+    <div class="col-xs-6 col-md-6">
+     <%= f.label :first_name, "First Name" %>
+     <%= f.text_field :first_name, class: 'form-control' %>
+   </div>
 
-<div class="form-group">
-	<div class="row">
-		<div class="col-xs-8 col-md-8">
-			<%= f.label :email %>
-			<%= f.text_field :email, class: 'form-control' %>
-		</div>
-	</div>
-</div>
+   <div class="col-xs-6 col-md-6">
+     <%= f.label :last_name, "Last Name" %>
+     <%= f.text_field :last_name, class: 'form-control' %>
+   </div>
+ </div>
+
+ <div class="form-group required">
+  <div class="col-xs-8 col-md-12">
+   <%= f.label :email %>
+   <%= f.text_field :email, class: 'form-control', required: "required" %>
+  </div>
+ </div>
 
 <% if session[:user_id].nil? %>
-<div class="form-group">
-	<div class="row">
-		<div class="col-xs-8 col-md-8">
-			<%= f.label :email_confirmation, "Email Confirmation" %>
-			<%= f.email_field :email_confirmation, class: 'form-control' %>
-		</div>
-	</div>
-</div>
-<%end%>
+  <div class="form-group required">
+    <div class="col-xs-8 col-md-12">
+     <%= f.label :email_confirmation, "Email Confirmation" %>
+     <%= f.email_field :email_confirmation, class: 'form-control', 
+         required: "required" %>
+   </div>
+  </div>
+<% end %>
 
-<div class="form-group">
-	<%= f.label :about_me, "About Me" %>
-	<%= f.text_area :about_me, :size => "10x5", class: 'form-control' %>
-</div>
+  <div class="form-group">
+    <div class="col-xs-12 col-md-12">
+  	<%= f.label :about_me, "About Me" %>
+  	<%= f.text_area :about_me, :size => "10x5", class: 'form-control',
+        placeholder: "Write something about yourself here, nerd." %>
+    </div>
+  </div>
 
-<div class="form-group">
-  <div class="row">
-    <div class="col-xs-4 col-md-4">
+  <div class="form-group required">
+    <div class="col-xs-6 col-md-6">
       <%= f.label :city, "City" %>
       <%= f.text_field :city, class: 'form-control' %>
     </div>
 
-    <div class="col-xs-4 col-md-4">
+    <div class="col-xs-6 col-md-6">
       <%= f.label :state, "State" %>
-      <%= f.text_field :state, class: 'form-control' %>
+      <%= f.select :state, options_for_select(us_states), {},
+         { :class => 'form-control', :required => "required" } %>
     </div>
   </div>
+
+  <% if !@user.address.nil? %>
+    <div class="form-group">
+    	<b> Latitude: </b> <%= @user.latitude %>
+    	<b> Longitude: </b> <%= @user.longitude %>
+    </div>
+  <% end %>
+
+  <% if session[:user_id].nil? %>
+    <div class="form-group required">
+      <div class="col-xs-6 col-md-6">
+       <%= f.label :password %>
+       <%= f.password_field :password, class: 'form-control',
+           required: "required" %>
+     </div>
+
+     <div class="col-xs-6 col-md-6">
+       <%= f.label :password_confirmation, "Password Confirmation" %>
+       <%= f.password_field :password_confirmation, class: 'form-control',
+           required: "required" %>
+     </div>
+   </div>
+  <% end %>
+
+    <% if session[:user_id].nil? %>
+      <%= f.submit "Sign Up", class: "btn btn-block" %>
+    <% else %>
+      <%= f.submit "Update", class: "btn btn-block" %>
+    <% end %>
+
+<% end %>
+
 </div>
-
-<% if !@user.address.nil? %>
-<div class="form-group">
-	<b> Latitude: </b> <%= @user.latitude %>
-	<b> Longitude: </b> <%= @user.longitude %>
-</div>
-<% end %>
-
-<% if session[:user_id].nil? %>
-<div class="form-group">
-	<div class="row">
-		<div class="col-xs-4 col-md-4">
-			<%= f.label :password %>
-			<%= f.password_field :password, class: 'form-control' %>
-		</div>
-
-		<div class="col-xs-4 col-md-4">
-			<%= f.label :password_confirmation, "Password Confirmation" %>
-			<%= f.password_field :password_confirmation, class: 'form-control' %>
-		</div>
-	</div>
-</div>
-<% end %>
-
-<% if session[:user_id].nil? %>
-  <%= f.submit "Register", class: "btn btn-block" %>
-<% else %>
-  <%= f.submit "Update", class: "btn btn-block" %>
-<% end %>
-
-<br>
-
-<% end %>

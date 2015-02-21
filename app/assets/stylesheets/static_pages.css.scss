@@ -73,45 +73,13 @@ h4#home {
 }
 
 /* ============================
---- About Page
-============================= */
-
-.about-header {
-  position: relative;
-  height: 400px;
-  background: url(image-path('aboutpage_bg.jpg')) center center no-repeat scroll;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
-}
-
-.tagline {
-    font-size: 55px;
-    color: #fff;
-}
-
-.img-center {
-    margin: 0 auto;
-}
-
-/* ============================
---- Help Page
-============================= */
-
-.help-header {
-  @extend .about-header;
-  background: url(image-path('helppage_bg.jpg')) center center no-repeat scroll;
-}
-
-/* ============================
 --- Forms
 ============================= */
 
 h1.page-heading {
     text-align: center;
     font-size: 38px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 .subtitle {
@@ -120,6 +88,14 @@ h1.page-heading {
 
 .input-group {
   margin-top: 15px;
+}
+
+.form-group.required label:after { 
+    color: #d00;
+    content: "*";
+    position: absolute;
+    margin-left: 3px;
+    top: -2px;
 }
 
 /* ============================
