@@ -1,0 +1,22 @@
+/* ============================
+--- About Page
+============================= */
+
+.about-header {
+  position: relative;
+  height: 400px;
+  background: url(image-path('aboutpage_bg.jpg')) center center no-repeat scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.tagline {
+    font-size: 55px;
+    color: #fff;
+}
+
+.img-center {
+    margin: 0 auto;
+}
