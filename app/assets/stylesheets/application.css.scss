@@ -121,7 +121,7 @@ hr {
   color: white;
   text-transform: uppercase;
   letter-spacing: 2px;
-  padding: 12px 12px;
+  padding: 14px 14px;
   border: none;
 
   &:focus {
@@ -130,7 +130,7 @@ hr {
 }
 
 .btn-block {
-  // font-size: 20px !important;
+  font-size: 18px !important;
   letter-spacing: 2px;
   background: orange;
   border-color: orange;
@@ -194,6 +194,19 @@ hr {
 }
 
 /* Flash messages */
+
+.flash {
+  background-color: orange;
+  color: white;
+  padding: 8px 0 8px 0;
+  font-size: 16px; 
+  font-weight: bold;
+}
+
+button.close {
+  margin: -2px 15px 0 0;
+  font-size: 25px;
+}
 
 /* miscellaneous */
 

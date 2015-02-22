@@ -17,6 +17,7 @@ gem 'jquery-easing-rails'
 gem 'jquery-turbolinks'
 gem "font-awesome-rails"
 gem 'turbolinks'
+gem 'soundcloud'
 gem 'jbuilder',                     '~> 2.0'
 gem 'sdoc',                             '~> 0.4.0', group: :doc
 

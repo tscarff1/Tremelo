@@ -15,14 +15,14 @@
 <body>
 
   <% flash.each do |type, message| %>
-    <div class="flash alert-box text-center <%= type %>">
+    <div class="flash alert-box text-center 
+      <%= bootstrap_class_for(type) %>">
+      <button class="close" data-hide="alert">&times;</button>
       <%= message %>
-      <a href="#" class="close">&times;</a>
     </div>
   <% end %>
 
   <%= render 'layouts/header' %>
-  
 
   <%= yield %>
 
