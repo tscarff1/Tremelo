@@ -16,3 +16,10 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+
+// hides flash message on clicking the 'X'
+$(document).ready(function() {
+    $("[data-hide]").on("click", function(){
+        $("." + $(this).attr("data-hide")).hide();
+    });
+});
