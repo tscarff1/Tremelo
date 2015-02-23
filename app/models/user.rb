@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   end
 
   def get_address
-    if(!self.city.nil? && (!self.state.nil?)
+    if(!self.city.nil? && (!self.state.nil?))
       return self.city + ", "+ self.state
     end
     return self.address
