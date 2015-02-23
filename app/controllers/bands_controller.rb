@@ -1,13 +1,8 @@
 class BandsController < ApplicationController
 
   before_action :set_band, only: [:show, :edit, :upload_pic, :update_pic, :update, 
-<<<<<<< HEAD
-    :destroy, :access_error, :search_for_user, :user_search_results, :add_member]
-  before_action :verify_admin, only: [:edit, :upload_pic]
-=======
     :destroy, :access_error, :edit_videos, :update_videos]
   before_action :verify_admin, only: [:edit, :upload_pic, :edit_videos]
->>>>>>> 1ed1d3ff5f3a03491f90a555aa4302fa29b7e10a
 
   def new
     if !session[:user_id].nil?

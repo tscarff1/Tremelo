@@ -50,8 +50,7 @@ class UsersController < ApplicationController
 
     #Now update
     respond_to do |format|
-      @user.address = @user.get_address
-      @user.save
+      user_params[:address] = user_params[:city] + ", " + user_params[:state]
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }

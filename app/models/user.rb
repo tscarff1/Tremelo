@@ -11,8 +11,8 @@ class User < ActiveRecord::Base
   before_save :downcase_email
 
   #For location (Geocoder)
-  geocoded_by :address
-  after_validation :geocode, :if => :address_changed?
+  geocoded_by :get_address
+  after_validation :geocode, :if => :get_address_changed?
 
   #For image uploading (paperclip)
   has_attached_file :profile_picture, :styles => { medium: "300x300", thumb: "100x100"}
@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
   end
 
   def get_address
-    if(!city.nil? && !state.nil?)
+    if(!:city.nil? && !:state.nil?)
       return city + ", "+ state
     end
     return address
@@ -88,4 +88,8 @@ class User < ActiveRecord::Base
     end
     return matching
   end
+end
+
+def get_address_changed?
+  :city_changed? || :state_changed?
 end
