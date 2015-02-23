@@ -29,10 +29,10 @@ class User < ActiveRecord::Base
   end
 
   def get_address
-    if(!:city.nil? && (!:state.nil?)
-      return :city + ", "+ :state
+    if(!self.city.nil? && (!self.state.nil?)
+      return self.city + ", "+ self.state
     end
-    return :address
+    return self.address
   end
 
   def num_tags
