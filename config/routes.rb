@@ -42,11 +42,12 @@ Rails.application.routes.draw do
       post 'user_search_results'
       get 'user_search_results'
       put 'add_member'
+      get 'edit_videos'
+      put 'update_videos'
     end
     collection do
       post 'upload_pic'
-      get 'edit_videos'
-      put 'update_videos'
+
     end
 
     collection do
