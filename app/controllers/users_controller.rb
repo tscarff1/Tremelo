@@ -26,6 +26,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def index
+    user = User.find(session[:user_id])
+    @users = user.nearbys(5000)
+    @users.push(user)
+    @hash = Gmaps4rails.build_markers(@users) do |user, marker|
+      marker.lat user.latitude
+      marker.lng user.longitude
+      marker.infowindow user.display_name
+    end
+  end
+
   # GET /users/1/edit
   def edit
   end
