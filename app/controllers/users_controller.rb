@@ -28,7 +28,7 @@ class UsersController < ApplicationController
 
   def index
     user = User.find(session[:user_id])
-    @users = user.nearbys(5000)
+    @users = user.nearbys(20)
     @users.push(user)
     @hash = Gmaps4rails.build_markers(@users) do |user, marker|
       marker.lat user.latitude
