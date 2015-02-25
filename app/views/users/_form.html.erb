@@ -64,8 +64,10 @@
 
   <% if !@user.address.nil? %>
     <div class="form-group">
-    	<b> Latitude: </b> <%= @user.latitude %>
-    	<b> Longitude: </b> <%= @user.longitude %>
+      <div class="col-xs-6 col-md-6">
+      	<b> Latitude: </b> <%= @user.latitude %>
+      	<b> Longitude: </b> <%= @user.longitude %>
+      </div>
     </div>
   <% end %>
 

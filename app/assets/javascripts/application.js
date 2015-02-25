@@ -19,9 +19,10 @@
 //= require gmaps/google
 //= require_tree .
 
-// hides flash message on clicking the 'X'
+// allows the hiding/closing of the flash message when
+// clicking on the 'X'
 $(document).ready(function() {
-    $("[data-hide]").on("click", function(){
-        $("." + $(this).attr("data-hide")).hide();
+    $('button.close').click(function() {
+        $(".flash.alert-box").slideUp("fast");
     });
 });
