@@ -28,12 +28,25 @@ class User < ActiveRecord::Base
     update_attribute(:password_reset_token, SecureRandom.urlsafe_base64(48))
   end
 
+  #Location is geocoded by this!
   def get_address
     if(!self.city.nil? && (!self.state.nil?))
       return self.city + ", "+ self.state
     end
     return self.address
   end
+
+  def get_address_changed?
+    :city_changed? || :state_changed?
+  end
+
+  # ------- Map Stuff --------
+  def gmaps_infowindow
+      "Hello"
+      "<img src=\"#{self.profile_picture(:thumb)}\"> #{self.display_name}"
+  end
+
+  #Tag stuff
 
   def num_tags
     usertags = UserTags.where(user_id: self.id)
@@ -88,8 +101,4 @@ class User < ActiveRecord::Base
     end
     return matching
   end
-end
-
-def get_address_changed?
-  :city_changed? || :state_changed?
 end

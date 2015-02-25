@@ -27,15 +27,27 @@ class UsersController < ApplicationController
   end
 
   def index
-    user = User.find(session[:user_id])
-    @users = user.nearbys(20)
-    @users.push(user)
+    @user = User.find(session[:user_id])
+    @users = @user.nearbys(20)
+    @users.push(@user)
+    #This hash will be passed to the map and accessed to add users to it
     @hash = Gmaps4rails.build_markers(@users) do |user, marker|
       marker.lat user.latitude
       marker.lng user.longitude
-      marker.infowindow user.display_name
+      #Locals are the local variables passed (Pretty sure just the user is needed)
+      marker.infowindow render_to_string(:partial => "/users/infowindow", :locals => {:user => user})
+      #Display a separate image for the logged in user
+      if(user == @user)
+        marker.picture({
+                  :url => "http://www.google.com/mapfiles/dd-start.png",
+                  :width   => 32,
+                  :height  => 32
+                 })
+      end
     end
   end
+
+  
 
   # GET /users/1/edit
   def edit
@@ -61,7 +73,6 @@ class UsersController < ApplicationController
 
     #Now update
     respond_to do |format|
-      user_params[:address] = user_params[:city] + ", " + user_params[:state]
       if @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
