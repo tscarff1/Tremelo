@@ -16,7 +16,7 @@ gem 'coffee-rails',             '~> 4.0.0'
 gem 'jquery-rails'
 gem 'jquery-easing-rails'
 gem 'jquery-turbolinks'
-gem "font-awesome-rails"
+gem 'font-awesome-sass'
 gem 'turbolinks'
 gem 'soundcloud'
 gem 'jbuilder',                     '~> 2.0'

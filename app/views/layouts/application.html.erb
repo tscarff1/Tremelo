@@ -16,8 +16,8 @@
 
   <% flash.each do |type, message| %>
     <div class="flash alert-box text-center 
-      <%= bootstrap_class_for(type) %>">
-      <button class="close" data-hide="alert">&times;</button>
+      <%= bootstrap_class_for("#{type}") %>">
+      <button class="close" data-dismiss="alert">&times;</button>
       <%= message %>
     </div>
   <% end %>
