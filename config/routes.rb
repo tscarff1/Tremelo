@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'users/:id/upload_pic' => "users#upload_pic"
 
   get 'users/:id/edit_tags' => "users#edit_tags"
+  get 'users/:id/access_error' => 'users#access_error'
 
   get 'search_user' => 'users#search'
   get 'users/search_results' => 'users#search_results'

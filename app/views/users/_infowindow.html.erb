@@ -4,8 +4,8 @@
 <%= image_tag user.profile_picture.url(:thumb) %>
 <%= link_to user.display_name, user%>
 <br>
- <% for user_tag in UserTags.where(user_id: user.id) %>
-          <% tag = Tag.find(user_tag.tag_id) %>
-          <%= content_tag(:span, "#{tag.content}", :class => 'label label-danger', 
-          :style => "background-color: rgb(#{tag.get_red},#{tag.get_green},#{tag.get_blue}") %>
-        <%end%>
+<% for user_tag in UserTags.where(user_id: user.id) %>
+    <% tag = Tag.find(user_tag.tag_id) %>
+    <%= content_tag(:span, "#{tag.content}", :class => 'label label-danger', 
+        :style => "background-color: rgb(#{tag.get_red},#{tag.get_green},#{tag.get_blue}") %>
+<%end%>

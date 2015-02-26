@@ -7,9 +7,10 @@
     <h1>Users near <%= user.display_name %></h1>
       	<!-- Finally displaying the map -->
       	<div style='width: 800px;'>
- 			<div id="map" style='width: 800px; height: 400px;'></div>
+ 			<div id="map" style='width: 600px; height: 400px;'></div>
 		</div>
 
+<!-- Create the markers -->
 <script type="text/javascript">
 handler = Gmaps.build('Google');
 handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){

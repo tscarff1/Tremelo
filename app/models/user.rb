@@ -15,7 +15,9 @@ class User < ActiveRecord::Base
   after_validation :geocode, :if => :get_address_changed?
 
   #For image uploading (paperclip)
-  has_attached_file :profile_picture, :styles => { medium: "300x300", thumb: "100x100"}
+  has_attached_file(:profile_picture,
+                  :default_url => 'default_profile_pic.png',
+                  :styles => { medium: "150x150", thumb: "100x100"})
   validates_attachment_content_type :profile_picture, content_type: /\Aimage\/.*\Z/
 
 

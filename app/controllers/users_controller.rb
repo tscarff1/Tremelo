@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :upload_pic, :update_pic, 
-    :edit_tags,
+    :edit_tags, :access_error,
     :update, :destroy]
+
+  before_action :verify_correct_user, only: [:edit, :edit_tags, :upload_pic]
 
   # GET /users/new
   def new
@@ -36,10 +38,9 @@ class UsersController < ApplicationController
       marker.lng user.longitude
       #Locals are the local variables passed (Pretty sure just the user is needed)
       marker.infowindow render_to_string(:partial => "/users/infowindow", :locals => {:user => user})
-      #Display a separate image for the logged in user
       if(user == @user)
-        marker.picture({
-                  :url => "http://www.google.com/mapfiles/dd-start.png",
+      marker.picture({
+                  :url => "#{view_context.image_path('marker.png')}",
                   :width   => 32,
                   :height  => 32
                  })
@@ -47,7 +48,8 @@ class UsersController < ApplicationController
     end
   end
 
-  
+  def access_error
+  end
 
   # GET /users/1/edit
   def edit
@@ -218,5 +220,14 @@ class UsersController < ApplicationController
 
     def picture_params
       params.require(:user).permit(:profile_picture)
+    end
+
+    def verify_correct_user
+      if(session[:user_id].nil?)
+        redirect_to action: "access_error", id:@user.id
+      
+      elsif(@user.id != session[:user_id])
+        redirect_to action: "access_error", id:@user.id
+      end
     end
 end
