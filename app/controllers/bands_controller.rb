@@ -1,7 +1,7 @@
 class BandsController < ApplicationController
 
   before_action :set_band, only: [:show, :edit, :upload_pic, :update_pic, :update, 
-    :destroy, :access_error, :edit_videos, :update_videos]
+    :destroy, :access_error, :edit_videos, :update_videos, :add_member]
   before_action :verify_admin, only: [:edit, :upload_pic, :edit_videos]
 
   def new
