@@ -16,8 +16,8 @@ class User < ActiveRecord::Base
 
   #For image uploading (paperclip)
   has_attached_file(:profile_picture,
-                  :default_url => 'default_profile_pic.png',
-                  :styles => { medium: "150x150", thumb: "100x100"})
+                  :default_url => 'user/profile_pictures/default_:style.png',
+                  :styles => { medium: "300x300#", small: "150x150#",thumb: "60x60#"})
   validates_attachment_content_type :profile_picture, content_type: /\Aimage\/.*\Z/
 
 

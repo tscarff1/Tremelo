@@ -199,6 +199,19 @@ class UsersController < ApplicationController
       end
     end
 
+    @hash = Gmaps4rails.build_markers(@results) do |user, marker|
+      marker.lat user.latitude
+      marker.lng user.longitude
+      #Locals are the local variables passed (Pretty sure just the user is needed)
+      marker.infowindow render_to_string(:partial => "/users/infowindow", :locals => {:user => user})
+      if(user.id == session[:user_id])
+        marker.picture({
+                  :url => "#{view_context.image_path('marker.png')}",
+                  :width   => 32,
+                  :height  => 32
+                 })
+      end
+    end
     #End of the eternal search method
     #Now it's really the end
   end

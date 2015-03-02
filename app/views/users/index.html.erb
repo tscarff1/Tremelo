@@ -3,6 +3,25 @@
 <script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js' type='text/javascript'></script>
 
 <% if !session[:user_id].nil? %>
+
+<%= form_tag(@user, remote: true ) do |f| %>
+
+    <%= radio_button_tag :distance_1, true, checked: 'checked', data: {behavior: "clickable"} %> 
+    <%= label_tag :distance_1, '10 miles' %>
+
+    <%= radio_button_tag :distance_2,  data: {behavior: "clickable"} %> 
+   	<%= label_tag :distance_2, '10 miles' %>
+
+<% end %>
+
+<script type = "text/javascript" >
+$(document).ready(function() {    
+  $('input[type="radio"][data-behavior="clickable"]').click(function(evt) {
+    alert("you chose the option: " + $(this).val());
+  });
+});
+</script>
+
 <%user = User.find(session[:user_id])%>
     <h1>Users near <%= user.display_name %></h1>
       	<!-- Finally displaying the map -->
