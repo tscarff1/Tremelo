@@ -10,6 +10,14 @@ class UserSessionsController < ApplicationController
         cookies.permanent.signed[:remember_me_token] = signed_token
       end
       session[:user_id] = user.id
+      
+      # Adding userbands to the session to reduce stuff to do each page load
+      userbands = UserBand.where(user_id: session[:user_id])
+      session[:band_ids] = []
+      for userband in userbands
+        session[:band_ids].push(userband.band_id)
+      end
+
       flash[:success] = "Successfully logged in"
       redirect_to user
     else
