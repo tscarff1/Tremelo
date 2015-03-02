@@ -33,7 +33,7 @@
                   <!-- if the user has created any bands,
                         show the links to their respective profile
                         pages here -->
-                  <% userbands = UserBand.where(user_id: @user.id) %>
+                  <% userbands = UserBand.where(user_id: session[:user_id]) %>
                   <% if userbands.exists? %>
 
                     <% userbands.each do |userband| %>
