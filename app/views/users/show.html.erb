@@ -6,8 +6,9 @@
 
 <div class="container">
 
+  <!-- Display Name and tags -->
   <div class="row">
-    <div class="col-xs-10">
+    <div class="col-xs-4 col-md-3">
       <h1><%= @user.display_name %></h1>
         <% for user_tag in UserTags.where(user_id: @user.id) %>
           <% tag = Tag.find(user_tag.tag_id) %>
@@ -118,7 +119,7 @@
            from seeing the edit link -->
       <% if @user.id == session[:user_id] %>
         <%= button_to 'Edit Profile', edit_user_path(@user),
-            class: 'btn btn-block', :method => :get %>
+            class: 'btn btn-sm btn-primary', :method => :get %>
       <% end %>
 
 
@@ -188,29 +189,35 @@
           </div>
         </div>
 
-      </div>
-
       <!-- Tyler's code for incorporating bands -->
-      <div class="container">
         <div class="row">
-          <h4><strong> Bands </strong></h4>
+          <div class="col-md-4">
 
-          <% userbands = UserBand.where(user_id: @user.id) %>
-          <% if userbands.empty? %>
-            <p> 
-              <%= @user.display_name %> does not belong to any bands - yet
-            </p>
-          <% else %>
-            <ul>
-              <% userbands.each do |userband| %>
-              <% band = Band.find(userband.band_id) %>
-              <li><%= link_to band.name, band %></li>
-              <%end%>
-            </ul>
-          <%end%>
+            <h3>Bands</h3>
 
+            <% userbands = UserBand.where(user_id: @user.id) %>
+            <% if userbands.empty? %>
+            
+              <p> 
+                <%= @user.display_name %> does not belong to any bands - yet
+              </p>
+
+            <% else %>
+
+              <ul>
+                <% userbands.each do |userband| %>
+                  <% band = Band.find(userband.band_id) %>
+                  <li><%= link_to band.name, band %></li>
+                <% end %>
+              </ul>
+
+            <% end %>
+
+          </div>
         </div>
+
       </div>
+
 
 <br>
 

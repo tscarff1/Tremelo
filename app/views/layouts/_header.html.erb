@@ -21,12 +21,33 @@
 
                 <% end %>
 
+                <!-- if the user is logged in, display 'My Profile' and
+                      'Log Out' -->
                 <% if logged_in? %>
 
                   <li>
-                    <%= link_to "Profile", current_user,
+                    <%= link_to "My Profile", current_user,
                       class: "gn-icon gn-icon-profile" %>
                   </li>
+
+                  <!-- if the user has created any bands,
+                        show the links to their respective profile
+                        pages here -->
+                  <% userbands = UserBand.where(user_id: @user.id) %>
+                  <% if userbands.exists? %>
+
+                    <% userbands.each do |userband| %>
+
+                      <% band = Band.find(userband.band_id) %>
+
+                      <li>
+                        <%= link_to band.name, band,
+                          class: "gn-icon gn-icon-band" %>
+                      </li>
+
+                    <% end %>
+
+                  <% end %>
 
                   <ul class="gn-submenu">
                     <li>
