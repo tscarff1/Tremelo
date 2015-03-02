@@ -1,10 +1,37 @@
+<div class="container">
 
-<% @band = Band.find(params[:id]) %>
+  <h1 class="page-heading">
+    Upload a Profile Picture for <%= @band.name %>
+  </h1>
 
-<h1> Upload a profile picture for <%= @band.name %>! </h1>
+  <% @band = Band.find(params[:id]) %>
 
-<%= form_for @band, :html => { :multipart => true} do |f| %>
-	
-  	<%= f.file_field :profile_picture, accept: 'image/png, image/gif, image/jpeg, image/bmp' %>
-  	<%= f.submit "Add Picture", class: "btn btn-block" %>
-<% end %>
+  <%= form_for @band, :html => { :multipart => true},
+      id: "js-upload-form" do |f| %>
+  	
+    	<%= render 'shared/error_messages' %>
+
+    <h4>Select files from your computer</h4>
+      <div class="form-inline">
+        <div class="form-group">
+          <%= f.file_field :profile_picture, accept: 'image/png, image/gif, image/jpeg, image/bmp', id: "js-upload-files" %>
+        </div>
+        <%= f.submit "Upload Files", class: "btn btn-sm btn-primary", 
+            id: "js-upload-submit" %>
+      </div>
+
+    <h4>Or drag and drop files below</h4>
+    <div class="upload-drop-zone" id="drop-zone">
+      Just drag and drop files here
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress">
+      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+        <span class="sr-only">60% Complete</span>
+      </div>
+    </div>
+    
+  <% end %>
+
+</div>

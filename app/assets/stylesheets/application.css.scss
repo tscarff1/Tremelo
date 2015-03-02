@@ -131,18 +131,20 @@ hr {
   }
 }
 
-.btn-block {
-  // font-size: 18px !important;
-  letter-spacing: 2px;
+.btn-primary {
   background: orange;
   border-color: orange;
-  color: none;
+  color: white;
 
-  &:hover, &:active { 
+  &:hover, &:active, &:focus { 
     background: #FFB301;
     border-color: #FFB301;
     color: white;
   }
+}
+
+.btn-block {
+  @extend .btn-primary;
 }
 
 .btn-info {
@@ -206,6 +208,10 @@ hr {
 
 .alert-success {
     background: #6CD836;
+}
+
+.alert-info {
+    background: #55AAFF;
 }
 
 button.close {
