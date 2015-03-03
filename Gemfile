@@ -23,14 +23,14 @@ gem 'jbuilder',                     '~> 2.0'
 gem 'sdoc',                             '~> 0.4.0', group: :doc
 
 group :development, :test do
-    gem 'mina'
-    gem 'spring'
-    gem 'guard-livereload', require: false
-    gem 'byebug'
-    gem 'rspec-rails',              '~> 3.0'
-    gem 'rspec-activemodel-mocks'
-    gem 'factory_girl_rails'
-    gem 'web-console',              '2.0.0.beta4'
+  gem 'mina'
+  gem 'spring'
+  gem 'guard-livereload', require: false
+  gem 'byebug'
+  gem 'rspec-rails',              '~> 3.0'
+  gem 'rspec-activemodel-mocks'
+  gem 'factory_girl_rails'
+  gem 'web-console',              '2.0.0.beta4'
 end
 
 group :test do
