@@ -1,25 +1,25 @@
 <% provide(:title, "My Profile") %>
 
 <div class="container">
-
+<br>
   <!-- Display Name and tags -->
   <div class="row">
 
       <div class="col-xs-3">
-        <div class="panel panel-default">
-          <!-- <div class="avatar"> -->
+        <div class="panel panel-default text-center">
             <%= image_tag @user.profile_picture.url(:small) %>
           </div>
-        <!-- </div> -->
       </div>
 
       <div class="col-xs-9 col-md-9">
-      <h1><%= @user.display_name %></h1>
+      <h1 class="display-name"><%= @user.display_name %></h1>
+
         <% for user_tag in UserTags.where(user_id: @user.id) %>
           <% tag = Tag.find(user_tag.tag_id) %>
           <%= content_tag(:span, "#{tag.content}", :class => 'label label-danger', 
           :style => "background-color: rgb(#{tag.get_red},#{tag.get_green},#{tag.get_blue}") %>
-        <%end%>
+
+        <% end %>
     </div>
   </div>
 
@@ -122,7 +122,7 @@
            from seeing the edit link -->
       <% if @user.id == session[:user_id] %>
         <%= button_to 'Edit Profile', edit_user_path(@user),
-            class: 'btn btn-primary', :method => :get %>
+            class: 'btn btn-block', :method => :get %>
       <% end %>
 
 
