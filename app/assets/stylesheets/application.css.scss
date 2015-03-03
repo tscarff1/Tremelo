@@ -117,20 +117,6 @@ hr {
 --- Elements
 ============================ */
 
-.btn {
-  font-family: FontAwesome, Arial, sans-serif;
-  font-size: 16px;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  padding: 14px 14px;
-  border: none;
-
-  &:focus {
-    color: white;
-  }
-}
-
 .btn-primary {
   background: orange;
   border-color: orange;
@@ -141,6 +127,7 @@ hr {
     border-color: #FFB301;
     color: white;
   }
+
 }
 
 .btn-block {
@@ -151,6 +138,12 @@ hr {
   &:hover, &:active { 
     background: #63D5F4;
   }
+}
+
+// for dropdown buttons
+.open > .btn-primary.dropdown-toggle {
+    background-color: #FFA500;
+    border-color: #F89D00;
 }
 
 /* Media queries */

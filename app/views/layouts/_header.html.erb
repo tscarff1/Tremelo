@@ -9,7 +9,7 @@
               <ul class="gn-menu">
 
               <!-- Search function -->
-                <%= form_tag search_results_users_path, method: :post do %>
+                <%= form_tag search_results_users_path, method: :get do %>
 
                   <li class="gn-search-item">
                     <%= text_field_tag "display_name", nil,
@@ -41,10 +41,8 @@
                           <%= link_to band.name, band,
                             class: "gn-icon gn-icon-band" %>
                         </li>
-
                       
                       <% end %>
-
                   <% end %>
 
                   <ul class="gn-submenu">

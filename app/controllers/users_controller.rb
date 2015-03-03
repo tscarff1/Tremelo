@@ -149,15 +149,14 @@ class UsersController < ApplicationController
     @searching_by = []
     #Display name results
     name_results = []
-    if !params[:display_name].empty?
+    if params.has_key?(:display_name)
       @searching_by.push("display name")
       name_results = User.where(display_name: params[:display_name])
     end
 
     location_results = []
 
-      if (!params[:location].nil? && 
-        !params[:location].empty? && !params[:distance].empty?)
+      if (params.has_key?(:location) && params.has_key?(:distance))
       @searching_by.push("location")
       temp_user = User.new(address: params[:location])
       temp_user.save
