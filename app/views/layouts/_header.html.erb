@@ -33,16 +33,18 @@
                   <!-- if the user has created any bands,
                         show the links to their respective profile
                         pages here -->
+                    <% if !session[:band_ids].nil? %>
+                      <% for band_id in session[:band_ids] %>
+                        <% band = Band.find(band_id) %>
 
-                    <% for band_id in session[:band_ids] %>
-                      <% band = Band.find(band_id) %>
+                        <li>
+                          <%= link_to band.name, band,
+                            class: "gn-icon gn-icon-band" %>
+                        </li>
 
-                      <li>
-                        <%= link_to band.name, band,
-                          class: "gn-icon gn-icon-band" %>
-                      </li>
+                      
+                      <% end %>
 
-                    
                   <% end %>
 
                   <ul class="gn-submenu">
