@@ -1,5 +1,5 @@
 task users: :environment do
-  100_000.times do
+  10_000.times do
     User.create(display_name: Faker::App.name,
                     first_name: Faker::Name.first_name,
                     last_name: Faker::Name.last_name,
@@ -8,7 +8,27 @@ task users: :environment do
                     password_confirmation: "password",
                     state: Faker::Address.state,
                     city: Faker::Address.city,
+                    about_me: Faker::Lorem.sentence,
                     profile_picture: Faker::Avatar.image)
   end
+end
+
+task bands: :environment do
+  50.times do
+    location = "#{Faker::Address.city}, #{Faker::Address.state_abbr}"
+    Band.create(name: Faker::App.name,
+                    location: location,
+                    about_me: Faker::Lorem.paragraph,
+                    profile_picture: Faker::Avatar.image)
+  end
+
+  10.times do
+    location = "#{Faker::Address.city}, #{Faker::Address.state_abbr}"
+    Band.create(name: Faker::Team.creature,
+                    location: location,
+                    about_me: Faker::Lorem.paragraph,
+                    profile_picture: Faker::Avatar.image)
+  end
+
 end
 

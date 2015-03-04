@@ -31,7 +31,9 @@ class UsersController < ApplicationController
   def index
     @user = User.find(session[:user_id])
     @users = @user.nearbys(5_100)
-    @users.push(@user)
+    if !@users.nil?
+      @users.push(@user)
+    end
     #This hash will be passed to the map and accessed to add users to it
     @hash = Gmaps4rails.build_markers(@users) do |user, marker|
       marker.lat user.latitude
@@ -109,7 +111,7 @@ class UsersController < ApplicationController
 
   def update_pic
     respond_to do |format|
-      if @user.update(picture_params)
+      if @user.update(user_params)
         format.html {redirect_to @user, notice: 'Profile picture has been successfully changed.'}
         format.json {render :show, status: :ok, location: @user}
       else
@@ -228,11 +230,7 @@ class UsersController < ApplicationController
                             :email_confirmation, 
                             :password, :password_confirmation, 
                             :profile_picture, 
-                            :address, :city, :state)
-    end
-
-    def picture_params
-      params.require(:user).permit(:profile_picture)
+                            :address, :city, :state, :profile_picture)
     end
 
     def verify_correct_user
