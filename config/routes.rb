@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   get 'users/leave_band' => "users#leave_band"
   get 'users/:id/upload_pic' => "users#upload_pic"
+  get 'users/nearby_users' => "users#index"
 
   get 'users/:id/edit_tags' => "users#edit_tags"
   get 'users/:id/access_error' => 'users#access_error'
@@ -44,6 +45,8 @@ Rails.application.routes.draw do
       get 'user_search_results'
       put 'add_member'
       get 'edit_videos'
+      get 'edit_genres'
+      put 'update_genres'
       put 'update_videos'
     end
     collection do

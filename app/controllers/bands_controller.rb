@@ -1,8 +1,10 @@
 class BandsController < ApplicationController
 
-  before_action :set_band, only: [:show, :edit, :upload_pic, :update_pic, :update, 
-    :destroy, :access_error, :edit_videos, :update_videos, :add_member]
-  before_action :verify_admin, only: [:edit, :upload_pic, :edit_videos]
+  before_action :set_band, only: [:show, :edit, 
+    :edit_genres, :upload_pic, :edit_videos, 
+    :update, :update_genres, :update_pic, :update_videos,
+    :destroy, :access_error,  :add_member]
+  before_action :verify_admin, only: [:edit, :upload_pic, :edit_videos, :edit_genres]
 
   def new
     if !session[:user_id].nil?
@@ -64,6 +66,24 @@ class BandsController < ApplicationController
   end
 
   def edit
+  end
+
+  def edit_genres
+  end
+
+  def update_genres
+    
+    #First let's clear out all existing UserTags
+    for band_genre_old in BandGenre.where(band_id: @band.id)
+      band_genre_old.destroy
+    end
+    if(!params[:genre_ids].nil?)
+      for i in params[:genre_ids]
+        band_genre = BandGenre.new(band_id: @band.id, genre_id: i)
+        band_genre.save
+      end
+    end
+    redirect_to @band
   end
 
   def upload_pic
