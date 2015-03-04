@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
   def index
     @user = User.find(session[:user_id])
-    @users = @user.nearbys(20)
+    @users = @user.nearbys(5_100)
     @users.push(@user)
     #This hash will be passed to the map and accessed to add users to it
     @hash = Gmaps4rails.build_markers(@users) do |user, marker|
