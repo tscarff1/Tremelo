@@ -1,5 +1,5 @@
 task users: :environment do
-  100_000.times do
+  10_000.times do
     User.create(display_name: Faker::App.name,
                     first_name: Faker::Name.first_name,
                     last_name: Faker::Name.last_name,
@@ -8,7 +8,7 @@ task users: :environment do
                     password_confirmation: "password",
                     state: Faker::Address.state,
                     city: Faker::Address.city,
-                    about_me: Faker::Lorem.paragraph,
+                    about_me: Faker::Lorem.sentence,
                     profile_picture: Faker::Avatar.image)
   end
 end
