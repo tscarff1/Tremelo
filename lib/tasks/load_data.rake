@@ -1,5 +1,5 @@
 task users: :environment do
-  10_000.times do
+  1_000.times do
     User.create(display_name: Faker::App.name,
                     first_name: Faker::Name.first_name,
                     last_name: Faker::Name.last_name,

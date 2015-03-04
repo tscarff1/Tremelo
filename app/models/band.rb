@@ -41,7 +41,7 @@ class Band < ActiveRecord::Base
 		end
 	end
 
-	def delete_band(id)
+	def self.delete_band(id)
 		if (Band.exists?(id))
 			Band.find(id).destroy
 		end
