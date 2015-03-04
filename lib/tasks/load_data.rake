@@ -31,4 +31,7 @@ task bands: :environment do
   end
 
 end
+#generate random user_id
+    #generate random band_id
+    #UserBand.create(user_id: user_id, band_id: band_id)
 
