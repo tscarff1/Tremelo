@@ -8,7 +8,27 @@ task users: :environment do
                     password_confirmation: "password",
                     state: Faker::Address.state,
                     city: Faker::Address.city,
+                    about_me: Faker::Lorem.paragraph,
                     profile_picture: Faker::Avatar.image)
   end
+end
+
+task bands: :environment do
+  50.times do
+    location = "#{Faker::Address.city}, #{Faker::Address.state_abbr}"
+    Band.create(name: Faker::App.name,
+                    location: location,
+                    about_me: Faker::Lorem.paragraph,
+                    profile_picture: Faker::Avatar.image)
+  end
+
+  10.times do
+    location = "#{Faker::Address.city}, #{Faker::Address.state_abbr}"
+    Band.create(name: Faker::Team.creature,
+                    location: location,
+                    about_me: Faker::Lorem.paragraph,
+                    profile_picture: Faker::Avatar.image)
+  end
+
 end
 
