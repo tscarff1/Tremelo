@@ -45,6 +45,8 @@ Rails.application.routes.draw do
       get 'user_search_results'
       put 'add_member'
       get 'edit_videos'
+      get 'edit_genres'
+      put 'update_genres'
       put 'update_videos'
     end
     collection do

@@ -98,10 +98,11 @@ class UsersController < ApplicationController
     for user_tag_old in UserTags.where(user_id: @user.id)
       user_tag_old.destroy
     end
-
-    for i in params[:tag_ids]
-      user_tag = UserTags.new(user_id: @user.id, tag_id: i)
-      user_tag.save
+    if(!params[:tag_ids].nil?)
+      for i in params[:tag_ids]
+        user_tag = UserTags.new(user_id: @user.id, tag_id: i)
+        user_tag.save
+      end
     end
     redirect_to @user
   end

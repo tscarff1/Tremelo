@@ -6,6 +6,12 @@
 
 	<!-- Current image sizes are thumb and medium, more can be defined within the band model-->
 	<%= image_tag @band.profile_picture.url(:medium) %> 
+	<% for band_genre in BandGenre.where(band_id: @band.id) %>
+          <% genre = Genre.find(band_genre.genre_id) %>
+          <%= content_tag(:span, "#{genre.content}", :class => 'label label-danger', 
+          :style => "background-color: rgb(#{genre.get_red},#{genre.get_green},#{genre.get_blue}") %>
+
+        <% end %>
 	<% @userbands = UserBand.where(band_id: @band.id) %>
 
 	<% if @userbands.empty?%>
