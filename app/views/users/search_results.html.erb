@@ -8,30 +8,10 @@
 
 	<h1 class="page-heading">Search Results</h1>
 
+	<!-- Search bar -->
 	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1">
-			<div class="input-group">
-				<div class="btn-group">
-					<a class="btn btn-primary" href="#">
-						<i class="fa fa-user fa-fw"></i>User</a>
-						<a class="btn btn-primary dropdown-toggle" 
-							data-toggle="dropdown" href="#">
-							<span class="fa fa-caret-down"></span></a>
-							<ul class="dropdown-menu">
-								<li>
-									<a href="#">
-										<i class="fa fa-pencil fa-fw"></i> Instrument
-									</a>
-								</li>
-								<li>
-									<a href="#"><i class="fa fa-trash-o fa-fw"></i> Delete</a>
-								</li>
-								<li>
-									<a href="#"><i class="fa fa-ban fa-fw"></i> Ban</a>
-								</li>
-							</ul>
-						</div>
-			</div>
+			
 
 		</div>
 	</div>
@@ -67,29 +47,6 @@
 		<%end%>
 		</ul>
 
-		<!-- GMaps4Rails Stuff -->
-		<script type = "text/javascript" >
-		$(document).ready(function() {    
-		  $('input[type="radio"][data-behavior="clickable"]').click(function(evt) {
-		    alert("you chose the option: " + $(this).val());
-		  });
-		});
-		</script>
-		<!-- Finally displaying the map -->
-	  	<div style='width: 800px;'>
-			<div id="map" style='width: 600px; height: 400px;'></div>
-		</div>
-
-		<!-- Create the markers -->
-		<script type="text/javascript">
-		handler = Gmaps.build('Google');
-		handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-		  var markers = handler.addMarkers(<%=raw @hash.to_json %>);
-		  
-		  handler.bounds.extendWith(markers);
-		  handler.fitMapToBounds();
-		});
-		</script>
 
 	<% end %>
 

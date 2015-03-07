@@ -118,9 +118,14 @@ hr {
 ============================ */
 
 .btn-primary {
+  font-family: FontAwesome, Arial, sans-serif;
+  font-size: 16px;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 14px 14px;
   background: orange;
   border-color: orange;
-  color: white;
 
   &:hover, &:active, &:focus { 
     background: #FFB301;
