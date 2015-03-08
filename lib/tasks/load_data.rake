@@ -31,6 +31,15 @@ task bands: :environment do
   end
 
 end
+
+task user_bands: :environment do
+  Band.find_each do |band|
+    10.times do
+      user = User.offset(rand(User.count)).first
+      UserBand.create(user_id: user.id, band_id: band.id)
+    end
+  end
+end
 #generate random user_id
     #generate random band_id
     #UserBand.create(user_id: user_id, band_id: band_id)
