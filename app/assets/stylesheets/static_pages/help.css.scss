@@ -3,6 +3,11 @@
 ============================= */
 
 .help-header {
-  @extend .about-header;
+  position: relative;
+  height: 300px;
   background: url(image-path('helppage_bg.jpg')) center center no-repeat scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
 }
