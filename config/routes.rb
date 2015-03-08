@@ -75,14 +75,9 @@ Rails.application.routes.draw do
 
   get 'help/creating_account' => 'static_pages/help#creating_account'
   get 'help/basic_site_nav' => 'static_pages/help#basic_site_nav'
+  get 'help/editing_profile' => 'static_pages/help#editing_profile'
 
-  resources :static_pages do
-    resources :help do
-      collection do
-        get 'creating_account'
-      end
-    end
-  end
+  resources :static_pages
 
   resources :videos
 
