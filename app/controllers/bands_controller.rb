@@ -2,9 +2,9 @@ class BandsController < ApplicationController
 
   before_action :set_band, only: [:show, :edit, 
     :edit_genres, :upload_pic, :edit_videos, 
-    :update, :update_genres, :update_pic, :update_videos,
-    :destroy, :access_error,  :add_member]
-  before_action :verify_admin, only: [:edit, :upload_pic, :edit_videos, :edit_genres]
+    :update, :update_genres, :update_pic, :update_videos, :delete_videos,
+    :destroy, :access_error,  :add_member, :destroy_videos]
+  before_action :verify_admin, only: [:edit, :upload_pic, :edit_videos, :delete_videos, :edit_genres]
 
   def new
     if !session[:user_id].nil?
@@ -92,6 +92,16 @@ class BandsController < ApplicationController
   def edit_videos
   end
 
+  def delete_videos
+  end
+
+  def from_videos
+    @selected = BandVideo.find(params[:video_id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def update_videos
 
     if (!params[:video_link].empty? && !params[:video_name].empty?)
@@ -100,6 +110,10 @@ class BandsController < ApplicationController
       bandvideo.save
     end
 
+    redirect_to @band
+  end
+
+  def destroy_videos
     if(!params[:video_ids].nil?)
       for video_id in params[:video_ids]
         video = BandVideo.find(video_id)
@@ -111,6 +125,8 @@ class BandsController < ApplicationController
   end
 
   def show
+    @videos = BandVideo.where(band_id: @band.id)
+    @video_pos = 0
   end
 
   def access_error

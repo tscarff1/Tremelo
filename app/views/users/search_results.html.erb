@@ -47,29 +47,6 @@
 		<%end%>
 		</ul>
 
-		<!-- GMaps4Rails Stuff -->
-		<script type = "text/javascript" >
-		$(document).ready(function() {    
-		  $('input[type="radio"][data-behavior="clickable"]').click(function(evt) {
-		    alert("you chose the option: " + $(this).val());
-		  });
-		});
-		</script>
-		<!-- Finally displaying the map -->
-	  	<div style='width: 800px;'>
-			<div id="map" style='width: 600px; height: 400px;'></div>
-		</div>
-
-		<!-- Create the markers -->
-		<script type="text/javascript">
-		handler = Gmaps.build('Google');
-		handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-		  var markers = handler.addMarkers(<%=raw @hash.to_json %>);
-		  
-		  handler.bounds.extendWith(markers);
-		  handler.fitMapToBounds();
-		});
-		</script>
 
 	<% end %>
 

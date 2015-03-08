@@ -49,7 +49,7 @@
         	<span class="pull-left">
         		<strong>Location</strong> 
         	</span> 
-        	<%= @band.location %>
+        	<%= @band.full_address %>
         </li>
 
       </ul>
@@ -77,7 +77,7 @@
 			        	<span class="pull-left">
 			        		<strong class="">Role</strong>
 			        	</span>
-			        	<%= user.first_name + " " + user.last_name %>
+			        	<%= link_to "#{user.first_name} #{user.last_name}", user %>
 			        </li>
 		        <% end %>
 	        <% end %>
@@ -132,9 +132,13 @@
 
       <!-- Prevent anyone but the correct user 
            from seeing the edit link -->
-      <% if @band.id == session[:band_id] %>
+      <% loggedin_userband = UserBand.find_by(user_id: session[:user_id], band_id: @band.id) %>
+      <% if !loggedin_userband.nil?%>
+	      <% if loggedin_userband.admin_priveleges == 1 %>
+		      
         <%= button_to 'Edit Profile', edit_band_path(@band),
             class: 'btn btn-block', :method => :get %>
+	      <% end %>
       <% end %>
 
 
@@ -185,28 +189,38 @@
 
         </div>
       </div>
+		
+	<!-- Videos Panel -->
+	
+      <div class="panel panel-default" >
+        <div class="panel-heading" contenteditable="false">
+          Videos 
+         <% if !loggedin_userband.nil?%>
+          <% if loggedin_userband.admin_priveleges == 1 %>
+            (<%= link_to "Add/Delete Videos", edit_videos_band_path %>)
+          <% end %>
+        <% end %>
+        </div>
+        <div class="panel-body">
+          <% if !@videos[0].nil? %>
+          <div class="row">
+          	<div class="col-xs-6 col-md-4" style="overflow-y:scroll; height: 350px">
+                <ul>
+          		  <% for video in @videos %>
+                   <%= link_to video.video_name, 
+                        fetch_videos_path(video_id: video.id), 
+                        remote: true %><hr>
 
-      <h2>Videos</h2>
+                <%end%>
+                </ul>
+	          	</div>
+              <div id = "video_show" class="col-xs-6 col-md-4">
+                No video selected. To watch a video, select on from the menu on the left.   
+              </div>
+          <% else %>
+            <%= @band.name %> has not yet uploaded any videos
 
-      <% for video in BandVideo.where(band_id: @band.id) %>
-	      <h4><%= video.video_name %></h4>
-	      <br>
-	      <%= video.video_link_html %>
-      <% end %>
-
-      <% loggedin_userband = UserBand.find_by(user_id: session[:user_id], band_id: @band.id) %>
-      <% if !loggedin_userband.nil?%>
-	      <% if loggedin_userband.admin_priveleges == 1 %>
-		      <%= link_to 'Edit', edit_band_path(@band) %>
-	      <% end %>
-      <% end %>
-
-    </div>
-
-</div>
-
-<!-- SoundCloud stuff -->
-	<div style='width: 800px;'>
-    <div id="custom_builder" style='width: 800px; height: 400px;'></div>
-  </div>
-  	<iframe width="500px" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/194149128&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;visual=true"></iframe>
+          <%end %>
+          </div><!-- End of row -->
+        </div>
+      </div>

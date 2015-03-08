@@ -1,0 +1,2 @@
+$("#video_show").html("<%= escape_javascript(render partial:
+ 'video_show', locals: { video: BandVideo.find(params[:video_id]) }) %>"); 

@@ -1,0 +1,27 @@
+<% provide(:title, "Editing Videos") %>
+
+<div class="container">
+  <div class="col-md-8 col-md-offset-2">
+
+  	<h1 class="page-heading">Fewer Videos, Fewer Problems</h1>
+  	<p class="subtitle">
+  		Delete any videos you no longer want to have
+  	</p>
+
+  	<div class="form-horizontal">
+  		<%= form_tag destroy_videos_band_path, method: :put do %>
+  		<p> Don't like an old video? Check off any videos you don't like, then click "Delete Videos"</p>
+  		<ul>
+  			<% for video in BandVideo.where(band_id: @band.id) %>
+  			<li> <%= video.video_name %>
+  				<%= check_box_tag "video_ids[]", video.id %>
+  			</li>
+  			<%end%> 
+  		</ul>
+  		<%= submit_tag "Delete Videos", class: "btn btn-block" %>
+
+	<% end %>
+
+	</div>
+	</div>
+</div>

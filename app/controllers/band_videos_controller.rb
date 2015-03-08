@@ -7,4 +7,6 @@ class BandVideosController < ApplicationController
 
 	def destroy
 	end
+
+	
 end
