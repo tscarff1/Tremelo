@@ -50,6 +50,16 @@ task user_tags: :environment do
     end
   end
 end
+
+task band_genres: :environment do
+  Band.find_each do |band|
+    random = Faker::Number.digit.to_i % 3 + 1
+    random.times do
+      genre = Genre.offset(rand(Genre.count)).first
+      BandGenre.create(band_id: band.id, genre_id: genre.id)
+    end
+  end
+end
 #generate random user_id
     #generate random band_id
     #UserBand.create(user_id: user_id, band_id: band_id)
