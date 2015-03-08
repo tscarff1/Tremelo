@@ -40,6 +40,16 @@ task user_bands: :environment do
     end
   end
 end
+
+task user_tags: :environment do
+  User.find_each do |user|
+    random = Faker::Number.digit.to_i
+    random.times do
+      tag = Tag.offset(rand(Tag.count)).first
+      UserTags.create(user_id: user.id, tag_id: tag.id)
+    end
+  end
+end
 #generate random user_id
     #generate random band_id
     #UserBand.create(user_id: user_id, band_id: band_id)

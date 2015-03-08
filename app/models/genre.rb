@@ -7,6 +7,9 @@ class Genre < ActiveRecord::Base
     before_save :downcase_content
 
     #Methods to return what the label color should be
+  def downcase_content
+    self.content = content.downcase
+  end
 
 	def get_red
 		# 122 is the ascii value of 'z'
