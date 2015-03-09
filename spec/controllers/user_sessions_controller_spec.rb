@@ -20,7 +20,7 @@ describe UserSessionsController do
   describe "GET 'new'" do
     it "returns http success" do
       get 'new'
-      response.should be_success
+      expect(response).to be_success
     end
 
     it "renders the new template" do
@@ -45,7 +45,7 @@ describe UserSessionsController do
       end
 
       it "authenticates the user" do
-        User.stub(:find_by).and_return(user)
+        allow(User).to receive(:find_by).and_return(user)
         expect(user).to receive(:authenticate)
         post :create, email: "sean@tremelo.com", password: "password1"
       end
@@ -57,7 +57,7 @@ describe UserSessionsController do
 
       it "sets the flash success message" do
         post :create, email: "sean@tremelo.com", password: "password1"
-        expect(flash[:success]).to eq("Thanks for logging in!")
+        expect(flash[:success]).to eq("Successfully logged in")
       end
 
       it "sets the remember_me_token cookie if chosen" do
@@ -115,8 +115,8 @@ describe UserSessionsController do
 
       it "sets the flash message" do
         delete :destroy
-        expect(flash[:notice]).to_not be_blank
-        expect(flash[:notice]).to match(/logged out/)
+        expect(flash[:success]).to eq("You've logged out")
+        expect(flash[:success]).to match(/logged out/)
       end
 
       it "removes the session[:user_id] key" do

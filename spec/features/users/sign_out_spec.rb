@@ -6,8 +6,8 @@ describe "Logging Out" do
     visit "/login"
 
     expect(page).to have_content("Log In")
-    fill_in "Email", with: user.email
-    fill_in "Password", with: "tremelo1"
+    fill_in "email", with: user.email
+    fill_in "password", with: "tremelo1"
     click_button "Log In"
 
     expect(page).to have_content("Log Out")

@@ -14,8 +14,8 @@ describe "Signing up" do
     fill_in "Email", with: "sean@tremelo.com"
     fill_in "Email Confirmation", with: "sean@tremelo.com"
     fill_in "Password", with: "password1"
-    fill_in "Password (again)", with: "password1"
-    click_button "Register"
+    fill_in "Password Confirmation", with: "password1"
+    click_button "Sign Up"
 
     expect(User.count).to eq(1)
   end

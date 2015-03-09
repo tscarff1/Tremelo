@@ -23,13 +23,13 @@ RSpec.describe TagsController, :type => :controller do
   # This should return the minimal set of attributes required to create a valid
   # Tag. As you add validations to Tag, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) { {
+    "content" => "guitar"
+  } }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) { {
+    "content" => ""
+  } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -102,15 +102,14 @@ RSpec.describe TagsController, :type => :controller do
 
   describe "PUT update" do
     describe "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) { {
+        "content" => "Saxophone"
+      } }
 
       it "updates the requested tag" do
         tag = Tag.create! valid_attributes
         put :update, {:id => tag.to_param, :tag => new_attributes}, valid_session
         tag.reload
-        skip("Add assertions for updated state")
       end
 
       it "assigns the requested tag as @tag" do
