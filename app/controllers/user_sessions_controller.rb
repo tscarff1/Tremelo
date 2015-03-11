@@ -10,6 +10,7 @@ class UserSessionsController < ApplicationController
         cookies.permanent.signed[:remember_me_token] = signed_token
       end
       session[:user_id] = user.id
+      session[:display_name] = user.display_name
       
       # Adding userbands to the session to reduce stuff to do each page load
       userbands = UserBand.where(user_id: session[:user_id])
@@ -28,6 +29,7 @@ class UserSessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
+    session[:display_name] = nil
     cookies.delete(:remember_me_token)
     reset_session
     redirect_to root_path, success: "You've logged out"
