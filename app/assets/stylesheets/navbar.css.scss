@@ -23,7 +23,7 @@ $font-family: Questrial, Arial, sans-serif;
 
 #logo {
   font-family: Montserrat, sans-serif;
-  font-size: 22px;
+  font-size: 24px;
   letter-spacing: -0.06em;
   color: $link-color;
   border-right: 1px solid $border-color;
@@ -139,6 +139,7 @@ $font-family: Questrial, Arial, sans-serif;
 .gn-menu-main > li > a {
     padding: 0 30px;
     font-weight: bold;
+
 }
 
 .gn-menu-main:after {
@@ -374,11 +375,19 @@ input.gn-search:focus {
 ============================= */
 
 .navbar-links {
-    display: inline-block;
     font-family: Montserrat, sans-serif;
     font-weight: bold;
+    font-size: 18px;
+    border-right: 1px solid $border-color;
+}
+
+#help {
     font-size: 16px;
-    margin: 0 0 0 24px;
+}
+
+// padding for links after logo
+.gn-menu-main > li > a.navbar-links {
+    padding: 0 20px;
 }
 
 /* ============================

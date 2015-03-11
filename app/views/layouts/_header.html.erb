@@ -82,10 +82,18 @@
         
         <li><%= link_to "Tremelo", root_path, id: "logo" %></li>
 
+        <% if logged_in? %>
+        
+          <li>
+            <%= link_to "Hi, " + session[:display_name], current_user,
+                class: "navbar-links" %>
+          </li>
+
+        <% end %>
+
         <li>
-          <div class="navbar-links">
-            <%= link_to "Help", help_path %>
-          </div>
+          <%= link_to "Help", help_path, class: "navbar-links", 
+              id: "help" %>
         </li>
 
         <li>
