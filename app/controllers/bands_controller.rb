@@ -1,8 +1,9 @@
 class BandsController < ApplicationController
 
   before_action :set_band, only: [:show, :edit, 
-    :edit_genres, :upload_pic, :edit_videos, 
-    :update, :update_genres, :update_pic, :update_videos, :delete_videos,
+    :edit_genres, :upload_pic, :edit_videos, :edit_musics, 
+    :update, :update_genres, :update_pic, :update_videos, :delete_videos, :destroy_videos,
+    :update_musics, :destroy_musics,
     :destroy, :access_error,  :add_member, :destroy_videos]
   before_action :verify_admin, only: [:edit, :upload_pic, :edit_videos, :delete_videos, :edit_genres]
 
@@ -124,9 +125,38 @@ class BandsController < ApplicationController
     redirect_to @band
   end
 
+  def from_musics
+    @selected = BandMusic.find(params[:music_id])
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def update_musics
+
+    if (!params[:embed_html].empty? && !params[:music_name].empty?)
+      bandmusic = BandMusic.new(band_id: @band.id, embed_html: params[:embed_html].html_safe, 
+        name: params[:music_name])
+      bandmusic.save
+    end
+
+    redirect_to @band
+  end
+
+  def destroy_musics
+    if(!params[:music_ids].nil?)
+      for music_id in params[:music_ids]
+        music = BandMusi.find(music_id)
+        music.destroy
+      end
+    end
+
+    redirect_to @band
+  end
+
   def show
     @videos = BandVideo.where(band_id: @band.id)
-    @video_pos = 0
+    @musics = BandMusic.where(band_id: @band.id)
   end
 
   def access_error

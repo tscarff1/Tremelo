@@ -1,5 +1,5 @@
 task users: :environment do
-  1_000.times do
+  400.times do
     User.create(display_name: Faker::App.name,
                     first_name: Faker::Name.first_name,
                     last_name: Faker::Name.last_name,
@@ -34,7 +34,7 @@ end
 
 task user_bands: :environment do
   Band.find_each do |band|
-    10.times do
+    20.times do
       user = User.offset(rand(User.count)).first
       UserBand.create(user_id: user.id, band_id: band.id)
     end

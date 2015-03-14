@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   get 'bands/:id/access_error' => 'bands#access_error'
   get 'bands/:id/search_for_user' => 'bands#search_for_user'
   get '/fetch_videos' => 'band_videos#from_video', as: 'fetch_videos'
-
+  get '/fetch_musics' => 'band_musics#from_music', as: 'fetch_musics'
 
   get 'search_user' => 'users#search'
   get 'users/search_results' => 'users#search_results'
@@ -47,11 +47,15 @@ Rails.application.routes.draw do
       get 'user_search_results'
       put 'add_member'
       get 'edit_videos'
+      get 'edit_musics'
       get 'edit_genres'
       put 'update_genres'
       put 'update_videos'
       get 'delete_videos'
       put 'destroy_videos'
+      put 'update_musics'
+      get 'delete_musics'
+      put 'destroy_musics'
     end
     collection do
       post 'upload_pic'

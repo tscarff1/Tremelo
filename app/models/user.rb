@@ -104,3 +104,17 @@ class User < ActiveRecord::Base
     return matching
   end
 end
+
+def self.destroy_user_by_id(user_id)
+  user = User.find(user_id).destroy
+  for userband in UserBand.where(user_id: user_id)
+    userband.destroy
+  end
+
+  for tag in UserTags.where(user_id)
+    tag.destroy
+  end
+
+  
+
+end

@@ -155,41 +155,45 @@
         </div>
       </div>
 
-      <!-- Music Panel -->
-      <div class="panel panel-default">
+       <!-- Musics Panel -->
+  
+      <div class="panel panel-default" >
         <div class="panel-heading" contenteditable="false">
           Music
+         <% if !loggedin_userband.nil?%>
+          <% if loggedin_userband.admin_priveleges == 1 %>
+            (<%= link_to "Add/Delete Music", edit_musics_band_path %>)
+          <% end %>
+        <% end %>
         </div>
+
         <div class="panel-body">
-
+          <% if !@musics[0].nil? %>
           <div class="row">
+            <div class="col-xs-6 col-md-4" style="overflow-y:scroll; height: 350px">
+                <ul>
+                <% for music in @musics %>
+                   <%= link_to music.name, 
+                        fetch_musics_path(music_id: music.id), 
+                        remote: true %><hr>
 
-          	<div class="col-xs-6 col-md-4">
-	          	<a href="#" class="thumbnail">
-	          		<img 
-                src="http://upload.wikimedia.org/wikipedia/en/6/6b/Pixies-Doolittle.jpg">
-	          	</a>
-	          </div>
+                <%end%>
+                </ul>
+              </div>
+              <div id = "music_show" class="col-xs-6 col-md-4">
+                <%= render partial:'band_musics/music_show', 
+                locals: { music: BandMusic.find_by(band_id: @band.id) } %>
+              </div>
+          <% else %>
+            <%= @band.name %> has not yet uploaded any music
 
-          	<div class="col-xs-6 col-md-4">
-          		<a href="#" class="thumbnail">
-          			<img 
-                src="http://upload.wikimedia.org/wikipedia/en/2/29/De-Loused_in_the_Comatorium.jpeg">
-	            </a>
-	          </div>
-
-          	<div class="col-xs-6 col-md-4">
-          		<a href="#" class="thumbnail">
-          			<img 
-                src="http://upload.wikimedia.org/wikipedia/en/7/71/Cloud_Nothings_Attack_on_Memory_album_cover.jpg">
-              </a>
-            </div>
-
+          <%end %>
           </div><!-- End of row -->
-
         </div>
-      </div>
+
 		
+
+
 	<!-- Videos Panel -->
 	
       <div class="panel panel-default" >
@@ -215,7 +219,9 @@
                 </ul>
 	          	</div>
               <div id = "video_show" class="col-xs-6 col-md-4">
-                No video selected. To watch a video, select on from the menu on the left.   
+                
+                <%= render partial:'band_videos/video_show', 
+                locals: { video: BandVideo.find_by(band_id: @band.id) } %>   
               </div>
           <% else %>
             <%= @band.name %> has not yet uploaded any videos
@@ -224,3 +230,6 @@
           </div><!-- End of row -->
         </div>
       </div>
+
+      </div>
+    </div>
