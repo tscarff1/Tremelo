@@ -3,7 +3,7 @@ class BandsController < ApplicationController
   before_action :set_band, only: [:show, :edit, 
     :edit_genres, :upload_pic, :edit_videos, :edit_musics, 
     :update, :update_genres, :update_pic, :update_videos, :delete_videos, :destroy_videos,
-    :update_musics, :destroy_musics,
+    :update_musics, :destroy_musics, :delete_musics,
     :destroy, :access_error,  :add_member, :destroy_videos]
   before_action :verify_admin, only: [:edit, :upload_pic, :edit_videos, :delete_videos, :edit_genres]
 
@@ -146,7 +146,7 @@ class BandsController < ApplicationController
   def destroy_musics
     if(!params[:music_ids].nil?)
       for music_id in params[:music_ids]
-        music = BandMusi.find(music_id)
+        music = BandMusic.find(music_id)
         music.destroy
       end
     end

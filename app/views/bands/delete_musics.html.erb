@@ -1,0 +1,28 @@
+<% provide(:title, "Deleting Music") %>
+
+<div class="container">
+  <div class="col-md-8 col-md-offset-2">
+
+  	<h1 class="page-heading">Fewer songs, Fewer problems</h1>
+  	<p class="subtitle">
+  		Delete any songs or playlists you no longer want to display
+  	</p>
+
+  	<div class="form-horizontal">
+  		<%= form_tag destroy_musics_band_path, method: :put do %>
+  		<p> Don't like an old song or playlist? Check off any you don't like, then click "Delete 
+        Music"</p>
+  		<ul>
+  			<% for music in BandMusic.where(band_id: @band.id) %>
+  			<li> <%= music.name %>
+  				<%= check_box_tag "music_ids[]", music.id %>
+  			</li>
+  			<%end%> 
+  		</ul>
+  		<%= submit_tag "Delete Music", class: "btn btn-block" %>
+
+	<% end %>
+
+	</div>
+	</div>
+</div>
