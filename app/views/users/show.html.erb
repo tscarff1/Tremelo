@@ -1,5 +1,4 @@
 <% provide(:title, "My Profile") %>
-
 <br>
 
 <div class="container">
@@ -47,7 +46,7 @@
             <span class="pull-left">
               <strong>Age</strong> 
             </span> 
-            23 
+            <%= @user.get_age %> 
           </li>
 
           <!-- Address -->

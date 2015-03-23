@@ -29,7 +29,8 @@ Rails.application.routes.draw do
   get 'search_user' => 'users#search'
   get 'users/search_results' => 'users#search_results'
 
-  
+  get 'search_band' => 'bands#search'
+  get 'bands/search_results' => 'bands#search_results'
   
   resources :users do
     collection do
@@ -37,6 +38,12 @@ Rails.application.routes.draw do
       put 'update_tags'
       get 'search'
       post 'search_results'
+    end
+  end
+  resources :messages do
+    collection do
+      get '/send_message', to: 'messages#new', as: 'new_message'
+      put '/create', to: 'messages#create'
     end
   end
 
@@ -59,6 +66,8 @@ Rails.application.routes.draw do
     end
     collection do
       post 'upload_pic'
+      get 'search'
+      post 'search_results'
 
     end
 
