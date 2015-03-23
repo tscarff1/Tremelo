@@ -50,6 +50,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def show
+   
+  end
+
   def access_error
   end
 
@@ -226,11 +230,11 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:display_name, :first_name, :last_name, :email, :about_me, 
-                            :email_confirmation, 
+      params.require(:user).permit(:display_name, :first_name, :last_name, :about_me,
+                            :email, :email_confirmation, 
                             :password, :password_confirmation, 
                             :profile_picture, 
-                            :address, :city, :state, :profile_picture)
+                            :address, :city, :state, :dob)
     end
 
     def verify_correct_user
