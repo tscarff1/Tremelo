@@ -2,27 +2,38 @@
 
 <div class="container">
 
-	<h1 class="page-heading">Edit your band's GENRES!</h1>
-
+	<h1 class="page-heading">Edit your Band's Genres!</h1>
 	<p class="subtitle">
 		Select the genres you wish to be included on your band's profile
 	</p>
 
 	<%= form_tag update_genres_band_path, method: :put do %>
-	<ul>
-		<% for genre in Genre.all %>
-		<li>
-			<% bandgenre = BandGenre.find_by(band_id: @band.id, genre_id: genre.id) %>
-			<% if bandgenre.nil? %>
-				<%= check_box_tag "genre_ids[]", genre.id%>
-			<% else %>
-				<%= check_box_tag "genre_ids[]", genre.id, checked: "checked"%>
-			<%end%>
-			<%= genre.content %>
-		</li>
-		<% end %>
-	</ul>
-	<%= submit_tag "Add to profile" %>
+
+	<div class="form-group">
+		<div class="col-xs-6 col-md-4 col-md-offset-2">
+			<ul>
+				<% for genre in Genre.all %>
+					<li>
+						<% bandgenre = BandGenre.find_by(band_id: @band.id, 
+														genre_id: genre.id) %>
+						<% if bandgenre.nil? %>
+							<%= check_box_tag "genre_ids[]", genre.id %>
+						<% else %>
+							<%= check_box_tag "genre_ids[]", genre.id, checked: "checked" %>
+						<% end %>
+						<%= genre.content %>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+
+	<div class="form-group">
+		<div class="col-md-8 col-md-offset-2">
+			<%= submit_tag "Save Genres", class: "btn btn-block" %>
+		</div>
+	</div>
+
 	<% end %>
 
 </div>

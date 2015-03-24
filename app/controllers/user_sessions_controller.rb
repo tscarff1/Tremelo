@@ -32,6 +32,6 @@ class UserSessionsController < ApplicationController
     session[:display_name] = nil
     cookies.delete(:remember_me_token)
     reset_session
-    redirect_to root_path, success: "You've logged out"
+    redirect_to root_path, success: "Successfully logged out"
   end
 end

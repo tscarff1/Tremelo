@@ -1,34 +1,58 @@
 <% provide(:title, 'User Search') %>
-<h1> Search for a user! </h1>
 
-<%= form_tag user_search_results_band_path, method: :post do %>
+<div class="container">
+	<h1 class="page-heading">Search for a User</h1>
 
-	<%= label_tag "Display Name" %><br>
-	<%= text_field_tag "display_name" %>
-	<br><br>
+	<div class="form-horizontal">
 
+		<%= form_for user_search_results_band_path, method: :post do |f| %>
 
+		<div class="form-group">
+			<div class="col-xs-6 col-md-6">
+				<%= f.label :display_name, "Display Name" %>
+				<%= f.text_field "display_name",
+				class: "form-control" %>
+			</div>
+		</div>
 
-	<%= label_tag "Instrument Tags"%> (returns users with any instrument tags checked)
-	<% for tag in Tag.all %>
-		<li>
-			<%= check_box_tag "tag_ids[]", tag.id %>
-			<%= tag.content %>
-		</li>
-	<% end %>
-	
-<!-- This will be a checkbox that decides whether to search instrument tags -->
-	<!-- With AND or OR functionality -->
-	<%= label_tag "Find users with exactly these tags: " %>
-	<%= check_box_tag "exact_tags"%><br>
-	<br>
+		<div class="form-group">
+			<div class="col-xs-8 col-md-8">
+				<%= f.label :instrument_tags, "Instrument Tags"%> (returns users with any instrument tags checked)
 
-	<%= label_tag "Location (city, state):" %><br>
-	<%= text_field_tag "location"%>
-	<br>
-	<%= label_tag "Allowed distance" %><br>
-	<%= text_field_tag "distance"%>
-	<br><br>
+				<% for tag in Tag.all %>
+				<li>
+					<%= check_box_tag "tag_ids[]", tag.id %>
+					<%= tag.content %>
+				</li>
+				<% end %>
+			</div>
+		</div>
+		
+		<!-- This will be a checkbox that decides whether to search instrument tags -->
+		<!-- With AND or OR functionality -->
+		<div class="form-group">
+			<div class="col-xs-6 col-md-6">
+				<%= f.check_box "exact_tags"%>
+				<%= f.label :exact_tags, "Find users with exactly these tags" %>
+			</div>
+		</div>
 
-	<%= submit_tag "Search" %>
-<% end %>
+		<div class="form-group">
+			<div class="col-xs-4 col-md-4">
+				<%= f.label "Location (City, State):" %>
+				<%= f.text_field "location", class: "form-control" %>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-xs-4 col-md-4">
+				<%= f.label "Search Radius (in miles)" %>
+				<%= f.text_field "distance", class: "form-control" %>
+			</div>
+		</div>
+
+		<%= f.submit "Search", class: "btn btn-block" %>
+		<% end %>
+
+	</div>
+</div>

@@ -279,6 +279,10 @@ input.gn-search:focus {
     content: "\f007"
 }
 
+.gn-icon-message::before {
+    content: "\f1d8"
+}
+
 .gn-icon-band::before {
     content: "\f0c0"
 }
