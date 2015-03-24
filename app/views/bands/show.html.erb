@@ -3,24 +3,24 @@
 <br>
 <div class="container">
 
-<!-- Band name and tags -->
+  <!-- Band name and tags -->
   <div class="row">
 
-      <div class="col-xs-3">
-        <div class="panel panel-default text-center">
-        	<%= image_tag @band.profile_picture.url(:small) %> 
-        </div>
+    <div class="col-xs-3">
+      <div class="panel panel-default text-center">
+      	<%= image_tag @band.profile_picture.url(:small) %> 
       </div>
+    </div>
 
-      <div class="col-xs-9 col-md-9">
+    <div class="col-xs-9 col-md-9">
       <h1 class="display-name"><%= @band.name %></h1>
 
-        <% for band_genre in BandGenre.where(band_id: @band.id) %>
-          <% genre = Genre.find(band_genre.genre_id) %>
-          <%= content_tag(:span, "#{genre.content}", :class => 'label label-danger', 
-          :style => "background-color: rgb(#{genre.get_red},#{genre.get_green},#{genre.get_blue}") %>
+      <% for band_genre in BandGenre.where(band_id: @band.id) %>
+        <% genre = Genre.find(band_genre.genre_id) %>
+        <%= content_tag(:span, "#{genre.content}", :class => 'label label-danger', 
+        :style => "background-color: rgb(#{genre.get_red},#{genre.get_green},#{genre.get_blue}") %>
 
-        <% end %>
+      <% end %>
     </div>
   </div>
 
@@ -145,7 +145,9 @@
     </div> <!-- End left side panels -->
 
     <!-- About Me-->
+
     <div class="col-sm-9" contenteditable="false">
+
       <div class="panel panel-default">
         <div class="panel-heading"> 
           Bio
@@ -160,26 +162,26 @@
       <div class="panel panel-default" >
         <div class="panel-heading" contenteditable="false">
           Music
-         <% if !loggedin_userband.nil?%>
-          <% if loggedin_userband.admin_priveleges == 1 %>
-            (<%= link_to "Add/Delete Music", edit_musics_band_path %>)
+          <% if !loggedin_userband.nil?%>
+            <% if loggedin_userband.admin_priveleges == 1 %>
+              (<%= link_to "Add/Delete Music", edit_musics_band_path %>)
+            <% end %>
           <% end %>
-        <% end %>
         </div>
 
         <div class="panel-body">
           <% if !@musics[0].nil? %>
           <div class="row">
             <div class="col-xs-6 col-md-4" style="overflow-y:scroll; height: 350px">
-                <ul>
-                <% for music in @musics %>
-                   <%= link_to music.name, 
-                        fetch_musics_path(music_id: music.id), 
-                        remote: true %><hr>
+              <ul>
+              <% for music in @musics %>
+                 <%= link_to music.name, 
+                      fetch_musics_path(music_id: music.id), 
+                      remote: true %><hr>
 
-                <%end%>
-                </ul>
-              </div>
+              <%end%>
+              </ul>
+            </div>
               <div id = "music_show" class="col-xs-6 col-md-4">
                 <%= render partial:'band_musics/music_show', 
                 locals: { music: BandMusic.find_by(band_id: @band.id) } %>
@@ -190,46 +192,50 @@
           <%end %>
           </div><!-- End of row -->
         </div>
-      </div>
 		
 
+      <!-- Videos Panel -->
 
-	<!-- Videos Panel -->
-	
       <div class="panel panel-default" >
+
         <div class="panel-heading" contenteditable="false">
           Videos 
-         <% if !loggedin_userband.nil?%>
-          <% if loggedin_userband.admin_priveleges == 1 %>
-            (<%= link_to "Add/Delete Videos", edit_videos_band_path %>)
+          <% if !loggedin_userband.nil?%>
+            <% if loggedin_userband.admin_priveleges == 1 %>
+              (<%= link_to "Add/Delete Videos", edit_videos_band_path %>)
+            <% end %>
           <% end %>
-        <% end %>
         </div>
+
         <div class="panel-body">
           <% if !@videos[0].nil? %>
+
           <div class="row">
           	<div class="col-xs-6 col-md-4" style="overflow-y:scroll; height: 350px">
-                <ul>
+              <ul>
           		  <% for video in @videos %>
-                   <%= link_to video.video_name, 
-                        fetch_videos_path(video_id: video.id), 
-                        remote: true %><hr>
+                  <%= link_to video.video_name, 
+                  fetch_videos_path(video_id: video.id), 
+                  remote: true %><hr>
 
-                <%end%>
-                </ul>
-	          	</div>
-              <div id = "video_show" class="col-xs-6 col-md-4">
-                
-                <%= render partial:'band_videos/video_show', 
-                locals: { video: BandVideo.find_by(band_id: @band.id) } %>   
-              </div>
+                <% end %>
+              </ul>
+          	</div>
+
+            <div id = "video_show" class="col-xs-6 col-md-4">
+              <%= render partial:'band_videos/video_show', 
+              locals: { video: BandVideo.find_by(band_id: @band.id) } %>   
+            </div>
+
           <% else %>
             <%= @band.name %> has not yet uploaded any videos
 
-          <%end %>
+          <% end %>
+
           </div><!-- End of row -->
         </div>
       </div>
 
-      </div>
-    </div>
+    </div><!-- End of right side columns -->
+
+</div><!-- End of container -->

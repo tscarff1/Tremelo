@@ -173,12 +173,69 @@ class BandsController < ApplicationController
     #Display name results
     name_results = []
     if !params[:display_name].empty?
+      @searching_by.push("name")
+      name_results = Band.where(name: params[:name])
+    end
+
+    location_results = []
+    if (!params[:location].empty? && !params[:distance].empty?)
+      @searching_by.push("location")
+      temp_band = Band.new(full_address: params[:location])
+      temp_band.save
+      if(!temp_band.nearbys(params[:distance].to_i).nil?)
+        for user in temp_user.nearbys(params[:distance].to_i)
+          location_results.push(user)
+        end
+      end
+      temp_user.destroy
+    end
+
+    #@results is the interection of arrays produced by previous searches, ignoring empty results    
+    all_results = [name_results, location_results]
+    @results = all_results.tap{ |a| a.delete( [] ) }.reduce( :& ) || []
+
+
+    #Instrument tag results
+    # Due to the fact that the array will remain empty if no tags are found, this needs to come last
+    tag_results = []
+    if(!params[:tag_ids].nil?)
+      @searching_by.push("instrument tags")
+      for user in User.all
+        if (params[:exact_tags].nil?)
+          if user.has_at_least_one_tag_from?(params[:tag_ids])
+            tag_results.push(user)
+          end
+        else
+          if user.has_tags?(params[:tag_ids])
+            tag_results.push(user)
+          end
+        end
+      end
+
+      #This next line is why this has to be last
+      if (@results.empty?)
+        @results = tag_results
+      else
+        @results = @results & tag_results
+      end
+    end
+
+    #End of the eternal search method
+    #Now it's really the end
+  end
+
+  def search_results
+    @searching_by = []
+    #Display name results
+    name_results = []
+    if params.has_key?(:display_name)
       @searching_by.push("display name")
       name_results = User.where(display_name: params[:display_name])
     end
 
     location_results = []
-    if (!params[:location].empty? && !params[:distance].empty?)
+
+      if (params.has_key?(:location) && params.has_key?(:distance))
       @searching_by.push("location")
       temp_user = User.new(address: params[:location])
       temp_user.save
@@ -219,9 +276,6 @@ class BandsController < ApplicationController
         @results = @results & tag_results
       end
     end
-
-    #End of the eternal search method
-    #Now it's really the end
   end
 
   private
