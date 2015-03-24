@@ -1,3 +1,5 @@
+require "net/http"
+
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -19,6 +21,7 @@ class ApplicationController < ActionController::Base
   def render_error
     render file: 'public/500.html', status: :internal_server_error, layout: false
   end
+
   def logged_in?
     current_user
   end
@@ -36,6 +39,18 @@ class ApplicationController < ActionController::Base
     end
   end
   helper_method :current_user
+
+  def url_exist?(url_string)
+    url = URI.parse(url_string)
+    req = Net::HTTP.new(url.host, url.port)
+    req.use_ssl = (url.scheme == 'https')
+    path = url.path if url.path.present?
+    res = req.request_head(path || '/')
+    res.code != "404" # false if returns 404 - not found
+  rescue Errno::ENOENT
+    false # false if can't find the server
+  end
+  helper_method :url_exist?
 
   def require_user
     if current_user
