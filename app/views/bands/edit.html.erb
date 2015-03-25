@@ -1,10 +1,12 @@
 <% provide(:title, "Editing #{@band.name}") %>
 
 <div class="container">
+  <div class="col-md-8 col-md-offset-2">
+
 
   <h1 class="page-heading">Make Some Changes</h1>
   <p class="subtitle">
-    Edit your band's profile information here
+    Edit the profile page for <%= @band.name %>
   </p>
 
   <% userband = UserBand.find_by(user_id: session[:user_id], 
@@ -12,58 +14,77 @@
 
   <% session[:band_id] = @band.id %>
 
-  <%= form_for(@band) do |f| %>
+  <div class="form-horizontal">
 
-  <div class="form-group">
-    <div class="row">
-      <div class="col-xs-8 col-md-8">
+    <%= form_for(@band) do |f| %>
+
+    <div class="form-group">
+      <div class="col-xs-6 col-md-8">
         <%= f.label :name, "Name" %>
         <%= f.text_field :name, class: "form-control" %>
       </div>
     </div>
-  </div>
 
-  <div class="form-group">
-    <div class="row">
-      <div class="col-xs-8 col-md-8">
-        <%= f.label :full_address, "Location" %>
+    <div class="form-group">
+      <div class="col-xs-6 col-md-6">
+        <%= f.label :full_address, "Hometown" %>
         <%= f.text_field :full_address, class: 'form-control' %>
       </div>
     </div>
+
+    <div class="form-group">
+      <div class="col-md-12">
+        <%= f.label :about_me, "About Me" %>
+        <%= f.text_area :about_me, :size => "10x5", class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-8 col-md-6">
+        <% if !@band.full_address.nil? %>
+          <b> Latitude: </b> <%= @band.latitude %>
+          <b> Longitude: </b> <%= @band.longitude %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-12">
+        <% if params[:id].nil? %>
+          <%= f.submit "Create your Band!", class: "btn btn-block"%>
+        <% else %>
+          <%= f.submit "Save Changes", class: "btn btn-block"%>
+        <% end %>
+      </div>
+    </div>
+
+    <% end %><!-- End of form -->
+
+    <div class="form-group">
+      <div class="col-md-8">
+    
+        <li>
+          <%= link_to "Edit Genres", edit_genres_band_path(@band) %>
+        </li>
+
+        <li>
+          <%= link_to "Add/Delete Videos", edit_videos_band_path(@band) %>
+        </li>
+
+        <li>
+          <%= link_to "Add/Change " + @band.name + " profile picture", 
+          {controller: "bands", action: "upload_pic"} %>
+        </li>
+
+        <li>
+          <%= link_to "Add Band Members", search_for_user_band_path %>
+        </li>
+        
+      </div>
+    </div>
+
   </div>
 
-  <div class="form-group">
-    <%= f.label :about_me, "About Me" %>
-    <%= f.text_area :about_me, :size => "10x5", class: 'form-control' %>
   </div>
-
-  <% if !@band.full_address.nil? %>
-    <b> Latitude: </b> <%= @band.latitude %>
-    <b> Longitude: </b> <%= @band.longitude %>
-  <% end %>
-
-  <% if params[:id].nil? %>
-  <%= f.submit "Create your Band!", class: "btn btn-block"%>
-  <% else %>
-  <%= f.submit "Save Changes", class: "btn btn-block"%>
-  <% end %>
-
-  <%end%><!-- End of form -->
-
-  <%= link_to "Edit genres", edit_genres_band_path(@band) %>
-
-  <br>
-  <li>
-    <%= link_to "Add/Delete Videos", edit_videos_band_path(@band) %>
-  </li>
-  
-  <li>
-    <%= link_to "Add/Change the band's Profile Picture", 
-      {controller: "bands", action: "upload_pic"} %>
-  </li>
-  
-  <li>
-    <%= link_to "Add a member to this band", search_for_user_band_path %>
-  </li>
-
 </div>
+

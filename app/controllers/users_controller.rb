@@ -18,8 +18,8 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user_id] = @user.id
-        flash[:success] = "Thanks for signing up!"
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        flash[:notice] = "Thanks for signing up!"
+        format.html { redirect_to @user, success: 'User was successfully created.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -82,7 +82,7 @@ class UsersController < ApplicationController
     #Now update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to @user, success: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
        if params[:profile_picture].nil?
@@ -116,7 +116,7 @@ class UsersController < ApplicationController
   def update_pic
     respond_to do |format|
       if @user.update(user_params)
-        format.html {redirect_to @user, notice: 'Profile picture has been successfully changed.'}
+        format.html {redirect_to @user, success: 'Profile picture has been successfully changed.'}
         format.json {render :show, status: :ok, location: @user}
       else
         format.html {render :upload_pic}
@@ -130,7 +130,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url, success: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -140,12 +140,12 @@ class UsersController < ApplicationController
       @band = Band.find(@userband.band_id)
       @user = User.find(@userband.user_id)
       if @userband.destroy
-       redirect_to @user, notice: "Successfully left band #{@band.name}"
+       redirect_to @user, success: "Successfully left #{@band.name}"
        if @band.num_members == 0
         @band.destroy
       end
       else
-        redirect_to @user, notice: "Unable to leave band"
+        redirect_to @user, error: "Unable to leave band"
       end
   end
 

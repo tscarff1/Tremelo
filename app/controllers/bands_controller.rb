@@ -1,3 +1,5 @@
+require "net/http"
+
 class BandsController < ApplicationController
 
   before_action :set_band, only: [:show, :edit, 
@@ -73,7 +75,6 @@ class BandsController < ApplicationController
   end
 
   def update_genres
-    
     #First let's clear out all existing UserTags
     for band_genre_old in BandGenre.where(band_id: @band.id)
       band_genre_old.destroy
@@ -105,13 +106,17 @@ class BandsController < ApplicationController
 
   def update_videos
 
-    if (!params[:video_link].empty? && !params[:video_name].empty?)
+    if url_exist?(params[:video_link])
       bandvideo = BandVideo.new(band_id: @band.id, video_link: params[:video_link], 
         video_name: params[:video_name])
-      bandvideo.save
+      if bandvideo.save
+        flash[:success]="Video successfully added"
+      end
+    else
+      flash[:error] = "Video not added"
     end
-
     redirect_to @band
+
   end
 
   def destroy_videos

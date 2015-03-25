@@ -119,6 +119,4 @@ def self.destroy_user_by_id(user_id)
     tag.destroy
   end
 
-  
-
 end
