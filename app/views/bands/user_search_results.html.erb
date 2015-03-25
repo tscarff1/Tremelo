@@ -19,7 +19,7 @@ Searching by: <br>
 	<ul>
 	<% for result in @results %>
 		<li>
-			 <%= link_to "#{result.display_name}", result %>
+			 <%= link_to "#{result.name}", result %>
 			<!-- Display the user's tags to make it clear which users play what-->
 			<% for user_tag in UserTags.where(user_id: result.id) %>
           	<% tag = Tag.find(user_tag.tag_id) %>

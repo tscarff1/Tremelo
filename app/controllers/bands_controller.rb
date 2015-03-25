@@ -62,10 +62,22 @@ class BandsController < ApplicationController
   end
 
   def add_member
-    user_band = UserBand.new(user_id: params[:user_id], band_id: @band.id, admin_priveleges: 0)
-    if user_band.save
-      redirect_to @band
+    notification = BandInvite.new(band_id: @band.id, content: "#{@band.name} has invited you to be a member", user_id: params[:user_id])
+    respond_to do |format|
+      if notification.save
+          format.html { redirect_to @band, notice: 'User has been sent an invitation.' }
+          format.json { render :show, status: :ok, location: @band }
+      else
+          format.html { render :edit }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
+
+
+    #user_band = UserBand.new(user_id: params[:user_id], band_id: @band.id, admin_priveleges: 0)
+    #if user_band.save
+    #  redirect_to @band
+    #end
   end
 
   def edit
@@ -172,9 +184,9 @@ class BandsController < ApplicationController
     @searching_by = []
     #Display name results
     name_results = []
-    if !params[:name].empty?
+    if !params[:display_name].empty?
       @searching_by.push("name")
-      name_results = Band.where(name: params[:name])
+      name_results = User.where(display_name: params[:display_name])
     end
 
     location_results = []
