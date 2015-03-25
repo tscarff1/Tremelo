@@ -167,7 +167,7 @@ class BandsController < ApplicationController
     @searching_by = []
     #Display name results
     name_results = []
-    if !params[:display_name].empty?
+    if !params[:name].empty?
       @searching_by.push("name")
       name_results = Band.where(name: params[:name])
     end
@@ -178,11 +178,11 @@ class BandsController < ApplicationController
       temp_band = Band.new(full_address: params[:location])
       temp_band.save
       if(!temp_band.nearbys(params[:distance].to_i).nil?)
-        for user in temp_user.nearbys(params[:distance].to_i)
-          location_results.push(user)
+        for band in temp_band.nearbys(params[:distance].to_i)
+          location_results.push(band)
         end
       end
-      temp_user.destroy
+      temp_band.destroy
     end
 
     #@results is the interection of arrays produced by previous searches, ignoring empty results    
@@ -190,19 +190,19 @@ class BandsController < ApplicationController
     @results = all_results.tap{ |a| a.delete( [] ) }.reduce( :& ) || []
 
 
-    #Instrument tag results
+    #Genre tag results
     # Due to the fact that the array will remain empty if no tags are found, this needs to come last
     tag_results = []
     if(!params[:tag_ids].nil?)
-      @searching_by.push("instrument tags")
-      for user in User.all
+      @searching_by.push("genre tags")
+      for band in Band.all
         if (params[:exact_tags].nil?)
-          if user.has_at_least_one_tag_from?(params[:tag_ids])
-            tag_results.push(user)
+          if band.has_at_least_one_genre_from?(params[:tag_ids])
+            tag_results.push(band)
           end
         else
-          if user.has_tags?(params[:tag_ids])
-            tag_results.push(user)
+          if band.has_genres?(params[:tag_ids])
+            tag_results.push(band)
           end
         end
       end

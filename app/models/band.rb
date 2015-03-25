@@ -55,4 +55,49 @@ class Band < ActiveRecord::Base
 		userbands = UserBand.where(band_id: self.id)
 		return userbands.length
 	end
+
+	#Genre stuff
+
+	  def num_genres
+	    bandgenres = BandGenres.where(band_id: self.id)
+	    return bandgenres.count
+	  end
+
+	  def get_genres
+	    bandgenres = BandGenres.where(band_id: self.id)
+	    tags = []
+	    for bandgenre in bandgenres
+	      tags.push(bandgenre.genre_id)
+	    end
+	    return tags
+	  end
+
+	  def has_genres?(genre_ids)
+	    band_genres = self.get_genres
+	    for genre_id in genre_ids
+	      if (!band_genres.include?(genre_id.to_i))
+	        return false
+	      end
+	    end
+	    return true
+	  end
+
+	  def has_genre?(genre_id)
+	    band_genres = self.get_genres
+	    if (!band_genres.include?(genre_id))
+	      return false
+	    else
+	      return true
+	    end
+	  end
+
+	  def has_at_least_one_genre_from?(genre_ids)
+	    for genre_id in genre_ids
+	      if !BandGenres.find_by(tag_id: tag_id, user_id: self.id).nil?
+	        return true
+	      end
+	    end
+
+	    return false
+	  end
 end
