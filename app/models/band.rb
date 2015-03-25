@@ -93,7 +93,7 @@ class Band < ActiveRecord::Base
 
 	  def has_at_least_one_genre_from?(genre_ids)
 	    for genre_id in genre_ids
-	      if !BandGenres.find_by(tag_id: tag_id, user_id: self.id).nil?
+	      if !BandGenre.find_by(genre_id: genre_id, band_id: self.id).nil?
 	        return true
 	      end
 	    end
