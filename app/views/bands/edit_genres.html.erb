@@ -1,16 +1,17 @@
 <% provide(:title, "Edit your band's genres") %>
 
 <div class="container">
+  <div class="col-md-8 col-md-offset-2">
 
-	<h1 class="page-heading">Edit your Band's Genres!</h1>
-	<p class="subtitle">
-		Select the genres you wish to be included on your band's profile
-	</p>
+		<h1 class="page-heading">Edit your Band's Genres!</h1>
+		<p class="subtitle">
+			Select the genres you wish to be included on your band's profile
+		</p>
 
-	<%= form_tag update_genres_band_path, method: :put do %>
+	<div class="form-horizontal">
+		<%= form_tag update_genres_band_path, method: :put do %>
 
-	<div class="form-group">
-		<div class="col-xs-6 col-md-4 col-md-offset-2">
+		<div class="form-group">
 			<ul>
 				<% for genre in Genre.all %>
 					<li>
@@ -26,14 +27,14 @@
 				<% end %>
 			</ul>
 		</div>
-	</div>
 
-	<div class="form-group">
-		<div class="col-md-8 col-md-offset-2">
-			<%= submit_tag "Save Genres", class: "btn btn-block" %>
+		<div class="form-group">
+				<%= submit_tag "Save Genres", class: "btn btn-block" %>
+			</div>
 		</div>
+
+		<% end %>
 	</div>
 
-	<% end %>
-
+	</div>
 </div>
