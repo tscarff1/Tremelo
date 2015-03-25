@@ -5,19 +5,19 @@
 
 	<div class="form-horizontal">
 
-		<%= form_for user_search_results_band_path, method: :post do |f| %>
+		<%= form_tag user_search_results_band_path, method: :post do%>
 
 		<div class="form-group">
 			<div class="col-xs-6 col-md-6">
-				<%= f.label :display_name, "Display Name" %>
-				<%= f.text_field "display_name",
+				<%= label_tag :display_name, "Display Name" %>
+				<%= text_field_tag "display_name", nil,
 				class: "form-control" %>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<div class="col-xs-8 col-md-8">
-				<%= f.label :instrument_tags, "Instrument Tags"%> (returns users with any instrument tags checked)
+				<%= label_tag :instrument_tags, "Instrument Tags"%> (returns users with any instrument tags checked)
 
 				<% for tag in Tag.all %>
 				<li>
@@ -32,26 +32,26 @@
 		<!-- With AND or OR functionality -->
 		<div class="form-group">
 			<div class="col-xs-6 col-md-6">
-				<%= f.check_box "exact_tags"%>
-				<%= f.label :exact_tags, "Find users with exactly these tags" %>
+				<%= check_box_tag "exact_tags"%>
+				<%= label_tag :exact_tags, "Find users with exactly these tags" %>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<div class="col-xs-4 col-md-4">
-				<%= f.label "Location (City, State):" %>
-				<%= f.text_field "location", class: "form-control" %>
+				<%= label_tag "Location (City, State):" %>
+				<%= text_field_tag "location", nil,  class: "form-control" %>
 			</div>
 		</div>
 
 		<div class="form-group">
 			<div class="col-xs-4 col-md-4">
-				<%= f.label "Search Radius (in miles)" %>
-				<%= f.text_field "distance", class: "form-control" %>
+				<%= label_tag "Search Radius (in miles)" %>
+				<%= text_field_tag "distance", nil, class: "form-control" %>
 			</div>
 		</div>
 
-		<%= f.submit "Search", class: "btn btn-block" %>
+		<%= submit_tag "Search", class: "btn btn-block" %>
 		<% end %>
 
 	</div>
