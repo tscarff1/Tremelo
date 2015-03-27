@@ -125,7 +125,7 @@ class BandsController < ApplicationController
         flash[:success]= "Video successfully added"
       end
     else
-      flash[:error] = "Video not added"
+      flash[:error] = "Invalid Youtube link. Did you copy it correctly?"
     end
     redirect_to @band
 
