@@ -1,4 +1,6 @@
 class Band < ActiveRecord::Base
+	has_many :band_videos, dependent: :destroy
+
 	validates :name,
 		presence: true,
 		uniqueness: {case_sensitive: false}

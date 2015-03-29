@@ -1,133 +1,143 @@
 <header>
 
 <div class="container">
-      <ul id="gn-menu" class="gn-menu-main">
-        <li class="gn-trigger">
-          <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
-          <nav class="gn-menu-wrapper">
-            <div class="gn-scroller">
-              <ul class="gn-menu">
+  <ul id="gn-menu" class="gn-menu-main">
+    <li class="gn-trigger">
+      <a class="gn-icon gn-icon-menu"><span>Menu</span></a>
+        <nav class="gn-menu-wrapper">
+          <div class="gn-scroller">
+            <ul class="gn-menu">
 
-              <!-- Search function -->
-                <%= form_tag search_results_users_path, method: :get do %>
+            <!-- Search function -->
+              <%= form_tag search_results_users_path, method: :get do %>
 
-                  <li class="gn-search-item">
-                    <%= text_field_tag "display_name", nil,
-                        class: "gn-search",
-                        placeholder: "Search" %>
-                    <!-- <input placeholder="Search" type="search" class="gn-search"> -->
-                    <a class="gn-icon gn-icon-search"></a>
-                  </li>
+                <li class="gn-search-item">
+                  <%= text_field_tag "display_name", nil,
+                      class: "gn-search",
+                      placeholder: "Search" %>
+                  <!-- <input placeholder="Search" type="search" class="gn-search"> -->
+                  <a class="gn-icon gn-icon-search"></a>
+                </li>
 
+              <% end %>
+
+              <!-- if the user is logged in, display 'My Profile' and
+                    'Log Out' -->
+              <% if logged_in? %>
+
+                <li>
+                  <%= link_to "Send a Message", new_message_messages_path,
+                    class: "gn-icon gn-icon-message" %>
+                </li>
+
+                <li>
+                  <%= link_to "My Profile", current_user,
+                    class: "gn-icon gn-icon-profile" %>
+                </li>
+
+                <!-- if the user has created any bands,
+                      show the links to their respective profile
+                      pages here -->
+                  <% if !session[:band_ids].nil? %>
+                    <% for band_id in session[:band_ids] %>
+                      <% band = Band.find(band_id) %>
+
+                      <li>
+                        <%= link_to band.name, band,
+                          class: "gn-icon gn-icon-band" %>
+                      </li>
+                    
+                    <% end %>
                 <% end %>
 
-                <!-- if the user is logged in, display 'My Profile' and
-                      'Log Out' -->
-                <% if logged_in? %>
-
+                <ul class="gn-submenu">
                   <li>
-                    <%= link_to "Send a Message", new_message_messages_path,
-                      class: "gn-icon gn-icon-message" %>
+                    <%= link_to "Log Out", logout_path, method: "delete",
+                    class: "gn-icon gn-icon-logout" %>
                   </li>
+                </ul>
 
-                  <li>
-                    <%= link_to "My Profile", current_user,
-                      class: "gn-icon gn-icon-profile" %>
-                  </li>
-
-                  <!-- if the user has created any bands,
-                        show the links to their respective profile
-                        pages here -->
-                    <% if !session[:band_ids].nil? %>
-                      <% for band_id in session[:band_ids] %>
-                        <% band = Band.find(band_id) %>
-
-                        <li>
-                          <%= link_to band.name, band,
-                            class: "gn-icon gn-icon-band" %>
-                        </li>
-                      
-                      <% end %>
-                  <% end %>
-
-                  <ul class="gn-submenu">
-                    <li>
-                      <%= link_to "Log Out", logout_path, method: "delete",
-                      class: "gn-icon gn-icon-logout" %>
-                    </li>
-                  </ul>
-
-                <% else %>
-
-                  <li>
-                    <%= link_to "Log In", login_path, 
-                    class: "gn-icon gn-icon-login" %>
-                  </li>
-
-                <% end %>
+              <% else %>
 
                 <li>
-                  <%= link_to "About", about_path, 
-                    class: "gn-icon gn-icon-about" %>
+                  <%= link_to "Log In", login_path, 
+                  class: "gn-icon gn-icon-login" %>
                 </li>
 
-                <li>
-                  <%= link_to "Help", help_path, 
-                    class: "gn-icon gn-icon-help" %>
-                </li>
+              <% end %>
 
-                <li>
-                  <%= mail_to "taybrown9000@gmail.com", "Contact",
-                    :class => "gn-icon gn-icon-contact" %>
-                </li>
-              </ul>
-            </div>
-          </nav>
+              <li>
+                <%= link_to "About", about_path, 
+                  class: "gn-icon gn-icon-about" %>
+              </li>
+
+              <li>
+                <%= link_to "Help", help_path, 
+                  class: "gn-icon gn-icon-help" %>
+              </li>
+
+              <li>
+                <%= mail_to "taybrown9000@gmail.com", "Contact",
+                  :class => "gn-icon gn-icon-contact" %>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </li>
+      
+      <li>
+        <%= link_to "Tremelo", root_path, id: "logo" %>
+      </li>
+
+      <% if logged_in? %>
+      
+        <li>
+          <%= link_to "Hi, " + session[:display_name], current_user,
+              class: "navbar-links" %>
         </li>
-        
-        <li><%= link_to "Tremelo", root_path, id: "logo" %></li>
 
-        <% if logged_in? %>
-        
+      <% end %>
+
+      <li>
+        <%= link_to "Help", help_path, class: "navbar-links", 
+            id: "help" %>
+      </li>
+
+      <% if logged_in? %>
+
+        <li>
+          <i id="notification" class="fa fa-music fa-lg fa-2x"></i> 
+        </li>
+
+      <% end %>
+  
+      <li>
+
+      <div class="company-social">
+        <ul>
+
           <li>
-            <%= link_to "Hi, " + session[:display_name], current_user,
-                class: "navbar-links" %>
+            <a href="http://www.facebook.com">
+              <i class="fa fa-facebook-official fa-2x"></i>
+            </a>
           </li>
 
-        <% end %>
+          <li>
+            <a href="http://www.twitter.com">
+              <i class="fa fa-twitter fa-2x"></i>
+            </a>
+          </li>
 
-        <li>
-          <%= link_to "Help", help_path, class: "navbar-links", 
-              id: "help" %>
-        </li>
+          <li>
+            <a href="https://github.com/tscarff1/Tremelo">
+              <i class="fa fa-github fa-2x"></i>
+            </a>
+          </li>
 
-        <li>
+        </ul>
+        </div>
 
-        <div class="company-social">
-          <ul>
-
-            <li>
-              <a href="http://www.facebook.com">
-                <i class="fa fa-facebook-official fa-2x"></i>
-              </a>
-            </li>
-
-            <li>
-              <a href="http://www.twitter.com">
-                <i class="fa fa-twitter fa-2x"></i>
-              </a>
-            </li>
-
-            <li>
-              <a href="https://github.com/tscarff1/Tremelo">
-                <i class="fa fa-github fa-2x"></i>
-              </a>
-            </li>
-
-          </ul>
-          </div>
-
-        </li>
-      </ul>
+      </li>
+    </ul>
   </div>
 </header>

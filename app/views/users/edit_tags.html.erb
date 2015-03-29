@@ -1,29 +1,36 @@
 <% provide(:title, 'Edit your Tags') %>
 
 <div class="container">
+  <div class="col-md-8 col-md-offset-2">
 
-	<h1 class="page-heading">Edit your TAGS!</h1>
-
+	<h1 class="page-heading">Edit Your TAGS!</h1>
 	<p class="subtitle">
 		Select the tags you wish to be included on your profile
 	</p>
 
 	<%= form_tag update_tags_users_path, method: :put do %>
-	<ul>
-		<% for tag in Tag.all %>
-		<li>
-			<% usertag = UserTags.find_by(user_id: @user.id, tag_id: tag.id) %>
-			<% if usertag.nil? %>
-			<%= check_box_tag "tag_ids[]", tag.id%>
-			<% else %>
-			<%= check_box_tag "tag_ids[]", tag.id, checked: true%>
-			<%end%>
-			<%= tag.content %>
-		</li>
-		<% end %>
-	</ul>
-	<%= submit_tag "Add to profile" %><br>
+
+	<div class="form-group">
+			<ul>
+				<% for tag in Tag.all %>
+				<li>
+					<% usertag = UserTags.find_by(user_id: @user.id, tag_id: tag.id) %>
+					<% if usertag.nil? %>
+					<%= check_box_tag "tag_ids[]", tag.id%>
+					<% else %>
+					<%= check_box_tag "tag_ids[]", tag.id, checked: true%>
+					<%end%>
+					<%= tag.content %>
+				</li>
+				<% end %>
+			</ul>
+	</div>
+
+	<%= submit_tag "Save Tags", class: "btn btn-block" %>
+
 	<%= link_to"Return to main edit page", edit_user_path(@user) %>
+
 	<% end %>
 
+	</div>
 </div>

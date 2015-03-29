@@ -211,18 +211,17 @@
           <% if !@videos[0].nil? %>
 
           <div class="row">
-          	<div class="col-xs-6 col-md-4" style="overflow-y:scroll; height: 350px">
+          	<div class="col-xs-4 col-md-4" style="overflow-y:scroll; height: 350px">
               <ul>
           		  <% for video in @videos %>
                   <%= link_to video.video_name, 
                   fetch_videos_path(video_id: video.id), 
                   remote: true %><hr>
-
                 <% end %>
               </ul>
           	</div>
 
-            <div id = "video_show" class="col-xs-6 col-md-4">
+            <div id = "video_show" class="col-xs-8 col-md-8">
               <%= render partial:'band_videos/video_show', 
               locals: { video: BandVideo.find_by(band_id: @band.id) } %>   
             </div>

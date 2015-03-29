@@ -123,11 +123,10 @@ class BandsController < ApplicationController
       bandvideo = BandVideo.new(band_id: @band.id, video_link: params[:video_link], 
         video_name: params[:video_name])
       if bandvideo.save
-        flash[:success]="Video successfully added"
+        flash[:success]= "Video successfully added"
       end
     else
-      flash[:error] = "Video not added"
-
+      flash[:error] = "Invalid Youtube link. Did you copy it correctly?"
     end
     redirect_to @band
 

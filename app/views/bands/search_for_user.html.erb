@@ -1,58 +1,60 @@
 <% provide(:title, 'User Search') %>
 
 <div class="container">
-	<h1 class="page-heading">Search for a User</h1>
+  <div class="col-md-8 col-md-offset-2">
 
-	<div class="form-horizontal">
+		<h1 class="page-heading">Search for a User</h1>
 
-		<%= form_tag user_search_results_band_path, method: :post do%>
+		<div class="form-horizontal">
 
-		<div class="form-group">
-			<div class="col-xs-6 col-md-6">
-				<%= label_tag :display_name, "Display Name" %>
-				<%= text_field_tag "display_name", nil,
-				class: "form-control" %>
+			<%= form_tag user_search_results_band_path, method: :post do%>
+
+			<div class="form-group">
+				<div class="col-xs-6 col-md-6">
+					<%= label_tag :display_name, "Display Name" %>
+					<%= text_field_tag "display_name", nil,
+					class: "form-control" %>
+				</div>
 			</div>
-		</div>
 
-		<div class="form-group">
-			<div class="col-xs-8 col-md-8">
-				<%= label_tag :instrument_tags, "Instrument Tags"%> (returns users with any instrument tags checked)
+			<div class="form-group">
+				<div class="col-xs-8 col-md-8">
+					<%= label_tag :instrument_tags, "Instrument Tags"%> (returns users with any instrument tags checked)
 
-				<% for tag in Tag.all %>
-				<li>
-					<%= check_box_tag "tag_ids[]", tag.id %>
-					<%= tag.content %>
-				</li>
-				<% end %>
+					<% for tag in Tag.all %>
+					<li>
+						<%= check_box_tag "tag_ids[]", tag.id %>
+						<%= tag.content %>
+					</li>
+					<% end %>
+				</div>
 			</div>
-		</div>
-		
-		<!-- This will be a checkbox that decides whether to search instrument tags -->
-		<!-- With AND or OR functionality -->
-		<div class="form-group">
-			<div class="col-xs-6 col-md-6">
-				<%= check_box_tag "exact_tags"%>
-				<%= label_tag :exact_tags, "Find users with exactly these tags" %>
+			
+			<!-- This will be a checkbox that decides whether to search instrument tags -->
+			<!-- With AND or OR functionality -->
+			<div class="form-group">
+				<div class="col-xs-6 col-md-6">
+					<%= check_box_tag "exact_tags"%>
+					<%= label_tag :exact_tags, "Find users with exactly these tags" %>
+				</div>
 			</div>
-		</div>
 
-		<div class="form-group">
-			<div class="col-xs-4 col-md-4">
-				<%= label_tag "Location (City, State):" %>
-				<%= text_field_tag "location", nil,  class: "form-control" %>
+			<div class="form-group">
+				<div class="col-xs-4 col-md-4">
+					<%= label_tag "Location (City, State):" %>
+					<%= text_field_tag "location", nil,  class: "form-control" %>
+				</div>
 			</div>
-		</div>
 
-		<div class="form-group">
-			<div class="col-xs-4 col-md-4">
-				<%= label_tag "Search Radius (in miles)" %>
-				<%= text_field_tag "distance", nil, class: "form-control" %>
+			<div class="form-group">
+				<div class="col-xs-4 col-md-4">
+					<%= label_tag "Search Radius (in miles)" %>
+					<%= text_field_tag "distance", nil, class: "form-control" %>
+				</div>
 			</div>
+
+			<%= submit_tag "Search", class: "btn btn-block" %>
+			<% end %>
 		</div>
-
-		<%= submit_tag "Search", class: "btn btn-block" %>
-		<% end %>
-
-	</div>
+</div>
 </div>
