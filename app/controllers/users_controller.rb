@@ -112,6 +112,8 @@ class UsersController < ApplicationController
   def upload_pic
   end
 
+
+
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
@@ -155,11 +157,18 @@ class UsersController < ApplicationController
   end
 
   def update_pic
+
+    temp = @user.profile_picture
+    @user.profile_picture.destroy
+    new_pic = params[:profile_picture]
+    @user.profile_picture = new_pic
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.save
         format.html {redirect_to @user, success: 'Profile picture has been successfully changed.'}
         format.json {render :show, status: :ok, location: @user}
       else
+        @user.profile_picture = temp
+        @user.save
         format.html {render :upload_pic}
         format.json {render json: @user.errors, status: :unprocessable_entity}
       end
@@ -276,6 +285,10 @@ class UsersController < ApplicationController
                             :password, :password_confirmation, 
                             :profile_picture, 
                             :address, :city, :state, :dob)
+    end
+
+    def picture_params
+      params.require(:user).permit(:profile_picture)
     end
 
     def verify_correct_user

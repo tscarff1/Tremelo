@@ -36,9 +36,9 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get 'notifications'
+      put 'update_pic'
     end
     collection do
-      post 'update_pic'
       put 'update_tags'
       get 'search'
       post 'search_results'
