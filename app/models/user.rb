@@ -108,16 +108,60 @@ class User < ActiveRecord::Base
     end
     return matching
   end
-end
 
-def self.destroy_user_by_id(user_id)
-  user = User.find(user_id).destroy
-  for userband in UserBand.where(user_id: user_id)
-    userband.destroy
+  # --------------------------- Some Band code -------------------------------
+
+  #Return all bands the user is a member of
+  def get_bands
+    userbands = UserBand.where(user_id: id)
+    bands = []
+    for userband in userbands
+      bands.push(Band.find(userband.band_id))
+    end
+    return bands
   end
 
-  for tag in UserTags.where(user_id)
-    tag.destroy
+  #Return all users this user is in a band with
+  def is_in_band_with_users
+    bands = get_bands
+
+    other_users = []
+    for band in bands
+      userbands = UserBand.where(band_id: band.id)
+      for userband in userbands
+        if userband.user_id != id
+          other_users.push(User.find(userband.user_id))
+        end
+      end
+    end
+    return other_users
+  end
+
+  def get_shared_bands_with(user_id)
+    user = User.find(user_id)
+    other_bands = user.get_bands
+    my_bands = get_bands
+    shared_bands = my_bands & other_bands
+  end
+
+  def get_number_of_shared_bands_with(user_id)
+    bands = get_shared_bands_with(user_id)
+    return bands.count
+  end
+
+  def self.destroy_user_by_id(user_id)
+    user = User.find(user_id).destroy
+    for userband in UserBand.where(user_id: user_id)
+      userband.destroy
+    end
+
+    for tag in UserTags.where(user_id)
+      tag.destroy
+    end
+  end
+
+  def band_invites
+    return Notification.where.not(band_id: nil)
   end
 
 end

@@ -1,0 +1,15 @@
+<% provide(:title, "Notifications") %>
+<div>
+	<% if @notifications.count == 0 %>
+		<p> You have no notifications.
+	<% else %>
+		<% for note in @notifications %>
+			<% if !note.band_id.nil? %>
+				<%= render partial:'band_invite', locals: {band_invite: note} %>
+			<%else %>
+				<%= note.content %>
+			<% end %>
+			<hr>
+		<% end %>
+	<%end%>
+</div>

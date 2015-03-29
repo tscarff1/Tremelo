@@ -62,7 +62,9 @@ class BandsController < ApplicationController
   end
 
   def add_member
-    notification = BandInvite.new(band_id: @band.id, content: "#{@band.name} has invited you to be a member", user_id: params[:user_id])
+    notification = BandInvite.new(band_id: @band.id, 
+      content: "#{@band.name} has invited you to be a member", 
+      user_id: params[:user_id])
     respond_to do |format|
       if notification.save
           format.html { redirect_to @band, notice: 'User has been sent an invitation.' }
@@ -117,7 +119,6 @@ class BandsController < ApplicationController
   end
 
   def update_videos
-
     if url_exist?(params[:video_link])
       bandvideo = BandVideo.new(band_id: @band.id, video_link: params[:video_link], 
         video_name: params[:video_name])
@@ -126,6 +127,7 @@ class BandsController < ApplicationController
       end
     else
       flash[:error] = "Video not added"
+
     end
     redirect_to @band
 

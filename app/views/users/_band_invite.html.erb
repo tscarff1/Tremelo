@@ -1,0 +1,12 @@
+<h3> A Band Invite! </h3>
+<%= band_invite.content %>
+<%user = User.find(band_invite.user_id)%>
+<br>
+<%= link_to "Accept", accept_band_users_path(user_id: band_invite.user_id, 
+	band_id: band_invite.band_id,
+	accepting: 'true')%>
+|
+
+<%= link_to "Reject", accept_band_users_path(user_id: band_invite.user_id, 
+	band_id: band_invite.band_id,
+	accepting: 'false')%>

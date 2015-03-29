@@ -34,11 +34,15 @@ Rails.application.routes.draw do
   get 'bands/search_results' => 'bands#search_results'
   
   resources :users do
+    member do
+      get 'notifications'
+    end
     collection do
       post 'update_pic'
       put 'update_tags'
       get 'search'
       post 'search_results'
+      get 'accept_band'
     end
   end
   resources :messages do

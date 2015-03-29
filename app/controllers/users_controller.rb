@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :upload_pic, :update_pic, 
+  before_action :set_user, only: [:show, :edit, :upload_pic, :update_pic,
+    :notifications, 
     :edit_tags, :access_error,
     :update, :destroy]
 
@@ -52,6 +53,46 @@ class UsersController < ApplicationController
 
   def show
    
+  end
+
+  def notifications
+    @notifications = BandInvite.where(user_id: @user.id)
+  end
+
+  def accept_band
+    band_id = params[:band_id]
+    user_id = params[:user_id]
+    accepting = params[:accepting]
+    user = User.find(user_id)
+    band = Band.find(band_id)
+    if accepting == 'true'
+      userband = UserBand.new(band_id: band_id, user_id: user_id, admin_priveleges: 0)
+      
+      respond_to do |format|
+        if userband.save
+          
+          format.html { redirect_to band, success: "You have joined #{band.name}" }
+          format.json { render :show, status: :created, location: band }
+        else
+          format.html { redirect_to notifications_user_path(user), error: "Unable to join #{band.name}" }
+
+        end # end save check
+        #Now that we have accepted the invite, destroy it and any duplicates
+           for n in Notification.where(band_id: band_id, user_id: user_id)
+            n.destroy
+           end
+      end
+    else
+      for n in Notification.where(band_id: band_id, user_id: user_id)
+        n.destroy
+      end
+      respond_to do |format|
+        format.html { redirect_to notifications_user_path(user), 
+        notice: "You have rejected #{band.name}" }
+      end
+    end #End accepting if
+    
+    
   end
 
   def access_error
