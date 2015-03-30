@@ -4,9 +4,10 @@
 		<p> You have no notifications.
 	<% else %>
 		<% for note in @notifications %>
-			<% if !note.band_id.nil? %>
+			<% if note.is_band_invite? %>
 				<%= render partial:'band_invite', locals: {band_invite: note} %>
 			<%else %>
+				<h3> Notification</h3>
 				<%= note.content %>
 			<% end %>
 			<hr>
