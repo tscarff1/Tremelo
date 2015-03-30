@@ -3,6 +3,9 @@ class Notification < ActiveRecord::Base
   validates :user_id, presence: true
   validates :content, presence: true, uniqueness: true
 
+  #View notifiations at users/notifications
+
+
   # Special Characters List
   # none - Generic Notification (ie, band uploaded a video)
   # %B Band Invitation
@@ -11,6 +14,11 @@ class Notification < ActiveRecord::Base
   # %M Formatted message (Just an idea)
   #  
 
+  # ------------------------------- Band Invites -------------------------------
+  # How it works: Band selects "add member", which calls the same method from band_controller
+  # This creates a new notification for the relevant user
+  # User views the notification, selects accept or reject.
+  #     Both lead to the 'accept_band' user_controller action with accept = true/false
   def is_band_invite?
   	if !special_chars.nil? && special_chars.include?("%B")
   		return true
