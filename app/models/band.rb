@@ -102,4 +102,21 @@ class Band < ActiveRecord::Base
 
 	    return false
 	  end
+
+	# ------------------- Notification stuff ----------------------
+	def send_notification_to_users(user_ids, content)
+		for user_id in user_ids
+			Notification.create(user_id: user_id, content: content, band_id: id)
+		end
+	end 
+
+	def send_notification_to_members_except(content, logged_in_id)
+		userbands = UserBand.where(band_id: id).where.not(user_id: logged_in_id)
+		ids = []
+		for userband in userbands
+			ids.push(userband.user_id)
+		end
+
+		send_notification_to_users(ids, content)
+	end
 end

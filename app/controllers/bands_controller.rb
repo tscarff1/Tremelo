@@ -64,6 +64,7 @@ class BandsController < ApplicationController
   def add_member
     notification = BandInvite.new(band_id: @band.id, 
       content: "#{@band.name} has invited you to be a member", 
+      special_chars: "%B",
       user_id: params[:user_id])
     respond_to do |format|
       if notification.save
@@ -74,12 +75,6 @@ class BandsController < ApplicationController
           format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
-
-
-    #user_band = UserBand.new(user_id: params[:user_id], band_id: @band.id, admin_priveleges: 0)
-    #if user_band.save
-    #  redirect_to @band
-    #end
   end
 
   def edit
@@ -123,6 +118,8 @@ class BandsController < ApplicationController
       bandvideo = BandVideo.new(band_id: @band.id, video_link: params[:video_link], 
         video_name: params[:video_name])
       if bandvideo.save
+        content = "#{@band.name} has added a new video: #{params[:video_name]}"
+        @band.send_notification_to_members_except(content, session[:user_id])
         flash[:success]= "Video successfully added"
       end
     else
@@ -136,6 +133,8 @@ class BandsController < ApplicationController
     if(!params[:video_ids].nil?)
       for video_id in params[:video_ids]
         video = BandVideo.find(video_id)
+        content = "#{@band.name} has deleted a video: #{video.video_name}"
+        @band.send_notification_to_members_except(content, session[:user_id])
         video.destroy
       end
     end
@@ -152,10 +151,13 @@ class BandsController < ApplicationController
 
   def update_musics
 
+
     if (!params[:embed_html].empty? && !params[:music_name].empty?)
       bandmusic = BandMusic.new(band_id: @band.id, embed_html: params[:embed_html].html_safe, 
         name: params[:music_name])
       bandmusic.save
+      content = "#{@band.name} has added new music: #{params[:music_name]}"
+      @band.send_notification_to_members_except(content, session[:user_id])
     end
 
     redirect_to @band
@@ -165,6 +167,8 @@ class BandsController < ApplicationController
     if(!params[:music_ids].nil?)
       for music_id in params[:music_ids]
         music = BandMusic.find(music_id)
+        content = "#{@band.name} has deleted music: #{music.name}"
+        @band.send_notification_to_members_except(content, session[:user_id])
         music.destroy
       end
     end

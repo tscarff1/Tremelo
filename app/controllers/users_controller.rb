@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :upload_pic, :update_pic,
-    :notifications, 
     :edit_tags, :access_error,
     :update, :destroy]
+  before_action :set_user_by_session, only: [:notifications]
 
-  before_action :verify_correct_user, only: [:edit, :edit_tags, :upload_pic]
+  before_action :verify_correct_user, only: [:edit, :edit_tags, :upload_pic, :notifications]
 
   # GET /users/new
   def new
@@ -74,7 +74,7 @@ class UsersController < ApplicationController
           format.html { redirect_to band, success: "You have joined #{band.name}" }
           format.json { render :show, status: :created, location: band }
         else
-          format.html { redirect_to notifications_user_path(user), error: "Unable to join #{band.name}" }
+          format.html { redirect_to notifications_users_path, error: "Unable to join #{band.name}" }
 
         end # end save check
         #Now that we have accepted the invite, destroy it and any duplicates
@@ -276,6 +276,10 @@ class UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+
+    def set_user_by_session
+      @user = User.find(session[:user_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

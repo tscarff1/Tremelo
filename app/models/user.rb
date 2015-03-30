@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
       "<img src=\"#{self.profile_picture(:thumb)}\"> #{self.display_name}"
   end
 
-  #Tag stuff
+  #--------------------------- Tag stuff ------------------------------------
 
   def num_tags
     usertags = UserTags.where(user_id: self.id)
@@ -160,8 +160,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  # -------------------------- Notification stuff ------------------------
+
   def band_invites
-    return Notification.where.not(band_id: nil)
+    return Notification.get_band_invites_for(id)
+  end
+
+  def num_notifications
+    return Notification.where(user_id: id).count
   end
 
 end
