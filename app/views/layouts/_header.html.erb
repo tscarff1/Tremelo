@@ -1,7 +1,7 @@
 <header>
   <% if !session[:user_id].nil? %>
     <% @user = User.find(session[:user_id]) %>
-    <% end %>
+  <% end %>
 <div class="container">
   <ul id="gn-menu" class="gn-menu-main">
     <li class="gn-trigger">
@@ -94,6 +94,12 @@
       <% if logged_in? %>
       
         <li>
+          <a href="#" class="navbar">
+            <i id="notification" class="fa fa-music fa-lg fa-2x"></i> 
+          </a>
+        </li>
+
+        <li>
           <%= link_to "Hi, " + @user.display_name, current_user,
               class: "navbar-links" %>
         </li>
@@ -101,20 +107,11 @@
       <% end %>
 
       <li>
-        <%= link_to "Help", help_path, class: "navbar-links", 
+        <%= link_to "Help", help_path, class: " navbar navbar-links", 
             id: "help" %>
       </li>
 
-      <% if logged_in? %>
-
-        <li>
-          <i id="notification" class="fa fa-music fa-lg fa-2x"></i> 
-        </li>
-
-      <% end %>
-  
       <li>
-
       <div class="company-social">
         <ul>
 
