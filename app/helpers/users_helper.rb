@@ -70,7 +70,7 @@ module UsersHelper
         start_year = current_year - 100
         it = start_year
         until it > current_year do
-            years.push(it)
+            years.push(it++)
         end
 
     end
