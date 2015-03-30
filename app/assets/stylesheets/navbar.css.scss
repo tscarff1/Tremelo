@@ -378,20 +378,23 @@ input.gn-search:focus {
 --- Navbar Links
 ============================= */
 
+.navbar {
+    border-right: 1px solid $border-color;
+    
+    #notification {
+        margin: 0 -10px 0 -14px;
+    }
+}
+
 .navbar-links {
     font-family: Montserrat, sans-serif;
     font-weight: bold;
     font-size: 18px;
     letter-spacing: -0.06em;
-    border-right: 1px solid $border-color;
 }
 
 #help {
     font-size: 16px;
-}
-
-#notification {
-    margin-left: 18px;
 }
 
 // padding for links after logo
