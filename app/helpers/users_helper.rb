@@ -68,11 +68,11 @@ module UsersHelper
         years = []
         current_year = Time.now.year
         start_year = current_year - 100
-        it = start_year
-        until it > current_year do
-            years.push(it)
+        until start_year > current_year do
+            years.push(start_year)
+            start_year += 1
         end
-
+        return years.reverse
     end
 
 end
