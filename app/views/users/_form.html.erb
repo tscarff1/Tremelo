@@ -28,8 +28,8 @@
  <div class="form-group required">
    <div class="col-xs-2 col-md-2">
      <%= f.label :dob, "Year Born" %>
-     <%= f.datetime_field :dob, class: 'form-control',
-     required: "required" %>
+     <%= f.select :dob, options_for_select(birth_years, @user.dob), {},
+         { :class => 'form-control', :required => "required"} %>
    </div>
  </div>
 
