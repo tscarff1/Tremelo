@@ -117,6 +117,16 @@ hr {
 --- Elements
 ============================ */
 
+.btn-normal {
+  background: orange;
+  color: white;
+
+  &:hover, &:active, &:focus {
+    background: #FFB301;
+    color: white;
+  }
+}
+
 .btn-primary {
   font-family: FontAwesome, Arial, sans-serif;
   font-size: 16px;
@@ -132,10 +142,9 @@ hr {
     border-color: #FFB301;
     color: white;
   }
-
 }
 
-.btn-block {
+.btn-block { 
   @extend .btn-primary;
   margin-bottom: 15px;
 }
