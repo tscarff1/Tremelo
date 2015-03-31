@@ -380,7 +380,8 @@ input.gn-search:focus {
 
 .navbar {
     border-right: 1px solid $border-color;
-    
+    border-radius: 0px;
+
     #notification {
         margin: 0 -10px 0 -14px;
     }
