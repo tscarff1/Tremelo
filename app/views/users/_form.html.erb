@@ -1,5 +1,5 @@
 <%= form_for @user do |f| %>
-<%= render 'shared/error_messages' %>
+<%= render partial: 'shared/error_messages', locals: {obj: f.object} %>
 
 <div class="form-horizontal">
 

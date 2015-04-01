@@ -33,7 +33,7 @@ class BandsController < ApplicationController
           end
       else
         format.html { render :new}
-        format.json { render json: @band.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -114,17 +114,17 @@ class BandsController < ApplicationController
   end
 
   def update_videos
-    bandvideo = BandVideo.new(band_id: @band.id, video_link: params[:video_link], 
+    @bandvideo = BandVideo.new(band_id: @band.id, video_link: params[:video_link], 
       video_name: params[:video_name])
     respond_to do |format|
-      if bandvideo.save && url_exist?(params[:video_link])
+      if @bandvideo.save && url_exist?(params[:video_link])
         content = "#{@band.name} has added a new video: #{params[:video_name]}"
         @band.send_notification_to_members_except(content, session[:user_id])
         format.html { redirect_to @band, success: 'Video successfully added' }
         format.json { render :show, status: :created, location: @band }
       else
         format.html { render :edit_videos }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.json { render json: @bandvideo.errors, status: :unprocessable_entity }
       end
     end
   end

@@ -2,8 +2,8 @@ class Band < ActiveRecord::Base
 	has_many :band_videos, dependent: :destroy
 
 	validates :name,
-		presence: true,
-		uniqueness: {case_sensitive: false}
+						presence: true,
+						uniqueness: {case_sensitive: false}
 
 	has_attached_file :profile_picture,  :styles => { medium: "200x200#", small: "150x150#", thumb: "100x100#"}
 	validates_attachment_content_type :profile_picture, :content_type => /\Aimage\/.*\Z/

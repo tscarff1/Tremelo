@@ -9,7 +9,8 @@
   	</p>
 
   	<div class="form-horizontal">
-  		<%= form_tag update_videos_band_path, method: :put do %>
+  		<%= form_for @bandvideo, url: { action: "update_videos" }, method: :put do |f| %>
+        <%= render partial: 'shared/error_messages', locals: {obj: f.object} %>
 
   		<h3>Add a New Video</h3>
 
