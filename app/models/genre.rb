@@ -14,23 +14,21 @@ class Genre < ActiveRecord::Base
 	def get_red
 		# 122 is the ascii value of 'z'
 		if(!content.nil?)
-			red = 55 + (5 - id % 10) * (content[0].ord/2440 * 256).to_i
+			red = 55 * (5 - id % 10)/10 + ((content[0].ord/100) * 256).to_i
 		end
 	end
 
 	def get_green
 		if !content.nil?
-			if id % 3 != 0
-				green = (((content[-1].ord + content[1].ord) * 1.5 /(id % 3))/600.0 * 255 - 20).abs.to_i
-			else
-				green = (((content[-1].ord + content[1].ord) * 1.5 /(5))/600.0 * 255 - 20).abs.to_i				
-			end
+		
+				green = (((content[-1].ord + content[1].ord) + (id % 4) * 50)/500.0 * 255 - 20).abs.to_i
+		
 		end
 	end
 
 	def get_blue
 		if !content.nil?
-			blue = (((content[1].ord + content[0].ord)* 2)/1100.0 * 255 - 60).abs.to_i
+			blue = (((content[1].ord + content[0].ord) * (id % 3))/1100.0 * 255 - 60).abs.to_i
 		end
 	end
 end
