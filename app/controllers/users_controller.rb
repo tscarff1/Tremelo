@@ -299,7 +299,8 @@ class UsersController < ApplicationController
       if(!logged_in?)
         redirect_to new_user_session_path, notice: "You must be logged in to access that page."
       elsif(@user.id != session[:user_id])
-        redirect_to action: "access_error", id:@user.id
+        flash[:error] = "You cannot access that page."
+        redirect_to current_user
       end
     end
 end

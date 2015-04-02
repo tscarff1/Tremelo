@@ -1,5 +1,6 @@
 <% provide(:title, "Editing Videos") %>
-
+<% @bandvideo = BandVideo.new(band_id: @band.id, video_link: params[:video_link], 
+      video_name: params[:video_name]) %>
 <div class="container">
   <div class="col-md-8 col-md-offset-2">
 
