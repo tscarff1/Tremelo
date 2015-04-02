@@ -53,6 +53,7 @@ Rails.application.routes.draw do
   end
 
   resources :bands do
+    resource :band_videos
     member do
       get 'search_for_user'
       post 'user_search_results'

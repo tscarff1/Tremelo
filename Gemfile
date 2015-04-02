@@ -33,6 +33,7 @@ group :development, :test do
   gem 'rspec-activemodel-mocks'
   gem 'factory_girl_rails'
   gem 'web-console',              '2.0.0.beta4'
+  gem 'quiet_assets'
 end
 
 group :test do

@@ -15,6 +15,7 @@ class BandsController < ApplicationController
       @userband = UserBand.new(user_id: session[:user_id], 
                             band_id: @band.id, 
                             admin_priveleges: 1)
+      @band.band_video.build
     else
 
     end
