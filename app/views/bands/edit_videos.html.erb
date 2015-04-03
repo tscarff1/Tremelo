@@ -1,5 +1,4 @@
 <% provide(:title, "Editing Videos") %>
-
 <div class="container">
   <div class="col-md-8 col-md-offset-2">
 
@@ -9,26 +8,28 @@
   	</p>
 
   	<div class="form-horizontal">
-  		<%= form_tag update_videos_band_path, method: :put do %>
+  		<%= form_for @band, url: { action: "update_videos" }, method: :put do |f| %>
+        <%= render partial: 'shared/error_messages', locals: {obj: f.object} %>
+        <%= f.fields_for :band_video do |v| %>
 
-  		<h3>Add a New Video</h3>
+      		<h3>Add a New Video</h3>
 
-  		<div class="form-group">
-  			<div class="col-xs-8 col-md-8">
-  				<%= label_tag "Video Name", nil, class: "control-label" %>
-  				<%= text_field_tag "video_name", nil, class: "form-control",
-  						required: "required" %>
-  			</div>
-  		</div>
+      		<div class="form-group">
+      			<div class="col-xs-8 col-md-8">
+      				<%= v.label "Video Name", class: "control-label" %>
+      				<%= v.text_field :video_name, class: "form-control",
+      						required: "required" %>
+      			</div>
+      		</div>
 
-  		<div class="form-group">
-  			<div class="col-md-10">
-  				<%= label_tag "Enter the link to your video" %>
-  				<%= text_field_tag "video_link", nil, class: "form-control", 
-              required: "required" %>
-  			</div>
-  		</div>
-
+      		<div class="form-group">
+      			<div class="col-md-10">
+      				<%= v.label "Enter the link to your video" %>
+      				<%= v.text_field :video_link, class: "form-control", 
+                  required: "required" %>
+      			</div>
+      		</div>
+        <%end%>
       <div class="form-group">
         <div class="col-md-12">
       		<p>

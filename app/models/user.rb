@@ -2,12 +2,14 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :notifications
 
+  validates_acceptance_of :terms
   validates :email, presence: true,
                     uniqueness: true,
                     format: {
                       with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
                     },
                     confirmation: true
+  validates :email_confirmation, presence: true
 
   before_save :downcase_email
 

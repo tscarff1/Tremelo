@@ -17,6 +17,7 @@
   <div class="form-horizontal">
 
     <%= form_for(@band) do |f| %>
+      <%= render partial: 'shared/error_messages', locals: {obj: f.object} %>
 
     <div class="form-group">
       <div class="col-xs-6 col-md-8">

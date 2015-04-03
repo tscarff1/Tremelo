@@ -15,6 +15,7 @@ class BandsController < ApplicationController
       @userband = UserBand.new(user_id: session[:user_id], 
                             band_id: @band.id, 
                             admin_priveleges: 1)
+      @band.band_video.build
     else
 
     end
@@ -33,7 +34,7 @@ class BandsController < ApplicationController
           end
       else
         format.html { render :new}
-        format.json { render json: @band.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -114,19 +115,19 @@ class BandsController < ApplicationController
   end
 
   def update_videos
-    if url_exist?(params[:video_link])
-      bandvideo = BandVideo.new(band_id: @band.id, video_link: params[:video_link], 
-        video_name: params[:video_name])
-      if bandvideo.save
+    @bandvideo = BandVideo.new(band_id: @band.id, video_link: params[:video_link], 
+      video_name: params[:video_name])
+    respond_to do |format|
+      if @bandvideo.save && url_exist?(params[:video_link])
         content = "#{@band.name} has added a new video: #{params[:video_name]}"
         @band.send_notification_to_members_except(content, session[:user_id])
-        flash[:success]= "Video successfully added"
+        format.html { redirect_to @band, success: 'Video successfully added' }
+        format.json { render :show, status: :created, location: @band }
+      else
+        format.html { render :edit_videos }
+        format.json { render json: @bandvideo.errors, status: :unprocessable_entity }
       end
-    else
-      flash[:error] = "Invalid Youtube link. Did you copy it correctly?"
     end
-    redirect_to @band
-
   end
 
   def destroy_videos
@@ -152,7 +153,7 @@ class BandsController < ApplicationController
   def update_musics
 
 
-    if (!params[:embed_html].empty? && !params[:music_name].empty?)
+    if url_exist?(params[:video_link])
       bandmusic = BandMusic.new(band_id: @band.id, embed_html: params[:embed_html].html_safe, 
         name: params[:music_name])
       bandmusic.save

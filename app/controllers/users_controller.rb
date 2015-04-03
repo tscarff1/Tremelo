@@ -298,11 +298,11 @@ class UsersController < ApplicationController
     end
 
     def verify_correct_user
-      if(session[:user_id].nil?)
-        redirect_to action: "access_error", id:@user.id
-      
+      if(!logged_in?)
+        redirect_to new_user_session_path, notice: "You must be logged in to access that page."
       elsif(@user.id != session[:user_id])
-        redirect_to action: "access_error", id:@user.id
+        flash[:error] = "You cannot access that page."
+        redirect_to current_user
       end
     end
 end
