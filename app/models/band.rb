@@ -5,7 +5,9 @@ class Band < ActiveRecord::Base
 						presence: true,
 						uniqueness: {case_sensitive: false}
 
-	has_attached_file :profile_picture,  :styles => { medium: "200x200#", small: "150x150#", thumb: "100x100#"}
+	has_attached_file(:profile_picture,
+                  :default_url => 'band/profile_pictures/default_:style.png',
+                  :styles => { medium: "300x300#", small: "150x150#",thumb: "60x60#"})
 	validates_attachment_content_type :profile_picture, :content_type => /\Aimage\/.*\Z/
 
 	geocoded_by :full_address
