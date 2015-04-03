@@ -9,6 +9,7 @@
 			<%else %>
 				<h3> Notification</h3>
 				<%= note.content %>
+				<%= link_to "Delete", destroy_notification_path(id: note.id) %>
 			<% end %>
 			<hr>
 		<% end %>

@@ -19,13 +19,8 @@ Searching by: <br>
 	<ul>
 	<% for result in @results %>
 		<li>
-			 <%= link_to "#{result.display_name}", result %>
-			<!-- Display the user's tags to make it clear which users play what-->
-			<% for user_tag in UserTags.where(user_id: result.id) %>
-          	<% tag = Tag.find(user_tag.tag_id) %>
-          	<%= content_tag(:span, "#{tag.content}", :class => 'label label-danger', 
-          	:style => "background-color: rgb(#{tag.get_red},#{tag.get_green},#{tag.get_blue}") %>
-        	<%end%>
+			 <%= render partial: 'users/user_result', locals: {user: result} %>
+			 <br>
         	<%= link_to "add member", add_member_band_path(:user_id => result.id), method: :put %>
         </li>
 	<%end%>

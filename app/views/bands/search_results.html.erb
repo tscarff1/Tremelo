@@ -25,7 +25,6 @@
 			</ul>
 		<% end %>
 	</p> -->
-
 	<% if @results.empty? %>
 
 		<h2 class="text-center">
@@ -37,13 +36,7 @@
 		<ul>
 		<% for result in @results %>
 			<li>
-				 <%= link_to "#{result.name}", result %>
-				<!-- Display the user's tags to make it clear which users play what-->
-				<% for band_genre in BandGenre.where(band_id: result.id) %>
-	          	<% genre = Genre.find(band_genre.genre_id) %>
-	          	<%= content_tag(:span, "#{tag.content}", :class => 'label label-danger', 
-	          	:style => "background-color: rgb(#{tag.get_red},#{tag.get_green},#{tag.get_blue}") %>
-	        	<%end%>
+				 <%= render partial: 'band_result', locals: {band: result}%>
 	        </li>
 		<%end%>
 		</ul>

@@ -253,6 +253,8 @@ class UsersController < ApplicationController
       else
         @results = @results & tag_results
       end
+
+      
     end
 
     @hash = Gmaps4rails.build_markers(@results) do |user, marker|

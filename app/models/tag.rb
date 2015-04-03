@@ -1,4 +1,5 @@
 class Tag < ActiveRecord::Base
+	# to display a tag, use the display partial with locals: genre
 	validates :content, presence: true,
                     uniqueness: {case_sensitive: false},
                     format: {

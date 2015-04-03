@@ -15,9 +15,10 @@
     <div class="col-xs-9 col-md-9">
       <h1 class="display-name"><%= @user.display_name %></h1>
 
+      <!-- Find all tags for the user and display-->
       <% for user_tag in UserTags.where(user_id: @user.id) %>
         <% tag = Tag.find(user_tag.tag_id) %>
-        <%= content_tag(:span, "#{tag.content}", :class => 'label label-danger', :style => "background-color: rgb(#{tag.get_red},#{tag.get_green},#{tag.get_blue}") %>
+       <%= render partial: '/tags/display', locals: {tag: tag} %>
 
       <% end %>
     </div>

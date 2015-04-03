@@ -197,14 +197,14 @@ class BandsController < ApplicationController
     location_results = []
     if (!params[:location].empty? && !params[:distance].empty?)
       @searching_by.push("location")
-      temp_band = Band.new(full_address: params[:location])
-      temp_band.save
-      if(!temp_band.nearbys(params[:distance].to_i).nil?)
-        for band in temp_band.nearbys(params[:distance].to_i)
-          location_results.push(band)
+      temp_user = User.new(address: params[:location])
+      temp_user.save
+      if(!temp_user.nearbys(params[:distance].to_i).nil?)
+        for user in temp_user.nearbys(params[:distance].to_i)
+          location_results.push(user)
         end
       end
-      temp_band.destroy
+      temp_user.destroy
     end
 
     #@results is the interection of arrays produced by previous searches, ignoring empty results    
@@ -216,18 +216,20 @@ class BandsController < ApplicationController
     # Due to the fact that the array will remain empty if no tags are found, this needs to come last
     tag_results = []
     if(!params[:tag_ids].nil?)
-      @searching_by.push("genre tags")
-      for band in Band.all
+      @searching_by.push("instrument tags")
+      for user in User.all
         if (params[:exact_tags].nil?)
-          if band.has_at_least_one_genre_from?(params[:tag_ids])
-            tag_results.push(band)
+          if user.has_at_least_one_genre_from?(params[:tag_ids])
+            tag_results.push(user)
           end
         else
-          if band.has_genres?(params[:tag_ids])
-            tag_results.push(band)
+          if user.has_genres?(params[:tag_ids])
+            tag_results.push(user)
           end
         end
       end
+
+
 
       #This next line is why this has to be last
       if (@results.empty?)
@@ -245,47 +247,45 @@ class BandsController < ApplicationController
     @searching_by = []
     #Display name results
     name_results = []
-    if params.has_key?(:display_name)
+    if params.has_key?(:name)
       @searching_by.push("display name")
-      name_results = User.where(display_name: params[:display_name])
+      name_results = Band.where(name: params[:name])
     end
 
-    location_results = []
 
-      if (params.has_key?(:location) && params.has_key?(:distance))
+     location_results = []
+    if (!params[:location].empty? && !params[:distance].empty?)
       @searching_by.push("location")
-      temp_user = User.new(address: params[:location])
-      temp_user.save
-      if(!temp_user.nearbys(params[:distance].to_i).nil?)
-        for user in temp_user.nearbys(params[:distance].to_i)
-          location_results.push(user)
+      temp_band = Band.new(full_address: params[:location])
+      temp_band.save
+      if(!temp_band.nearbys(params[:distance].to_i).nil?)
+        for band in temp_band.nearbys(params[:distance].to_i)
+          location_results.push(band)
         end
       end
-      temp_user.destroy
+      temp_band.destroy
     end
 
     #@results is the interection of arrays produced by previous searches, ignoring empty results    
     all_results = [name_results, location_results]
     @results = all_results.tap{ |a| a.delete( [] ) }.reduce( :& ) || []
 
-
-    #Instrument tag results
+    #Genre tag results
     # Due to the fact that the array will remain empty if no tags are found, this needs to come last
     tag_results = []
     if(!params[:tag_ids].nil?)
-      @searching_by.push("instrument tags")
-      for user in User.all
+      @searching_by.push("genre tags")
+      for band in Band.all
         if (params[:exact_tags].nil?)
-          if user.has_at_least_one_tag_from?(params[:tag_ids])
-            tag_results.push(user)
+          if band.has_at_least_one_genre_from?(params[:tag_ids])
+            tag_results.push(band)
           end
         else
-          if user.has_tags?(params[:tag_ids])
-            tag_results.push(user)
+          if band.has_genres?(params[:tag_ids])
+            tag_results.push(band)
           end
         end
       end
-
       #This next line is why this has to be last
       if (@results.empty?)
         @results = tag_results
@@ -293,6 +293,12 @@ class BandsController < ApplicationController
         @results = @results & tag_results
       end
     end
+
+    #End of the eternal search method
+    #Now it's really the end
+
+
+    @results
   end
 
   private

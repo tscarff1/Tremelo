@@ -1,0 +1,6 @@
+<%= link_to "#{user.display_name}", user %>
+<!-- Display the user's tags to make it clear which users play what-->
+<% for user_tag in UserTags.where(user_id: user.id) %>
+	<% tag = Tag.find(user_tag.tag_id) %>
+	<%= render partial: '/tags/display', locals: {tag: tag}%>
+<%end%>

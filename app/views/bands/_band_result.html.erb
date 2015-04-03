@@ -1,0 +1,6 @@
+<%= link_to "#{band.name}", band %>
+<!-- Display the band's tags to make it clear which bands play what-->
+<% for band_genre in BandGenre.where(band_id: band.id) %>
+  		<% genre = Genre.find(band_genre.genre_id) %>
+  		<%= render partial: '/genres/display', locals: {genre: genre}%>
+<%end%>
