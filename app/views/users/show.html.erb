@@ -32,6 +32,9 @@
       <div class="panel panel-default">
         <div class="panel-heading">
             Info
+            <% if @user.id == session[:user_id] %>
+              (<%= link_to 'Edit', edit_user_path %>)
+            <% end %>
         </div>
 
         <ul class="list-group">

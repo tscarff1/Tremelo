@@ -180,10 +180,27 @@ class BandsController < ApplicationController
   def show
     @videos = BandVideo.where(band_id: @band.id)
     @musics = BandMusic.where(band_id: @band.id)
+
+    loggedin_userband = UserBand.find_by(user_id: session[:user_id], band_id: @band.id)
+    @user_verified = false
+    if !loggedin_userband.nil?
+      if loggedin_userband.admin_priveleges == 1
+        @user_verified = true
+      end
+    end
   end
 
   def access_error
 
+  end
+
+  def new_user_search
+    case params[:form]
+    when "stage 1"
+      render partial: 'search_stage_1'
+    else
+      render partial: 'search_stage_1'
+    end
   end
 
   def user_search_results

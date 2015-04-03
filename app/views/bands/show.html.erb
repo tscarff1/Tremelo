@@ -31,6 +31,9 @@
     <div class="panel panel-default">
         <div class="panel-heading">
         	Info
+           <% if @user_verified%>
+              (<%= link_to "Edit", edit_band_path %>)
+          <% end %>
         </div>
 
         <ul class="list-group">
@@ -39,6 +42,7 @@
         <li class="list-group-item text-right">
         	<span class="pull-left">
         		<strong class="">Formed</strong>
+
         	</span>
         	2011
         </li>
@@ -59,7 +63,10 @@
       <!-- Member Panel -->
       <div class="panel panel-default">
         <div class="panel-heading">
-            Members
+            Members 
+            <% if @user_verified%>
+              (<%= link_to "Add new member", search_for_user_band_path %>)
+            <% end %>
         </div>
 
         <ul class="list-group">
@@ -131,13 +138,10 @@
 
       <!-- Prevent anyone but the correct user 
            from seeing the edit link -->
-      <% loggedin_userband = UserBand.find_by(user_id: session[:user_id], band_id: @band.id) %>
-      <% if !loggedin_userband.nil?%>
-	      <% if loggedin_userband.admin_priveleges == 1 %>
-		      
+           <!-- @user_verified is defined in the controller -->
+      <% if @user_verified%>
         <%= button_to 'Edit Profile', edit_band_path(@band),
             class: 'btn btn-block', :method => :get %>
-	      <% end %>
       <% end %>
 
 
@@ -150,6 +154,9 @@
       <div class="panel panel-default">
         <div class="panel-heading"> 
           Bio
+          <% if @user_verified%>
+              (<%= link_to "Edit", edit_band_path %>)
+          <% end %>
         </div>
         <div class="panel-body"> 
           <%= @band.about_me %>
@@ -161,10 +168,8 @@
       <div class="panel panel-default" >
         <div class="panel-heading" contenteditable="false">
           Music
-          <% if !loggedin_userband.nil?%>
-            <% if loggedin_userband.admin_priveleges == 1 %>
+          <% if @user_verified%>
               (<%= link_to "Add/Delete Music", edit_musics_band_path %>)
-            <% end %>
           <% end %>
         </div>
 
@@ -191,6 +196,7 @@
           <%end %>
           </div><!-- End of row -->
         </div>
+      </div>
 		
 
       <!-- Videos Panel -->
@@ -199,10 +205,8 @@
 
         <div class="panel-heading" contenteditable="false">
           Videos 
-          <% if !loggedin_userband.nil?%>
-            <% if loggedin_userband.admin_priveleges == 1 %>
+          <% if @user_verified%>
               (<%= link_to "Add/Delete Videos", edit_videos_band_path %>)
-            <% end %>
           <% end %>
         </div>
 

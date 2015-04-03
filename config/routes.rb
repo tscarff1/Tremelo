@@ -61,6 +61,7 @@ Rails.application.routes.draw do
     resource :band_videos
     member do
       get 'search_for_user'
+      get 'new_search_for_user'
       post 'user_search_results'
       get 'user_search_results'
       put 'add_member'
