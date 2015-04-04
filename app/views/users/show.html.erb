@@ -196,8 +196,7 @@
 
             <h3>Bands</h3>
 
-            <% userbands = UserBand.where(user_id: @user.id) %>
-            <% if userbands.empty? %>
+            <% if @user.bands.empty? %>
             
               <p> 
                 <%= @user.display_name %> does not belong to any bands - yet
@@ -206,8 +205,7 @@
             <% else %>
 
               <ul>
-                <% userbands.each do |userband| %>
-                  <% band = Band.find(userband.band_id) %>
+                <% @user.bands.each do |band| %>
                   <li><%= link_to band.name, band %></li>
                 <% end %>
               </ul>

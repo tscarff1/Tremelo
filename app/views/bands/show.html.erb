@@ -55,7 +55,6 @@
       </ul>
     </div>
 
-    	<% @userbands = UserBand.where(band_id: @band.id) %>
 
       <!-- Member Panel -->
       <div class="panel panel-default">
@@ -65,14 +64,13 @@
 
         <ul class="list-group">
 
-	        <% if @userbands.empty? %>
+	        <% if @band.users.empty? %>
 
 		        <h3> No users are members of this band</h3>
 
 	        <% else %>
 
-	        <% @userbands.each do |userband| %>
-		        <% user = User.find(userband.user_id) %>
+	        <% @band.users.each do |user| %>
 			        <li class="list-group-item text-right">
 			        	<span class="pull-left">
 			        		<strong class="">Role</strong>
@@ -202,18 +200,18 @@
           Videos 
           <% if !loggedin_userband.nil?%>
             <% if loggedin_userband.admin_priveleges == 1 %>
-              (<%= link_to "Add/Delete Videos", edit_videos_band_path %>)
+              (<%= link_to "Add/Delete Videos", new_band_band_video_path(@band) %>)
             <% end %>
           <% end %>
         </div>
 
         <div class="panel-body">
-          <% if !@videos[0].nil? %>
+          <% if !@band.band_videos[0].nil? %>
 
           <div class="row">
           	<div class="col-xs-4 col-md-4" style="overflow-y:scroll; height: 350px">
               <ul>
-          		  <% for video in @videos %>
+          		  <% for video in @band.band_videos %>
                   <%= link_to video.video_name, 
                   fetch_videos_path(video_id: video.id), 
                   remote: true %><hr>

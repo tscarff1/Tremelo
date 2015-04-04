@@ -1,0 +1,19 @@
+<% provide(:title, "Add Videos") %>
+<div class="container">
+  <div class="col-md-8 col-md-offset-2">
+
+    <h1 class="page-heading">More Videos, More Problems</h1>
+    <p class="subtitle">
+      Link your band's music videos from Youtube
+    </p>
+
+    <div class="form-horizontal">
+    <%= form_for [@band, @band_video] do |form| %>
+
+      <%= render partial: form %>
+
+  	<% end %>
+
+  </div>
+  </div>
+</div>

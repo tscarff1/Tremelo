@@ -1,7 +1,8 @@
 class UserBand < ActiveRecord::Base
 	validates :band_id, presence: true
 	validates :user_id, presence: true, uniqueness:{scope: :band_id}
-
+	belongs_to :user
+	belongs_to :band
 	def destroy_duplicates
 		userbands = UserBand.where(band_id: band_id, user_id: user_id)
 		for dup in userbands

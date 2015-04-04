@@ -53,19 +53,15 @@ Rails.application.routes.draw do
   end
 
   resources :bands do
-    resource :band_videos
+    resources :band_videos
     member do
       get 'search_for_user'
       post 'user_search_results'
       get 'user_search_results'
       put 'add_member'
-      get 'edit_videos'
       get 'edit_musics'
       get 'edit_genres'
       put 'update_genres'
-      put 'update_videos'
-      get 'delete_videos'
-      put 'destroy_videos'
       put 'update_musics'
       get 'delete_musics'
       put 'destroy_musics'
@@ -97,8 +93,6 @@ Rails.application.routes.draw do
   get 'help/editing_profile' => 'static_pages/help#editing_profile'
 
   resources :static_pages
-
-  resources :videos
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
