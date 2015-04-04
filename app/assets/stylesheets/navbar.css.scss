@@ -139,7 +139,6 @@ $font-family: Questrial, Arial, sans-serif;
 .gn-menu-main > li > a {
     padding: 0 30px;
     font-weight: bold;
-
 }
 
 .gn-menu-main:after {
@@ -380,7 +379,7 @@ input.gn-search:focus {
 
 .navbar {
     border-right: 1px solid $border-color;
-    border-radius: 0px;
+    border-radius: 0;
 
     #notification {
         margin: 0 -10px 0 -14px;
@@ -401,6 +400,23 @@ input.gn-search:focus {
 // padding for links after logo
 .gn-menu-main > li > a.navbar-links {
     padding: 0 20px;
+}
+
+/* ============================
+--- Notification Icon
+============================= */
+
+.notification-bubble {
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+    position: absolute;
+    padding: 0;
+    top: 10px ;
+    left: 45px;
+    width: 40px;
+    height: 40px;
+    // background-color: $link-color;
+    border: 1px solid white; 
 }
 
 /* ============================

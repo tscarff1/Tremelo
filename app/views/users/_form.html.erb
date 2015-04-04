@@ -26,7 +26,7 @@
  </div>
 
  <div class="form-group required">
-   <div class="col-xs-2 col-md-2">
+   <div class="col-xs-2 col-md-3">
      <%= f.label :dob, "Year Born" %>
      <%= f.select :dob, options_for_select(birth_years, @user.dob), {},
          { :class => 'form-control', :required => "required"} %>
@@ -107,7 +107,7 @@
 
   <% if session[:user_id].nil? %>
     <div class="form-group required">
-      <div class="col-xs-10 col-xs-offset-2 col-md-6">
+      <div class="col-xs-10 col-xs-offset-2 col-md-12 col-md-offset-1">
         <%= f.check_box :password, required: "required" %>
           I am at least 13 years old and agree to Tremelo's 
           <%= link_to "Terms of Service", "#myModal",
@@ -120,9 +120,9 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                  <h4 class="modal-title" id="myModalLabel">
-                    Web Site Terms and Conditions of Use
-                  </h4>
+                  <h3 class="modal-title" id="myModalLabel">
+                    Tremelo Terms and Conditions of Use
+                  </h3>
                 </div>
                 <div class="modal-body">
                   <%= render "/shared/terms_of_service" %>
