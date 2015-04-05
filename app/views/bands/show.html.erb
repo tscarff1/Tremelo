@@ -213,14 +213,14 @@
               <ul>
           		  <% for video in @band.band_videos %>
                   <%= link_to video.video_name, 
-                  fetch_videos_path(video_id: video.id), 
+                  fetch_videos_band_path(id: video.id), 
                   remote: true %><hr>
                 <% end %>
               </ul>
           	</div>
 
             <div id = "video_show" class="col-xs-8 col-md-8">
-              <%= render partial:'band_videos/video_show', 
+              <%= render partial:'video_show', 
               locals: { video: BandVideo.find_by(band_id: @band.id) } %>   
             </div>
 

@@ -98,8 +98,8 @@ class BandsController < ApplicationController
   def upload_pic
   end
 
-  def from_videos
-    @selected = BandVideo.find(params[:video_id])
+  def fetch_videos
+    @band_video = BandVideo.find(params[:id])
     respond_to do |format|
       format.js
     end
