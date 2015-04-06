@@ -102,3 +102,15 @@ $(function() {
         }
     });
 });
+
+// changes notification-bubble colors on mouse hover
+$(document).ready(function($) {
+	$('#notification-area').mouseenter(function() {
+		$("#notification-bubble").css('color', 'orange');
+		$("#notification-bubble").css('background-color', '#424035');
+	});
+	$('#notification-area').mouseleave(function() {
+		$("#notification-bubble").css('color', '#424035');
+		$("#notification-bubble").css('background-color', 'orange');
+	});
+});

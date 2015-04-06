@@ -94,8 +94,11 @@
       <% if logged_in? %>
       
         <li>
-          <a href="<%= notifications_users_path%>" class="navbar">
-            <i id="notification" class="fa fa-music fa-lg fa-2x"></i> 
+          <!-- <a href="<%= notifications_users_path%>" class="navbar"> -->
+          <a href="#" id="notification-area" class="navbar">
+            <i id="notification" class="fa fa-music fa-lg fa-2x">
+              <div id="notification-bubble">2</div>
+            </i>
           </a>
         </li>
 
