@@ -11,8 +11,9 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery.turbolinks
+//= require jquery-ui/effect-bounce
 //= require jquery_ujs
+//= require jquery.turbolinks
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require underscore

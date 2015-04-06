@@ -381,8 +381,8 @@ input.gn-search:focus {
     border-right: 1px solid $border-color;
     border-radius: 0;
 
-    #notification {
-        margin: 0 -10px 0 -14px;
+    #music-note {
+        margin: 10px -10px 0 -14px;
     }
 }
 
@@ -410,12 +410,15 @@ input.gn-search:focus {
     font-family: Montserrat, sans-serif;
     font-size: 12px;
     position: absolute;
-    padding: 0;
-    top: -16px;
+    padding-left: 1px;
+    top: -15px;
     left: 15px;
-    width: 19px;
-    background-color: $link-color;
-    color: $background-color;
+    width: 20px !important;
+    height: 23px !important;
+    background-color: red;
+    color: white;
+    border: 2px solid white;
+    box-shadow: 1px 2px 1px $background-color;
     border-radius: 10px;
 
     // hover color changes use jQuery (@ bottom of gnmenu.js)
