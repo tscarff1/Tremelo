@@ -406,17 +406,19 @@ input.gn-search:focus {
 --- Notification Icon
 ============================= */
 
-.notification-bubble {
+#notification-bubble {
     font-family: Montserrat, sans-serif;
-    font-size: 14px;
+    font-size: 12px;
     position: absolute;
     padding: 0;
-    top: 10px ;
-    left: 45px;
-    width: 40px;
-    height: 40px;
-    // background-color: $link-color;
-    border: 1px solid white; 
+    top: -16px;
+    left: 15px;
+    width: 19px;
+    background-color: $link-color;
+    color: $background-color;
+    border-radius: 10px;
+
+    // hover color changes use jQuery (@ bottom of gnmenu.js)
 }
 
 /* ============================
