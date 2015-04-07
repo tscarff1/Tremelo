@@ -11,8 +11,8 @@ class GenresController < ApplicationController
   end
 
   private
-  def set_band
-    @band = Band.find(params[:id])
+  def set_genre
+    @genre = Genre.find(params[:id])
   end
 
 

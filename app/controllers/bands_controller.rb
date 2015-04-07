@@ -22,6 +22,7 @@ class BandsController < ApplicationController
 
   def create
   	@band = current_user.bands.new(band_params)
+    @genres= Genre.all
     # @userband = UserBand.new(user_id: @user.id, band_id: @band.id, admin_priveleges: 1)
     respond_to do |format|
       if @band.save
@@ -45,6 +46,7 @@ class BandsController < ApplicationController
     if !params[:user_id].nil?
     end
 
+    @genres= Genre.all
     #Now update
     respond_to do |format|
       if @band.update(band_params)

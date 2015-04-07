@@ -10,7 +10,6 @@ class Genre < ActiveRecord::Base
                     }
     before_save :downcase_content
 
-    has_and_belongs_to_many :bands
 
     #Methods to return what the label color should be
   def downcase_content
