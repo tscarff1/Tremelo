@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_secure_password
   has_many :notifications
+  has_many :user_bands
+  has_many :bands, through: :user_bands
 
   validates_acceptance_of :terms
   validates :email, presence: true,

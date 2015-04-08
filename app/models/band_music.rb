@@ -1,6 +1,6 @@
 class BandMusic < ActiveRecord::Base
   validates :embed_html, presence: true
-  validates :music_name, presence: true
+  validates :name, presence: true
   belongs_to :band
 
 

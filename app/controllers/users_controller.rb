@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    @bands = Band.all
   end
 
   # POST /users
@@ -100,6 +101,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @bands = Band.all
   end
 
   def edit_tags
@@ -290,7 +292,7 @@ class UsersController < ApplicationController
                             :email, :email_confirmation, 
                             :password, :password_confirmation, 
                             :profile_picture, 
-                            :address, :city, :state, :dob)
+                            :address, :city, :state, :dob, band_ids: [])
     end
 
     def picture_params

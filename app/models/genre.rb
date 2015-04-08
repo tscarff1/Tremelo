@@ -1,11 +1,20 @@
 class Genre < ActiveRecord::Base
+<<<<<<< HEAD
 	# to display a genre, use the display partial with locals: genre
 	validates :content, presence: true,
+=======
+	
+  has_many :band_genres
+  has_many :bands, through: :band_genres
+
+  validates :content, presence: true,
+>>>>>>> sean_test
                     uniqueness: {case_sensitive: false},
                     format: {
                       with: /^[a-zA-Z]+$/, multiline: true #Allow only alphabetical characters
                     }
     before_save :downcase_content
+
 
     #Methods to return what the label color should be
   def downcase_content
