@@ -7,6 +7,7 @@ class Band < ActiveRecord::Base
 	has_many :genres, through: :band_genres
 	
 	has_many :band_videos, dependent: :destroy
+	has_many :band_musics, dependent: :destroy
 
 	validates :name,
 						presence: true,
