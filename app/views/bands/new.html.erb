@@ -10,30 +10,6 @@
 	</p>
 
 	<%= form_for(@band) do |f| %>
-	<%= render partial: 'shared/error_messages', locals: {obj: f.object} %>
-	<div class="form-group">
-		<div class="row">
-			<div class="col-xs-4 col-md-4">
-				<%= f.label :name, "Name" %>
-				<%= f.text_field :name, class: "form-control" %>
-			</div>
-		</div>
-	</div>
-
-	<div class="form-group">
-		<div class="row">
-			<div class="col-xs-8 col-md-8">
-				<%= f.label :full_address, "Location" %>
-				<%= f.text_field :full_address, class: "form-control" %>
-			</div>
-		</div>
-	</div>
-
-	<div class="form-group">
-			<%= f.label :about_me, "About Me" %>
-			<%= f.text_area :about_me, :size => "10x5", class: "form-control" %>
-	</div>
-
-		<%= f.submit "Create your Band!", class: "btn btn-block"%>
+      <%= render partial: 'form', locals: { f: f } %>
 	<% end %>
 </div>

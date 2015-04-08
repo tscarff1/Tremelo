@@ -26,7 +26,7 @@ class BandsController < ApplicationController
     # @userband = UserBand.new(user_id: @user.id, band_id: @band.id, admin_priveleges: 1)
     respond_to do |format|
       if @band.save
-        format.html { redirect_to @band, notice: 'Welcome to Tremelo!' }
+        format.html { redirect_to new_band_band_music_path(@band), notice: 'Welcome to Tremelo!' }
         format.json { render :show, status: :created, location: @band }
       else
         format.html { render :new}
@@ -322,7 +322,7 @@ class BandsController < ApplicationController
 
   	def band_params
   		params.require(:band).permit(:name, :location, :about_me, :profile_picture,
-       :full_address, :video_link, user_ids: [], genre_ids: [],band_video_attributes: [:video_link, :video_name])
+       :full_address, :video_link, user_ids: [], genre_ids: [],band_video_attributes: [:video_link, :video_name], band_music_attributes: [:name, :embed_html])
   	end
 
     #Method to make sure the logged in user has access to the page

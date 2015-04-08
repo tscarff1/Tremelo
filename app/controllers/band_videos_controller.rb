@@ -25,7 +25,7 @@ class BandVideosController < ApplicationController
   
   def update
     @band_video = @band.band_videos.find(params[:id])
-    if @band_video.update_attributes(todo_item_params)
+    if @band_video.update_attributes(band_video_params)
       flash[:success] = "Saved video."
       redirect_to @band
     else
@@ -44,12 +44,6 @@ class BandVideosController < ApplicationController
     redirect_to @band
 
 	end
-  def from_videos
-    @selected = BandVideo.find(params[:video_id])
-    respond_to do |format|
-      format.js
-    end
-  end
 
   private
   def find_band

@@ -65,7 +65,18 @@ Rails.application.routes.draw do
   end
 
   resources :bands do
-    resources :band_videos
+    resources :band_videos do
+      member do
+        get 'new_band_setup'
+        
+      end
+    end
+    resources :band_musics do
+      collection do
+          get 'new_band_setup'
+          
+      end
+    end
     member do
       get 'fetch_videos'
       get 'search_for_user'
