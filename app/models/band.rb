@@ -1,4 +1,11 @@
 class Band < ActiveRecord::Base
+	
+	has_many :user_bands
+	has_many :users, through: :user_bands
+	
+	has_many :band_genres
+	has_many :genres, through: :band_genres
+	
 	has_many :band_videos, dependent: :destroy
 
 	validates :name,
@@ -121,4 +128,13 @@ class Band < ActiveRecord::Base
 
 		send_notification_to_users(ids, content)
 	end
+
+	# private
+
+	# def update_genres
+	# 	genres.delete_all
+	# 	selected_genres = genres_attributes.nil? ? [] : genres_attributes.keys.collect{|id| Genre.find_by_id(id)}
+	# 	selected_genres.each {|genre| self.genres << genre}
+	# end
+
 end

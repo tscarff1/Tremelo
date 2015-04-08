@@ -58,7 +58,6 @@
       </ul>
     </div>
 
-    	<% @userbands = UserBand.where(band_id: @band.id) %>
 
       <!-- Member Panel -->
       <div class="panel panel-default">
@@ -71,14 +70,13 @@
 
         <ul class="list-group">
 
-	        <% if @userbands.empty? %>
+	        <% if @band.users.empty? %>
 
 		        <h3> No users are members of this band</h3>
 
 	        <% else %>
 
-	        <% @userbands.each do |userband| %>
-		        <% user = User.find(userband.user_id) %>
+	        <% @band.users.each do |user| %>
 			        <li class="list-group-item text-right">
 			        	<span class="pull-left">
 			        		<strong class="">Role</strong>
@@ -205,27 +203,34 @@
 
         <div class="panel-heading" contenteditable="false">
           Videos 
+<<<<<<< HEAD
           <% if @user_verified%>
               (<%= link_to "Add/Delete Videos", edit_videos_band_path %>)
+=======
+          <% if !loggedin_userband.nil?%>
+            <% if loggedin_userband.admin_priveleges == 1 %>
+              (<%= link_to "Add/Delete Videos", new_band_band_video_path(@band) %>)
+            <% end %>
+>>>>>>> b113bb9b6c25a2a43d1c7cf2f297d48cba41fe2f
           <% end %>
         </div>
 
         <div class="panel-body">
-          <% if !@videos[0].nil? %>
+          <% if !@band.band_videos[0].nil? %>
 
           <div class="row">
           	<div class="col-xs-4 col-md-4" style="overflow-y:scroll; height: 350px">
               <ul>
-          		  <% for video in @videos %>
+          		  <% for video in @band.band_videos %>
                   <%= link_to video.video_name, 
-                  fetch_videos_path(video_id: video.id), 
+                  fetch_videos_band_path(id: video.id), 
                   remote: true %><hr>
                 <% end %>
               </ul>
           	</div>
 
             <div id = "video_show" class="col-xs-8 col-md-8">
-              <%= render partial:'band_videos/video_show', 
+              <%= render partial:'video_show', 
               locals: { video: BandVideo.find_by(band_id: @band.id) } %>   
             </div>
 

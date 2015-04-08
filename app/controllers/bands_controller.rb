@@ -1,7 +1,8 @@
 require "net/http"
 
 class BandsController < ApplicationController
-
+  
+  after_action :set_band_admin, only: [:create]
   before_action :set_band, only: [:show, :edit, 
     :edit_genres, :upload_pic, :edit_videos, :edit_musics, 
     :update, :update_genres, :update_pic, :update_videos, :delete_videos, :destroy_videos,
@@ -12,26 +13,21 @@ class BandsController < ApplicationController
   def new
     if !session[:user_id].nil?
   	  @band = Band.new
-      @userband = UserBand.new(user_id: session[:user_id], 
-                            band_id: @band.id, 
-                            admin_priveleges: 1)
-      @band.band_video.build
+      @users = User.all
+      @genres = Genre.all
     else
 
     end
   end
 
   def create
-  	@band = Band.new(band_params)
-    
+  	@band = current_user.bands.new(band_params)
+    @genres= Genre.all
+    # @userband = UserBand.new(user_id: @user.id, band_id: @band.id, admin_priveleges: 1)
     respond_to do |format|
       if @band.save
-        @user = User.find(session[:user_id])
-        @userband = UserBand.new(user_id: @user.id, band_id: @band.id, admin_priveleges: 1)
-          if @userband.save
-            format.html { redirect_to @band, notice: 'Welcome to Tremelo!' }
-            format.json { render :show, status: :created, location: @band }
-          end
+        format.html { redirect_to @band, notice: 'Welcome to Tremelo!' }
+        format.json { render :show, status: :created, location: @band }
       else
         format.html { render :new}
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -50,6 +46,7 @@ class BandsController < ApplicationController
     if !params[:user_id].nil?
     end
 
+    @genres= Genre.all
     #Now update
     respond_to do |format|
       if @band.update(band_params)
@@ -79,6 +76,8 @@ class BandsController < ApplicationController
   end
 
   def edit
+    @users = User.all
+    @genres = Genre.all
   end
 
   def edit_genres
@@ -101,47 +100,41 @@ class BandsController < ApplicationController
   def upload_pic
   end
 
-  def edit_videos
-  end
-
-  def delete_videos
-  end
-
-  def from_videos
-    @selected = BandVideo.find(params[:video_id])
+  def fetch_videos
+    @band_video = BandVideo.find(params[:id])
     respond_to do |format|
       format.js
     end
   end
 
-  def update_videos
-    @bandvideo = BandVideo.new(band_id: @band.id, video_link: params[:video_link], 
-      video_name: params[:video_name])
-    respond_to do |format|
-      if @bandvideo.save && url_exist?(params[:video_link])
-        content = "#{@band.name} has added a new video: #{params[:video_name]}"
-        @band.send_notification_to_members_except(content, session[:user_id])
-        format.html { redirect_to @band, success: 'Video successfully added' }
-        format.json { render :show, status: :created, location: @band }
-      else
-        format.html { render :edit_videos }
-        format.json { render json: @bandvideo.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update_videos
+  #   @bandvideo = BandVideo.new(band_id: @band.id, video_link: params[:video_link], 
+  #     video_name: params[:video_name])
+  #   respond_to do |format|
+  #     if @bandvideo.save && url_exist?(params[:video_link])
+  #       content = "#{@band.name} has added a new video: #{params[:video_name]}"
+  #       @band.send_notification_to_members_except(content, session[:user_id])
+  #       format.html { redirect_to @band, success: 'Video successfully added' }
+  #       format.json { render :show, status: :created, location: @band }
+  #     else
+  #       format.html { render :edit_videos }
+  #       format.json { render json: @bandvideo.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
-  def destroy_videos
-    if(!params[:video_ids].nil?)
-      for video_id in params[:video_ids]
-        video = BandVideo.find(video_id)
-        content = "#{@band.name} has deleted a video: #{video.video_name}"
-        @band.send_notification_to_members_except(content, session[:user_id])
-        video.destroy
-      end
-    end
+  # def destroy_videos
+  #   if(!params[:video_ids].nil?)
+  #     for video_id in params[:video_ids]
+  #       video = BandVideo.find(video_id)
+  #       content = "#{@band.name} has deleted a video: #{video.video_name}"
+  #       @band.send_notification_to_members_except(content, session[:user_id])
+  #       video.destroy
+  #     end
+  #   end
 
-    redirect_to @band
-  end
+  #   redirect_to @band
+  # end
 
   def from_musics
     @selected = BandMusic.find(params[:music_id])
@@ -178,8 +171,8 @@ class BandsController < ApplicationController
   end
 
   def show
-    @videos = BandVideo.where(band_id: @band.id)
     @musics = BandMusic.where(band_id: @band.id)
+<<<<<<< HEAD
 
     loggedin_userband = UserBand.find_by(user_id: session[:user_id], band_id: @band.id)
     @user_verified = false
@@ -188,6 +181,9 @@ class BandsController < ApplicationController
         @user_verified = true
       end
     end
+=======
+    
+>>>>>>> b113bb9b6c25a2a43d1c7cf2f297d48cba41fe2f
   end
 
   def access_error
@@ -326,7 +322,7 @@ class BandsController < ApplicationController
 
   	def band_params
   		params.require(:band).permit(:name, :location, :about_me, :profile_picture,
-       :full_address, :video_link)
+       :full_address, :video_link, user_ids: [], genre_ids: [],band_video_attributes: [:video_link, :video_name])
   	end
 
     #Method to make sure the logged in user has access to the page
@@ -347,5 +343,9 @@ class BandsController < ApplicationController
         end
       end
       @user = User.find(session[:user_id])
+    end
+    def set_band_admin
+
+      UserBand.create(user_id: current_user.id, band_id: @band.id, admin_priveleges: 1)
     end
 end
