@@ -1,0 +1,13 @@
+<%= @search.current_step%><br>
+session: <%= session[:tag_ids] %><br>
+params: <%= params[:tag_ids] %>
+<%= form_tag searches_path, method: :get do %>
+<%= render "#{@search.current_step}_step"%>
+<br>
+<br>
+<br>
+<%= submit_tag "Previous", name: "back" unless @search.first_step? %>
+<%= submit_tag "Next" %><br>
+<br>
+<br>
+<% end%>

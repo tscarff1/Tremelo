@@ -48,6 +48,14 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :searches do
+    collection do
+      
+      get 'create'
+      get 'delete'
+    end
+  end
+
   get 'notifications/destroy' => 'notifications#destroy', as: 'destroy_notification'
 
   resources :messages do
