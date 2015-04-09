@@ -6,7 +6,8 @@ class Tag < ActiveRecord::Base
                       with: /^[a-zA-Z]+$/, multiline: true #Allow only alphabetical characters
                     }
     before_save :downcase_content
-	
+	 has_many :user_tags
+   has_many :users, through: :user_tags
     def downcase_content
     	self.content = content.downcase
     end
