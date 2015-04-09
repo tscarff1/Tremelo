@@ -57,6 +57,11 @@ class UsersController < ApplicationController
    
   end
 
+  def edit
+    @bands = Band.all
+    @tags = Tag.all
+  end
+
   def notifications
     @notifications = BandInvite.where(user_id: @user.id)
   end
