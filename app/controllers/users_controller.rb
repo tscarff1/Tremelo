@@ -10,13 +10,14 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     @bands = Band.all
+    @tags = Tag.all
   end
 
   # POST /users
   # POST /users.json
   def create
     @user = User.new(user_params)
-
+    @tags = Tag.all
     respond_to do |format|
       if @user.save
         session[:user_id] = @user.id
@@ -124,6 +125,7 @@ class UsersController < ApplicationController
       @user.profile_picture.destroy
     end
 
+    @tags = Tag.all
     #Now update
     respond_to do |format|
       if @user.update(user_params)
@@ -290,7 +292,7 @@ class UsersController < ApplicationController
                             :email, :email_confirmation, 
                             :password, :password_confirmation, 
                             :profile_picture, 
-                            :address, :city, :state, :dob, band_ids: [])
+                            :address, :city, :state, :dob, band_ids: [], tag_ids: [])
     end
 
     def picture_params
