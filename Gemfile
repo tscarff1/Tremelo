@@ -21,10 +21,9 @@ gem 'turbolinks'
 gem 'soundcloud'
 gem 'jbuilder',                     '~> 2.0'
 gem 'sdoc',                             '~> 0.4.0', group: :doc
-gem 'faker'
-
 
 group :development, :test do
+  gem 'faker'
   gem 'mina'
   gem 'spring'
   gem 'guard-livereload', require: false
