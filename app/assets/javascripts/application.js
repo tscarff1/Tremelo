@@ -16,6 +16,7 @@
 //= require jquery.turbolinks
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require private_pub
 //= require underscore
 //= require gmaps/google
 //= require_tree .

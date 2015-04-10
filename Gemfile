@@ -3,6 +3,8 @@ ruby '2.1.3'
 
 gem 'rails',                            '~> 4.1.7'
 gem 'paperclip',                        '~> 4.2'
+gem 'private_pub'
+gem 'thin'
 gem 'geocoder'
 gem 'gmaps4rails'
 gem 'auto_html'
