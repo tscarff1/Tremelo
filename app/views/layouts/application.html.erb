@@ -2,11 +2,13 @@
 <html lang="en" class="js no-touch">
 <head>
   <title><%= full_title(yield(:title)) %></title>
+
   <%= stylesheet_link_tag 'application', media: 'all', 
       'data-turbolinks-track' => true %>
   <%= favicon_link_tag "/favicon.ico?1" %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+
   <!-- IE 9 support -->
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.js">

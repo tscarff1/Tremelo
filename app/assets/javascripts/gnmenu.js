@@ -103,14 +103,16 @@ $(function() {
     });
 });
 
+// notification stuff
 $(document).ready(function($) {
 
 	var $bubble = $("#notification-bubble");
 	var $notify_area = $("#notification-area");
 	var val = 0;
 
-	if (val == 0)
+	if (val == 0) {
 		$bubble.hide();
+	}
 
 	// changes notification-bubble colors on mouse hover
 	$notify_area.mouseenter(function() {
@@ -128,7 +130,6 @@ $(document).ready(function($) {
 
 		$bubble.text(val);
 		$bubble.effect("bounce", 400);
-
 	});
 });
 

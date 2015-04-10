@@ -1,14 +1,11 @@
 class Genre < ActiveRecord::Base
-<<<<<<< HEAD
 	# to display a genre, use the display partial with locals: genre
 	validates :content, presence: true,
-=======
 	
   has_many :band_genres
   has_many :bands, through: :band_genres
 
   validates :content, presence: true,
->>>>>>> b113bb9b6c25a2a43d1c7cf2f297d48cba41fe2f
                     uniqueness: {case_sensitive: false},
                     format: {
                       with: /^[a-zA-Z]+$/, multiline: true #Allow only alphabetical characters
