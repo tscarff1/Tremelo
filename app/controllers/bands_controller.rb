@@ -107,6 +107,9 @@ class BandsController < ApplicationController
     end
   end
 
+  def edit_videos
+    redirect_to new_band_band_video_path(@band)
+  end
   # def update_videos
   #   @bandvideo = BandVideo.new(band_id: @band.id, video_link: params[:video_link], 
   #     video_name: params[:video_name])
@@ -172,8 +175,6 @@ class BandsController < ApplicationController
 
   def show
     @musics = BandMusic.where(band_id: @band.id)
-<<<<<<< HEAD
-
     loggedin_userband = UserBand.find_by(user_id: session[:user_id], band_id: @band.id)
     @user_verified = false
     if !loggedin_userband.nil?
@@ -181,9 +182,6 @@ class BandsController < ApplicationController
         @user_verified = true
       end
     end
-=======
-    
->>>>>>> b113bb9b6c25a2a43d1c7cf2f297d48cba41fe2f
   end
 
   def access_error

@@ -1,6 +1,6 @@
 class Genre < ActiveRecord::Base
 	# to display a genre, use the display partial with locals: genre
-	validates :content, presence: true,
+	validates :content, presence: true
 	
   has_many :band_genres
   has_many :bands, through: :band_genres

@@ -16,7 +16,7 @@
       <h1 class="display-name"><%= @user.display_name %></h1>
 
       <!-- Find all tags for the user and display-->
-      <% for user_tag in UserTags.where(user_id: @user.id) %>
+      <% for user_tag in UserTag.where(user_id: @user.id) %>
         <% tag = Tag.find(user_tag.tag_id) %>
        <%= render partial: '/tags/display', locals: {tag: tag} %>
 

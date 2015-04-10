@@ -166,15 +166,8 @@
       <div class="panel panel-default" >
         <div class="panel-heading" contenteditable="false">
           Music
-<<<<<<< HEAD
           <% if @user_verified%>
               (<%= link_to "Add/Delete Music", edit_musics_band_path %>)
-=======
-          <% if !loggedin_userband.nil?%>
-            <% if loggedin_userband.admin_priveleges == 1 %>
-                (<%= link_to "Add Music", new_band_band_music_path(@band) %>)
-            <% end %>
->>>>>>> 8742da85a15f6a1e100423149b5528376d5ad825
           <% end %>
         </div>
 
@@ -210,15 +203,8 @@
 
         <div class="panel-heading" contenteditable="false">
           Videos 
-<<<<<<< HEAD
           <% if @user_verified%>
               (<%= link_to "Add/Delete Videos", edit_videos_band_path %>)
-=======
-          <% if !loggedin_userband.nil?%>
-            <% if loggedin_userband.admin_priveleges == 1 %>
-              (<%= link_to "Add/Delete Videos", new_band_band_video_path(@band) %>)
-            <% end %>
->>>>>>> b113bb9b6c25a2a43d1c7cf2f297d48cba41fe2f
           <% end %>
         </div>
 

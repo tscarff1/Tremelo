@@ -25,7 +25,6 @@ Rails.application.routes.draw do
   get 'bands/:id/upload_pic' => 'bands#upload_pic'
   get 'bands/:id/access_error' => 'bands#access_error'
   get 'bands/:id/search_for_user' => 'bands#search_for_user'
-  get 'bands/:id/edit_videos' => 'bands#edit_videos', as: :edit_videos
   get '/fetch_musics' => 'band_musics#from_music', as: 'fetch_musics'
 
   get 'search_user' => 'users#search'
@@ -65,6 +64,10 @@ Rails.application.routes.draw do
   end
 
   resources :bands do
+    member do
+       get 'edit_videos'
+    end
+
     resources :band_videos do
       member do
         get 'new_band_setup'
