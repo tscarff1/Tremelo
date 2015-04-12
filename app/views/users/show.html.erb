@@ -124,7 +124,7 @@
       <!-- Prevent anyone but the correct user 
            from seeing the edit link -->
       <% if @user.id == session[:user_id] %>
-        <%= button_to 'Edit Profile', edit_user_path(@user),
+        <%= button_to 'Edit Profile', edit_user_path,
             class: 'btn btn-block', :method => :get %>
       <% end %>
 
@@ -137,7 +137,7 @@
           About Me
           <!-- If user is logged in, provide a link to the edit page -->
           <% if @user.id == session[:user_id] %>
-            ( <%= link_to 'Edit', edit_user_path(@user) %>)
+            ( <%= link_to 'Edit', edit_user_path %>)
           <% end %>
 
         </div>
@@ -170,7 +170,7 @@
 
                   <div class="thumbnail">
                     <%= band.name %>
-                    <%= link_to (image_tag band.profile_picture.url(:thumb)), band %>
+                    <%= link_to (image_tag band.profile_picture.url(:thumb)), band_path(band.name) %>
                   </div>
                 </div>
 
@@ -192,7 +192,7 @@
               <ul>
                 <% if !@user.nearbys(20).nil? %>
                 <% for nearby_user in @user.nearbys(20) %>
-                <li> <%= link_to nearby_user.display_name, nearby_user%> 
+                <li> <%= link_to nearby_user.display_name, nearby_user.display_name%> 
                   (<%= nearby_user.distance.round(2) %> miles )</li>
                   <%end%>
                   <%else%>

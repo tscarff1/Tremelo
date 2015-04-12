@@ -6,6 +6,9 @@ class UsersController < ApplicationController
 
   before_action :verify_correct_user, only: [:edit, :edit_tags, :upload_pic, :notifications]
 
+  # URLs now dsplay with form users/:display_name, so paths need to be pass as name_of_path(user.display_name)
+  # or in some cases, just user.display_name
+
   # GET /users/new
   def new
     @user = User.new
@@ -286,7 +289,7 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = User.find(params[:id])
+      @user = User.find_by(display_name: params[:display_name])
     end
 
     def set_user_by_session

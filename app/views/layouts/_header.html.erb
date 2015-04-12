@@ -102,7 +102,7 @@
         </li>
 
         <li>
-          <%= link_to "Hi, " + @user.display_name, current_user,
+          <%= link_to "Hi, " + @user.display_name, user_path(display_name: @user.display_name),
               class: "navbar navbar-links" %>
         </li>
 

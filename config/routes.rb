@@ -12,37 +12,28 @@ Rails.application.routes.draw do
   get "/logout" => "user_sessions#destroy", as: :logout
   delete "/logout" => "user_sessions#destroy"
 
-  get 'users/leave_band' => "users#leave_band"
-  get 'users/:id/upload_pic' => "users#upload_pic"
   get 'users/nearby_users' => "users#index"
 
-  get 'users/:id/edit_tags' => "users#edit_tags"
-  get 'users/:id/access_error' => 'users#access_error'
-
-  get 'search_user' => 'users#search'
-  get 'users/search_results' => 'users#search_results'
-
-  get 'bands/:id/upload_pic' => 'bands#upload_pic'
-  get 'bands/:id/access_error' => 'bands#access_error'
-  get 'bands/:id/search_for_user' => 'bands#search_for_user'
   get '/fetch_musics' => 'band_musics#from_music', as: 'fetch_musics'
-
-  get 'search_user' => 'users#search'
-  get 'users/search_results' => 'users#search_results'
 
   get 'search_band' => 'bands#search'
   get 'bands/search_results' => 'bands#search_results'
   
-  resources :users do
+  resources :users, param: :display_name do
     member do
+      get 'upload_pic'
       put 'update_pic'
+      get 'edit_tags'
     end
     collection do
       get 'notifications'
       put 'update_tags'
-      get 'search'
+      get 'search_user'
+      get 'search_results'
       post 'search_results'
       get 'accept_band'
+      get 'leave_band'
+      get 'access_error'
     end
   end
 
@@ -51,6 +42,7 @@ Rails.application.routes.draw do
       
       get 'create'
       get 'delete'
+      get 'new'
     end
   end
 
@@ -63,10 +55,30 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :bands do
+  resources :bands, param: :name do
+
     member do
-       get 'edit_videos'
+      get 'fetch_videos'
+      get 'search_for_user'
+      get 'new_search_for_user'
+      post 'user_search_results'
+      get 'user_search_results'
+      put 'add_member'
+      get 'upload_pic'
+      get 'edit_videos'
+      get 'edit_musics'
+      get 'edit_genres'
+      put 'update_genres'
+      put 'update_musics'
+      get 'delete_musics'
+      put 'destroy_musics'
     end
+    collection do
+      get 'search_for_user'
+      get 'search'
+      post 'search_results'
+      get 'access_error'
+    end 
 
     resources :band_videos do
       member do
@@ -77,32 +89,8 @@ Rails.application.routes.draw do
     resources :band_musics do
       collection do
           get 'new_band_setup'
-          
+          get 'edit'
       end
-    end
-    member do
-      get 'fetch_videos'
-      get 'search_for_user'
-      get 'new_search_for_user'
-      post 'user_search_results'
-      get 'user_search_results'
-      put 'add_member'
-      get 'edit_musics'
-      get 'edit_genres'
-      put 'update_genres'
-      put 'update_musics'
-      get 'delete_musics'
-      put 'destroy_musics'
-    end
-    collection do
-      post 'upload_pic'
-      get 'search'
-      post 'search_results'
-
-    end
-
-    collection do
-      get 'access_error'
     end
   end
   resources :userbands
