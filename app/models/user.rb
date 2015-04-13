@@ -32,7 +32,9 @@ class User < ActiveRecord::Base
                   :styles => { medium: "300x300#", small: "150x150#",thumb: "60x60#"})
   validates_attachment_content_type :profile_picture, content_type: /\Aimage\/.*\Z/
 
-
+  def to_param
+    display_name
+  end
 
   def downcase_email
     self.email = email.downcase
