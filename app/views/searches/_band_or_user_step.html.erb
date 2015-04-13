@@ -1,7 +1,7 @@
 Search for a Band or User?<br>
 <%= label_tag "Band" %>
-<%= radio_button_tag "band_or_user", "band", session[:band_or_user] == "band" %>
+<%= radio_button_tag "band_or_user", "band", session[:search_params]["band_or_user"] == "band" %>
 <br>
 <%= label_tag "User" %>
-<%= radio_button_tag "band_or_user", "user", session[:band_or_user] == "user" %>
+<%= radio_button_tag "band_or_user", "user", session[:search_params]["band_or_user"] == "user" %>
 <br>
