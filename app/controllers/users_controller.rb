@@ -108,11 +108,6 @@ class UsersController < ApplicationController
   def access_error
   end
 
-  # GET /users/1/edit
-  def edit
-    @bands = Band.all
-  end
-
   def edit_tags
   end
 
