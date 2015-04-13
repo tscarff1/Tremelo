@@ -167,7 +167,7 @@
         <div class="panel-heading" contenteditable="false">
           Music
           <% if @user_verified%>
-              (<%= link_to "Add/Delete Music", edit_musics_band_path %>)
+              (<%= link_to "Add/Delete Music", edit_musics_band_path(@band.name) %>)
           <% end %>
         </div>
 
@@ -204,7 +204,7 @@
         <div class="panel-heading" contenteditable="false">
           Videos 
           <% if @user_verified%>
-              (<%= link_to "Add/Delete Videos", edit_videos_band_path %>)
+              (<%= link_to "Add/Delete Videos", edit_videos_band_path(@band.name) %>)
           <% end %>
         </div>
 
