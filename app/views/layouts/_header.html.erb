@@ -143,4 +143,6 @@
   </div>
 </header>
 
-<button id="test-button">Test notifications</button>
+<%= form_for Notification.new, remote: true do |f| %>
+  <%= f.submit "Create Notification", id: "test-button" %>
+<% end %>
