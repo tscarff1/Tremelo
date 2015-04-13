@@ -1,0 +1,10 @@
+<h3> Search Results </h3><br>
+<%= link_to "Start Over?",  new_search_path %><br>
+
+<% for result in results%>
+	<% if session[:search_params]["band_or_user"] == "user" %>
+		<%= render partial: '/users/user_result', locals: {user: result}%><br>
+	<% elsif session[:search_params]["band_or_user"] == "band" %>
+		<%= render partial: '/bands/band_result', locals: {band: result}%><br>
+	<%end%>
+<%end%>

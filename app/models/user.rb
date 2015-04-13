@@ -67,12 +67,12 @@ class User < ActiveRecord::Base
   #--------------------------- Tag stuff ------------------------------------
 
   def num_tags
-    usertags = UserTags.where(user_id: self.id)
+    usertags = UserTag.where(user_id: self.id)
     return usertags.count
   end
 
   def get_tags
-    usertags = UserTags.where(user_id: self.id)
+    usertags = UserTag.where(user_id: self.id)
     tags = []
     for usertag in usertags
       tags.push(usertag.tag_id)
@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
 
   def has_at_least_one_tag_from?(tag_ids)
     for tag_id in tag_ids
-      if !UserTags.find_by(tag_id: tag_id, user_id: self.id).nil?
+      if !UserTag.find_by(tag_id: tag_id, user_id: self.id).nil?
         return true
       end
     end
@@ -110,7 +110,7 @@ class User < ActiveRecord::Base
   end
 
   def get_matching_tag_ids(tag_ids)
-    usertags = UserTags.find_by(user_id: self.id)
+    usertags = UserTag.find_by(user_id: self.id)
     matching = []
     for usertag in UserTags
       if tag_ids.include?(usertag.id)

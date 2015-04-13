@@ -1,4 +1,4 @@
-<% if session[:band_or_user] == "user" %>
+<% if session[:search_params]["band_or_user"] == "user" %>
 	<% tags = Tag.all %>
 	<% tagtype = "instrument" %>
 <% else %>
@@ -6,13 +6,13 @@
 	<%tagtype = "genre" %>
 <% end %>
 
-<%= label_tag "Tags"%> (returns <%=session[:band_or_user] %>s with any tags checked)<br>
+<%= label_tag "Tags"%> (returns <%=session[:search_params]["band_or_user"] %>s with any tags checked)<br>
 	<% for tag in tags %>
-		<% if session[:tag_ids].nil? %> 
+		<% if session[:search_params]["tag_ids"].nil? %> 
 			<%= check_box_tag "tag_ids[]", tag.id %>
 		<%else%>
 		<!-- I'm sure there is a better way to determine which are checked, but I don't know-->
-			<% if session[:tag_ids].include?(tag.id.to_s) %>
+			<% if session[:search_params]["tag_ids"].include?(tag.id.to_s) %>
 				<%= check_box_tag "tag_ids[]", tag.id, {checked: true}%>
 			<%else%>
 				<%= check_box_tag "tag_ids[]", tag.id%>

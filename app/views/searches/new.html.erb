@@ -1,14 +1,16 @@
 <%= @search.current_step%><br>
-session: <%= session[:tag_ids] %><br>
-params: <%= params[:tag_ids] %>
+
+<%= @search.search_params%><br>
+
 <%= form_tag searches_path, method: :get do %>
-<%= render "#{@search.current_step}_step"%>
+<%= render partial: "#{@search.current_step}_step", locals: {results: @results}%>
 <br>
 <br>
 <br>
 <%= submit_tag "Previous", name: "back" unless @search.first_step? %>
 <%= submit_tag "Next" unless @search.last_step? %>
-<%= submit_tag "Search", name: "search" if @search.last_step? %><br>
 <br>
 <br>
 <% end%>
+
+
