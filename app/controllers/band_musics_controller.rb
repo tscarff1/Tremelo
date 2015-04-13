@@ -51,11 +51,11 @@ class BandMusicsController < ApplicationController
   end
   private
   def find_band
-    @band = current_user.bands.find(params[:band_id])
+    @band = Band.find_by(name: params[:band_name])
   end
 
   def band_music_params
-    params.require(:band_music).permit(:embed_html, :name, band_attributes: [:id])
+    params.require(:band_music).permit(:embed_html, :name, band_attributes: [:name])
   end
 
 end

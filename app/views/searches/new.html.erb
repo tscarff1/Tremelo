@@ -7,7 +7,8 @@ params: <%= params[:tag_ids] %>
 <br>
 <br>
 <%= submit_tag "Previous", name: "back" unless @search.first_step? %>
-<%= submit_tag "Next" %><br>
+<%= submit_tag "Next" unless @search.last_step? %>
+<%= submit_tag "Search", name: "search" if @search.last_step? %><br>
 <br>
 <br>
 <% end%>

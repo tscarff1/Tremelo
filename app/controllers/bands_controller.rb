@@ -107,8 +107,12 @@ class BandsController < ApplicationController
     end
   end
 
-  def edit_videos
+  def add_video
     redirect_to new_band_band_video_path(@band)
+  end
+
+  def edit_musics
+    redirect_to edit_band_band_musics_path(@band.name)
   end
   # def update_videos
   #   @bandvideo = BandVideo.new(band_id: @band.id, video_link: params[:video_link], 
@@ -315,7 +319,7 @@ class BandsController < ApplicationController
 
   private
     def set_band
-      @band = Band.find(params[:id])
+      @band = Band.find_by(name: params[:name])
     end
 
   	def band_params
