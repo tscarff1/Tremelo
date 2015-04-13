@@ -102,34 +102,3 @@ $(function() {
         }
     });
 });
-
-// notification stuff
-$(document).ready(function($) {
-
-	var $bubble = $("#notification-bubble");
-	var $notify_area = $("#notification-area");
-	var val = 0;
-
-	if (val == 0) {
-		$bubble.hide();
-	}
-
-	// changes notification-bubble colors on mouse hover
-	$notify_area.mouseenter(function() {
-		$bubble.css('color', 'orange');
-		$bubble.css('background-color', '#424035');
-	});
-	$notify_area.mouseleave(function() {
-		$bubble.css('color', 'white');
-		$bubble.css('background-color', 'red');
-	});
-
-	// notification-bubble animation when a new notification is recieved
-	$("#test-button").click(function(event) {
-		val++;
-
-		$bubble.text(val);
-		$bubble.effect("bounce", 400);
-	});
-});
-

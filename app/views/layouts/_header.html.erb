@@ -144,6 +144,41 @@
   </div>
 </header>
 
-<%= form_for Notification.new do |f| %>
-  <%= f.submit "Create Notification", id: "test-button" %>
+<%= form_tag new_notification_path do |f| %>
+  <%= submit_tag "Create Notification", id: "test-button" %>
 <% end %>
+
+<script type="text/javascript">
+
+  // notification stuff
+  $(document).ready(function($) {
+
+    var $bubble = $("#notification-bubble");
+    var $notify_area = $("#notification-area");
+    var val = <%= @user.num_notifications %>;
+
+    if (val == 0) {
+      $bubble.hide();
+    } else {
+      $bubble.text(val);
+    }
+
+    // changes notification-bubble colors on mouse hover
+    $notify_area.mouseenter(function() {
+      $bubble.css('color', 'orange');
+      $bubble.css('background-color', '#424035');
+    });
+    $notify_area.mouseleave(function() {
+      $bubble.css('color', 'white');
+      $bubble.css('background-color', 'red');
+    });
+
+    // notification-bubble animation when a new notification is recieved
+    $("#test-button").click(function(event) {
+
+      $bubble.text(val);
+      $bubble.effect("bounce", 400);
+    });
+  });
+
+</script>

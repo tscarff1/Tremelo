@@ -37,7 +37,6 @@ Rails.application.routes.draw do
 
   resources :searches do
     collection do
-      
       get 'create'
       get 'delete'
       get 'new'
@@ -45,9 +44,12 @@ Rails.application.routes.draw do
   end
 
   resources :notifications do
+    member do
+      get "destroy", as: "destroy"
+    end
     collection do
-      get "destroy"
-      post "destroy"
+      get "new"
+      post "new"
     end
   end
 

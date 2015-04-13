@@ -66,7 +66,7 @@ class UsersController < ApplicationController
   end
 
   def notifications
-    @notifications = BandInvite.where(user_id: @user.id)
+    @notifications = Notification.where(user_id: @user.id)
   end
 
   def accept_band
