@@ -81,7 +81,7 @@
 			        	<span class="pull-left">
 			        		<strong class="">Role</strong>
 			        	</span>
-			        	<%= link_to "#{user.first_name} #{user.last_name}", user %>
+			        	<%= link_to "#{user.first_name} #{user.last_name}", user_path(user.display_name) %>
 			        </li>
 		        <% end %>
 	        <% end %>
