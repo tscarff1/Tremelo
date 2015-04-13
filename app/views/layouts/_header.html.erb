@@ -32,7 +32,7 @@
                 </li>
 
                 <li>
-                  <%= link_to "My Profile", current_user,
+                  <%= link_to "My Profile", user_path(current_user.display_name),
                     class: "gn-icon gn-icon-profile" %>
                 </li>
 
@@ -44,7 +44,7 @@
                       <% band = Band.find(band_id) %>
 
                       <li>
-                        <%= link_to band.name, band,
+                        <%= link_to band.name, band_path(band.name),
                           class: "gn-icon gn-icon-band" %>
                       </li>
                     
