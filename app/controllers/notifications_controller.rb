@@ -1,8 +1,9 @@
 class NotificationsController < ApplicationController
 
-  # def create
-  #   @notifications = Notification.create!
-  # end
+  def new
+    notification = Notification.create(user_id: session[:user_id],
+                                        content: "Why")
+  end
 
   def destroy
   	if (!params[:id].nil?) 

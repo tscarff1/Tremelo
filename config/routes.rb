@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'notifications/destroy'
-
   resources :tags
 
   get 'user_bands/destroy'
@@ -46,7 +44,12 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'notifications/destroy' => 'notifications#destroy', as: 'destroy_notification'
+  resources :notifications do
+    collection do
+      get "destroy"
+      post "destroy"
+    end
+  end
 
   resources :messages do
     collection do
