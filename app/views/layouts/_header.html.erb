@@ -144,9 +144,11 @@
   </div>
 </header>
 
-<%= form_tag new_notification_path do |f| %>
+<%= form_tag new_notification_path, remote: true do |f| %>
   <%= submit_tag "Create Notification", id: "test-button" %>
 <% end %>
+
+<%= subscribe_to "/notifications/new" %>
 
 <script type="text/javascript">
 
@@ -176,8 +178,10 @@
     // notification-bubble animation when a new notification is recieved
     $("#test-button").click(function(event) {
 
-      $bubble.text(val);
-      $bubble.effect("bounce", 400);
+      <% publish_to "/notifications/new" do %>
+        $bubble.text(val);
+        $bubble.effect("bounce", 400);
+      <% end %>
     });
   });
 
