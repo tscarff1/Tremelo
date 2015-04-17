@@ -1,13 +1,18 @@
 class Band < ActiveRecord::Base
-	
-	has_many :user_bands
+	# these are for the signup steps
+	attr_writer :current__signup_step
+	attr_writer :signup_params
+
+	#The has_many associations: users(user_bands), genres(band_genres), band_videos, band_musics
+	has_many :user_bands, dependent: :destroy
 	has_many :users, through: :user_bands
 	
-	has_many :band_genres
+	has_many :band_genres, dependent: :destroy
 	has_many :genres, through: :band_genres
 	
 	has_many :band_videos, dependent: :destroy
 	has_many :band_musics, dependent: :destroy
+
 
 	validates :name,
 						presence: true,
@@ -25,7 +30,36 @@ class Band < ActiveRecord::Base
 	SOUNDCLOUD_CLIENT_SECRET = "71cecfc3f8620b57e03aec7b2b3e2cc3"
 
 	#Signing up stuff
+	def signup_steps
+		%w[basic genres members videos music]
+	end
 
+	def current_signup_step
+		return @current_signup_step || self.signup_steps.first
+	end
+
+	def signup_params
+		return @signup_params || nil
+	end
+
+	def next_step
+		self.current_signup_step = signup_steps[signup_steps.index(current_signup_step)+1]
+	end
+
+	def prev_step
+		self.current_signup_step = signup_steps[signup_steps.index(current_signup_step)-1]
+	end
+
+	def first_step?
+		current_signup_step == signup_steps.first
+	end
+
+	def last_step?
+		current_signup_step == signup_steps.last
+	end
+
+
+	# Some unused soundcloud stuff
 	def self.SOUNDCLOUD_CLIENT_ID
 		SOUNDCLOUD_CLIENT_ID
 	end

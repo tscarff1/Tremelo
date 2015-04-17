@@ -1,15 +1,14 @@
-<div class="container">
+<%= @band.current_signup_step%><br>
 
-	<% user = User.find(session[:user_id]) %>
-	<h1 class="page-heading">
-		<%= user.display_name %>'s new BAND!
-	</h1>
+<%= @band.signup_params%><br>
 
-	<p class="subtitle">
-		This page will be significantly different later...Or will it? j/k
-	</p>
-
-	<%= form_for(@band) do |f| %>
-      <%= render partial: 'form', locals: { f: f } %>
-	<% end %>
-</div>
+<%= form_tag searches_path, method: :get do %>
+<%= render partial: "#{@band.current_signup_step}_step"%>
+<br>
+<br>
+<br>
+<%= submit_tag "Previous", name: "back" unless @band.first_step? %>
+<%= submit_tag "Next" unless @band.last_step? %>
+<br>
+<br>
+<% end%>

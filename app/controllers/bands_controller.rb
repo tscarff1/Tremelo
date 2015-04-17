@@ -10,9 +10,48 @@ class BandsController < ApplicationController
     :destroy, :access_error,  :add_member, :destroy_videos]
   before_action :verify_admin, only: [:edit, :upload_pic, :edit_videos, :delete_videos, :edit_genres]
 
+  
+
+  #New for the mulipage signup
   def new
+    session[:band_params] = Hash.new()
+    @band = Band.new
+  end
+
+  def create
+    @band = Band.new(current_signup_step: session[:band_params]["signup_step"])
+    @band.current_signup_step = session[:band_params]["signup_step"]
+
+    # Set only vars in the session that are changed
+    if(@search.current_step == "basic")
+      session[:band_params]["basic"] = params[:basic] 
+
+    elsif @search.current_step == "genres"
+      session[:band_params][:genre_ids] = params[:genre_ids]  
+
+    else
+      
+    end
+
+
+    if params[:back]
+      @band.prev_step
+    else
+      @band.next_step
+    end
+
+    @band.signup_params = session[:signup_params] 
+    session[:signup_params]["signup_step"] = @band.current_signup_step
+    if @band.last_step?
+      
+    end
+    render "new"
+  end
+
+  #Original new and create
+  def old_new
     if !session[:user_id].nil?
-  	  @band = Band.new
+      @band = Band.new
       @users = User.all
       @genres = Genre.all
     else
@@ -20,7 +59,7 @@ class BandsController < ApplicationController
     end
   end
 
-  def create
+  def old_create
   	@band = current_user.bands.new(band_params)
     @genres= Genre.all
     # @userband = UserBand.new(user_id: @user.id, band_id: @band.id, admin_priveleges: 1)
