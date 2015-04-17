@@ -188,4 +188,12 @@ class User < ActiveRecord::Base
     return Notification.where(user_id: id).count
   end
 
+  def self.num_notifications_for(user)
+    if user.nil?
+      0
+    else
+      user.num_notifications
+    end
+  end
+
 end
