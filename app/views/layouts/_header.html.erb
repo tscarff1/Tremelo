@@ -144,9 +144,8 @@
   </div>
 </header>
 
-<%= form_tag new_notification_path, remote: true do |f| %>
-  <%= submit_tag "Create Notification", id: "test-button" %>
-<% end %>
+<%= button_to "Create Notification", test_notifications_path,
+    remote: true, id: "test-button" %>
 
 <script type="text/javascript">
 
@@ -155,8 +154,7 @@
 
     var $bubble = $("#notification-bubble");
     var $notify_area = $("#notification-area");
-    var val = <%= @user.num_notifications %>;
-
+    var val = <%= User.num_notifications_for(@user) %>;
     if (val == 0) {
       $bubble.hide();
     } else {
@@ -175,7 +173,6 @@
 
     // notification-bubble animation when a new notification is recieved
     $("#test-button").click(function(event) {
-
         $bubble.text(val);
         $bubble.effect("bounce", 400);
     });
