@@ -45,7 +45,7 @@ class BandsController < ApplicationController
 
     if !params[:user_id].nil?
     end
-
+    
     @genres= Genre.all
     #Now update
     respond_to do |format|

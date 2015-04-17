@@ -66,7 +66,7 @@ class UsersController < ApplicationController
   end
 
   def notifications
-    @notifications = BandInvite.where(user_id: @user.id)
+    @notifications = Notification.where(user_id: @user.id)
   end
 
   def accept_band
@@ -128,7 +128,12 @@ class UsersController < ApplicationController
       @user.profile_picture.destroy
     end
 
+    if !session[:user_id].nil?
+      user_params[:email_confirmation] = user_params[:email]
+    end
+
     @tags = Tag.all
+    @user.updating = true
     #Now update
     respond_to do |format|
       if @user.update(user_params)
