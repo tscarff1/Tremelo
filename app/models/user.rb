@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
+  attr_writer :updating # for checking if we are creating this user, or updating it
 
   has_many :notifications
   
@@ -18,7 +19,7 @@ class User < ActiveRecord::Base
                       with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
                     },
                     confirmation: true
-  validates :email_confirmation, presence: true
+  validates :email_confirmation, presence: true, unless: :updating?
 
   before_save :downcase_email
 
@@ -31,6 +32,10 @@ class User < ActiveRecord::Base
                   :default_url => 'user/profile_pictures/default_:style.png',
                   :styles => { medium: "300x300#", small: "150x150#",thumb: "60x60#"})
   validates_attachment_content_type :profile_picture, content_type: /\Aimage\/.*\Z/
+
+  def updating?
+    return @updating || false
+  end
 
   def to_param
     display_name
