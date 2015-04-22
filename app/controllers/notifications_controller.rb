@@ -10,6 +10,11 @@ class NotificationsController < ApplicationController
     redirect_to params[:current_page]
   end
 
+  def index
+    @user = User.find(session[:user_id])
+    @notifications = Notification.where(user_id: @user.id)
+  end
+
   def destroy
   	if (!params[:id].nil?) 
   		note = Notification.find(params[:id])
