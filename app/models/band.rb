@@ -24,6 +24,8 @@ class Band < ActiveRecord::Base
 	SOUNDCLOUD_CLIENT_ID = "957c34cadbaefe85378c2014b12227a5"
 	SOUNDCLOUD_CLIENT_SECRET = "71cecfc3f8620b57e03aec7b2b3e2cc3"
 
+	#Signing up stuff
+
 	def self.SOUNDCLOUD_CLIENT_ID
 		SOUNDCLOUD_CLIENT_ID
 	end

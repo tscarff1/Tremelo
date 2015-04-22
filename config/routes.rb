@@ -53,6 +53,7 @@ Rails.application.routes.draw do
       get "create"
       get "index"
       get "test"
+      get "index", as: "index"
     end
   end
 
