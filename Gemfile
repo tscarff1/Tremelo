@@ -22,6 +22,8 @@ gem 'turbolinks'
 gem 'soundcloud'
 gem 'jbuilder',                       '~> 2.0'
 gem 'sdoc',                           '~> 0.4.0', group: :doc
+gem 'wicked'
+gem 'nested_form'
 
 group :development, :test do
   gem 'faker'

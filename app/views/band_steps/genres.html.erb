@@ -1,0 +1,12 @@
+<h3> What Genres does your Band play? </h3>
+
+<%= render layout:'form' do |band_form| %>
+	 <% Genre.all.each do |genre|%>
+        <%= check_box_tag "band[genre_ids][]", genre.id,
+        @band.genres.include?(genre)%>
+        <%= genre.content %><br>
+     <% end %>
+    
+<%end%>
+ <%= link_to "skip this step", next_wizard_path %><br>
+     <%= link_to "Back", previous_wizard_path %>

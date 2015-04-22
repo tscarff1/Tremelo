@@ -19,6 +19,7 @@
 //= require underscore
 //= require gmaps/google
 //= require_tree .
+//= require jquery_nested_form
 
 // allows the hiding/closing of the flash message when
 // clicking on the 'X'
@@ -27,3 +28,9 @@ $(document).ready(function() {
         $(".flash.alert-box").slideUp("fast");
     });
 });
+
+// Allows deleting menu items dynamically on forms (such as adding members in the band sign up)
+function remove_fields(link){
+	$(link).previous("input[type=hidden]").value = "1";
+	$(link).up(".fields").hide()
+} 

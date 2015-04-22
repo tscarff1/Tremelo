@@ -1,0 +1,10 @@
+members
+<%= @band.name %>
+<%= params %>
+<br>
+<% @band.genres.each do |g|%>
+<%= g.content %><br>
+<% end %>
+<%= session[:band_id] %>
+<br>
+<%= link_to "Back", previous_wizard_path %>

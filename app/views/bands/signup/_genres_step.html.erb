@@ -1,0 +1,16 @@
+<% genres = Genre.all %>
+<div class="form-group">
+      <div class="col-xs-6 col-md-6">
+        <h3> What genres does your band play? </h3>
+        <br />
+        <% genres.each do |genre| %>
+          <!-- I'm sure there is a better way to determine which are checked, but I don't know-->
+			<% if session[:band_params]["genre_ids"].include?(genre.id.to_s) %>
+				<%= check_box_tag "genre_ids[]", genre.id, {checked: true}%>
+			<%else%>
+				<%= check_box_tag "genre_ids[]", genre.id%>
+			<%end%>
+            <%= genre.content %><br />
+        <% end %>
+      </div>
+    </div>

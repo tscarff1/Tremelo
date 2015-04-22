@@ -1,6 +1,6 @@
 class Band < ActiveRecord::Base
 	# these are for the signup steps
-	attr_writer :current__signup_step
+	attr_writer :current_signup_step
 	attr_writer :signup_params
 
 	#The has_many associations: users(user_bands), genres(band_genres), band_videos, band_musics
@@ -9,11 +9,12 @@ class Band < ActiveRecord::Base
 	
 	has_many :band_genres, dependent: :destroy
 	has_many :genres, through: :band_genres
-	
+	accepts_nested_attributes_for :genres
+
 	has_many :band_videos, dependent: :destroy
+	accepts_nested_attributes_for :band_videos
 	has_many :band_musics, dependent: :destroy
-
-
+	accepts_nested_attributes_for :band_musics
 	validates :name,
 						presence: true,
 						uniqueness: {case_sensitive: false}

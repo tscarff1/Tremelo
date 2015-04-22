@@ -14,25 +14,37 @@ class BandsController < ApplicationController
 
   #New for the mulipage signup
   def new
-    session[:band_params] = Hash.new()
     @band = Band.new
+    @genres = Genre.all
   end
 
   def create
+    @band = Band.new(band_params)
+    @band_params = band_params
+    if @band.save
+      session[:band_id] = @band.id
+      redirect_to band_steps_path
+    else
+      render :new
+    end
+  end
+
+  # I'm not very original...
+  def not_as_old_create
     @band = Band.new(current_signup_step: session[:band_params]["signup_step"])
     @band.current_signup_step = session[:band_params]["signup_step"]
 
     # Set only vars in the session that are changed
-    if(@search.current_step == "basic")
-      session[:band_params]["basic"] = params[:basic] 
-
-    elsif @search.current_step == "genres"
+    if @band.current_signup_step == "basic"
+      session[:band_params]["name"] = params[:name] 
+      session[:band_params]["full_address"] = params[:full_address]
+      session[:band_params]["about_me"] = params[:about_me]
+    elsif @band.current_signup_step == "genres"
       session[:band_params][:genre_ids] = params[:genre_ids]  
-
     else
+
       
     end
-
 
     if params[:back]
       @band.prev_step
@@ -40,8 +52,8 @@ class BandsController < ApplicationController
       @band.next_step
     end
 
-    @band.signup_params = session[:signup_params] 
-    session[:signup_params]["signup_step"] = @band.current_signup_step
+    @band.signup_params = session[:band_params] 
+    session[:band_params]["signup_step"] = @band.current_signup_step
     if @band.last_step?
       
     end
@@ -363,7 +375,10 @@ class BandsController < ApplicationController
 
   	def band_params
   		params.require(:band).permit(:name, :location, :about_me, :profile_picture,
-       :full_address, :video_link, user_ids: [], genre_ids: [],band_video_attributes: [:video_link, :video_name], band_music_attributes: [:name, :embed_html])
+       :full_address, :video_link, user_ids: [], genre_ids: [],
+       band_video_attributes: [:video_link, :video_name],
+        band_music_attributes: [:name, :embed_html], 
+        genre_ids: [])
   	end
 
     #Method to make sure the logged in user has access to the page

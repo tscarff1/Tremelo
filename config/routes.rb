@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     end
   end
 
+
   resources :searches do
     collection do
       get 'create'
@@ -64,6 +65,7 @@ Rails.application.routes.draw do
   resources :bands, param: :name do
 
     member do
+
       get 'fetch_videos'
       get 'search_for_user'
       get 'new_search_for_user'
@@ -80,6 +82,8 @@ Rails.application.routes.draw do
       put 'destroy_musics'
     end
     collection do
+      get 'create'
+      post 'create'
       get 'search_for_user'
       get 'search'
       post 'search_results'
@@ -99,6 +103,8 @@ Rails.application.routes.draw do
       end
     end
   end
+  resources :band_steps
+  
   resources :userbands
   resources :usertags
 

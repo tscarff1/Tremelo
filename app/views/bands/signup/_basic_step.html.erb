@@ -1,0 +1,29 @@
+<div class="form-group">
+      <div class="col-xs-6 col-md-8">
+        <%= label_tag :name, "Name" %>
+        <%= text_field_tag :name, session[:band_params]["name"], class: "form-control" %>
+      </div>
+    </div><br>
+
+    <div class="form-group">
+      <div class="col-xs-6 col-md-6">
+        <%= label_tag :full_address, "Hometown" %>
+        <%= text_field_tag :full_address, session[:band_params]["full_address"], class: 'form-control' %>
+      </div>
+    </div><br>
+
+    <div class="form-group">
+      <div class="col-md-12">
+        <%= label_tag :about_me, "About the Band" %>
+        <%= text_area_tag :about_me, session[:band_params]["about_me"], class: 'form-control' %>
+      </div>
+    </div><br>
+
+    <div class="form-group">
+      <div class="col-xs-8 col-md-6">
+        <% if !@band.full_address.nil? %>
+          <b> Latitude: </b> <%= @band.latitude %>
+          <b> Longitude: </b> <%= @band.longitude %>
+        <% end %>
+      </div>
+    </div><br>
