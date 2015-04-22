@@ -51,6 +51,7 @@ Rails.application.routes.draw do
       get "new"
       post "new"
       get "test"
+      get "index", as: "index"
     end
   end
 

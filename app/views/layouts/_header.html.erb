@@ -94,7 +94,7 @@
       
         <li>
           <!-- <a href="<%= notifications_users_path%>" class="navbar"> -->
-          <a href=<%= notifications_users_path(@user) %> 
+          <a href=<%= index_notifications_path%> 
             id="notification-area" class="navbar">
             <i id="music-note" class="fa fa-music fa-lg fa-2x">
               <div id="notification-bubble"></div>
@@ -144,7 +144,7 @@
   </div>
 </header>
 
-<%= button_to "Create Notification", test_notifications_path,
+<%= button_to "Create Notification", index_notifications_path,
     remote: true, id: "test-button" %>
 
 <script type="text/javascript">
