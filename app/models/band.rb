@@ -6,6 +6,7 @@ class Band < ActiveRecord::Base
 	#The has_many associations: users(user_bands), genres(band_genres), band_videos, band_musics
 	has_many :user_bands, dependent: :destroy
 	has_many :users, through: :user_bands
+	accepts_nested_attributes_for :users, allow_destroy: true
 	
 	has_many :band_genres, dependent: :destroy
 	has_many :genres, through: :band_genres

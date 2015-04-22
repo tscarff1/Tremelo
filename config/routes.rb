@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       get 'upload_pic'
       put 'update_pic'
       get 'edit_tags'
+      get 'edit'
     end
     collection do
       get 'notifications'
@@ -65,7 +66,7 @@ Rails.application.routes.draw do
   resources :bands, param: :name do
 
     member do
-
+      get 'edit'
       get 'fetch_videos'
       get 'search_for_user'
       get 'new_search_for_user'

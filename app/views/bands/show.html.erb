@@ -138,7 +138,7 @@
            from seeing the edit link -->
            <!-- @user_verified is defined in the controller -->
       <% if @user_verified%>
-        <%= button_to 'Edit Profile', edit_band_path(@band),
+        <%= button_to 'Edit Profile', edit_band_path,
             class: 'btn btn-block', :method => :get %>
       <% end %>
 
