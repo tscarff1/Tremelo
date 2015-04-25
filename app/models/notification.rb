@@ -2,7 +2,6 @@ class Notification < ActiveRecord::Base
   belongs_to :user
   validates :user_id, presence: true
   validates :content, presence: true, uniqueness: true
-  after_create :notify_user
 
   #View notifiations at users/notifications
 
@@ -38,20 +37,5 @@ class Notification < ActiveRecord::Base
   end
 
   private
-    def notify_user
-      Notification.connection.execute "NOTIFY notifications, 'data'"
-    end
-    # end
-
-    def self.on_change
-      Notification.connection.execute "LISTEN notifications"
-      loop do
-        Notification.connection.raw_connection.wait_for_notify do |event, pid, notification|
-          yield notification
-        end
-      end
-    ensure
-      Notification.connection.execute "UNLISTEN notifications"
-    end
 
 end

@@ -50,10 +50,8 @@ Rails.application.routes.draw do
     collection do
       get "new", as: "new"
       post "new"
-      get "create"
-      get "index"
-      get "test"
       get "index", as: "index"
+      get "create"
     end
   end
 
