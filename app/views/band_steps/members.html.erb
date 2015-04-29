@@ -2,9 +2,8 @@
 <%= render layout: 'form' do |band_form| %>
 	<%= band_form.fields_for :users do |builder| %>
 		<%= render 'user_fields', builder:builder %>
-		<%= builder.link_to_add "Add a Member", :users, "data-target" => "#users" %>
 	<%end%>
-
+		<p><%= band_form.link_to_add "Add a Member", :users %></p>
 	<br>
 <%end%>
  <%= link_to "skip this step", next_wizard_path %><br>

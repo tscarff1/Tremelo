@@ -378,7 +378,7 @@ class BandsController < ApplicationController
        :full_address, :video_link, user_ids: [], genre_ids: [],
        band_video_attributes: [:video_link, :video_name],
         band_music_attributes: [:name, :embed_html], 
-        genre_ids: [])
+        genre_ids: [], users_attributes: [:id, :display_name, :_destroy])
   	end
 
     #Method to make sure the logged in user has access to the page

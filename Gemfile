@@ -37,6 +37,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'web-console',                  '2.0.0.beta4'
   gem 'quiet_assets'
+  gem 'railroady'
 end
 
 group :test do
