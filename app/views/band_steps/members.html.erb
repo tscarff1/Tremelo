@@ -1,4 +1,7 @@
 <h3> Add members to your band! </h3>
+BAND_PARAMS: <%= if params.has_key?(:id)%>
+
+<br>
 <%= render layout: 'form' do |band_form| %>
 	<%= band_form.fields_for :users do |builder| %>
 		<%= render 'user_fields', builder:builder %>

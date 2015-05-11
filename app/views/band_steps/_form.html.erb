@@ -1,10 +1,7 @@
-<%= @band.name %>
-<%= params %>
+<%= @band.name %><br>
+PARAMS: <%= params.inspect %>
 <br>
-<% @band.genres.each do |g|%>
-<%= g.content %><br>
-<% end %>
-<%= session[:band_id] %>
+
 <br>
 <%= nested_form_for @band, url: wizard_path do |band_form| %>
  <%= render partial: 'shared/error_messages', locals: {obj: band_form.object} %>
