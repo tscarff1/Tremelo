@@ -158,7 +158,8 @@
             
             <% if userbands.empty? %>
               <p> 
-                <%= @user.display_name %> does not belong to any bands - yet
+                <%= @user.display_name %> does not belong to any bands - yet<br>
+                <%= link_to "Start a band here", new_band_path %>
               </p>
             <% else %>
             <!-- For each userband, find the band, and display their profile picture as a link
