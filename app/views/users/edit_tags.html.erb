@@ -14,7 +14,7 @@
 			<ul>
 				<% for tag in Tag.all %>
 				<li>
-					<% usertag = UserTags.find_by(user_id: @user.id, tag_id: tag.id) %>
+					<% usertag = UserTag.find_by(user_id: @user.id, tag_id: tag.id) %>
 					<% if usertag.nil? %>
 					<%= check_box_tag "tag_ids[]", tag.id%>
 					<% else %>
