@@ -3,7 +3,7 @@ class NotificationsController < ApplicationController
   def new
     notification = Notification.create(user_id: session[:user_id],
                                         content: SecureRandom.hex(5))
-    redirect_to notifications_users_path
+    redirect_to index_notifications_path
   end
 
   def test
@@ -20,7 +20,7 @@ class NotificationsController < ApplicationController
   		note = Notification.find(params[:id])
   		note.destroy
   		respond_to do |format|
-        format.html { redirect_to notifications_users_path, error: "Notification deleted" }
+        format.html { redirect_to index_notifications_path, error: "Notification deleted" }
      end
    end
  end

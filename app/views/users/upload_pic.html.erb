@@ -3,36 +3,31 @@
 <div class="container">
 
   <h1 class="page-heading"> Upload a Profile Picture</h1>
+  <%= form_for @user, :html => { :multipart => true}, id: "js-upload-form" do |f| %>
 
-  <!-- This line is needed since the page is not associated with a particular user in the params -->
-  <% @user = User.find(session[:user_id]) %>
-
-  <%= form_tag update_pic_user_path, :html => { :multipart => true},
-     method: :put do%>
-
-    <%= render 'shared/error_messages' %>
+<%= render partial: 'shared/error_messages', locals: {obj: f.object} %>
 
     <h4>Select files from your computer</h4>
       <div class="form-inline">
         <div class="form-group">
-          <%= file_field_tag :profile_picture, accept: 'image/png, image/gif, image/jpeg, image/bmp', id: "js-upload-files" %>
+          <%= f.file_field :profile_picture, accept: 'image/png, image/gif, image/jpeg, image/bmp', id: "js-upload-files" %>
         </div>
-        <%= submit_tag "Upload Files", class: "btn btn-sm btn-primary", 
+        <%= f.submit "Upload Files", class: "btn btn-sm btn-primary", 
             id: "js-upload-submit" %>
       </div>
-
+<!--
     <h4>Or drag and drop files below</h4>
     <div class="upload-drop-zone" id="drop-zone">
       Just drag and drop files here
     </div>
 
-    <!-- Progress Bar -->
+    <!- Progress Bar ->
     <div class="progress">
       <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
         <span class="sr-only">60% Complete</span>
       </div>
     </div>
-
+-->
   <% end %>
 
 </div>

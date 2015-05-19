@@ -50,10 +50,10 @@ Rails.application.routes.draw do
       get "destroy", as: "destroy"
     end
     collection do
-      get "new"
+      get "new", as: "new"
       post "new"
-      get "test"
       get "index", as: "index"
+      get "create"
     end
   end
 

@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_secure_password
   attr_writer :updating # for checking if we are creating this user, or updating it
+  attr_writer :service # Accepting terms of service
 
   has_many :notifications
   
@@ -35,6 +36,10 @@ class User < ActiveRecord::Base
 
   def updating?
     return @updating || false
+  end
+
+  def service
+    return @service || nil 
   end
 
   def to_param

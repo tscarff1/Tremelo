@@ -1,0 +1,19 @@
+<% provide(:title, "Editing Music") %>
+
+<div class="container">
+  <div class="col-md-8 col-md-offset-2">
+
+    <h1 class="page-heading">More Music, More Problems</h1>
+    <p class="subtitle">
+      Link your band's music from Soundcloud
+    </p>
+
+    <div class="form-horizontal">
+      <%= form_for [@band, @band_music] do |form| %>
+
+        <%= render partial: form %>
+       <% end %>
+
+  </div>
+  </div>
+</div>

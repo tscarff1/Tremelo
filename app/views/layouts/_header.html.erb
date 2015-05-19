@@ -155,6 +155,7 @@
     var $bubble = $("#notification-bubble");
     var $notify_area = $("#notification-area");
     var val = <%= User.num_notifications_for(@user) %>;
+
     if (val == 0) {
       $bubble.hide();
     } else {

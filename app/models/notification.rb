@@ -5,7 +5,6 @@ class Notification < ActiveRecord::Base
 
   #View notifiations at users/notifications
 
-
   # Special Characters List
   # none - Generic Notification (ie, band uploaded a video)
   # %B Band Invitation
@@ -20,22 +19,23 @@ class Notification < ActiveRecord::Base
   # User views the notification, selects accept or reject.
   #     Both lead to the 'accept_band' user_controller action with accept = true/false
   def is_band_invite?
-  	if !special_chars.nil? && special_chars.include?("%B")
-  		return true
-  	end
-  	return false
+    if !special_chars.nil? && special_chars.include?("%B")
+      return true
+    end
+    return false
   end
 
   def self.get_band_invites_for(user_id)
-  	notes = Notification.where(user_id: user_id)
-  	final_set = []
-  	for note in notes
-  		if note.is_band_invite?
-  			final_set.push(note)
-  		end
-  	end
-  	return final_set
+    notes = Notification.where(user_id: user_id)
+    final_set = []
+    for note in notes
+      if note.is_band_invite?
+        final_set.push(note)
+      end
+    end
+    return final_set
   end
 
   private
+
 end

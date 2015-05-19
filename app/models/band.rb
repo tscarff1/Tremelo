@@ -33,7 +33,7 @@ class Band < ActiveRecord::Base
 
 	#Signing up stuff
 	def signup_steps
-		%w[basic genres members videos music]
+		%w[basic genres]
 	end
 
 	def current_signup_step

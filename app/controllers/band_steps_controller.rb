@@ -1,6 +1,6 @@
 class BandStepsController < ApplicationController
 	include Wicked::Wizard
-	steps :basic, :genres, :members, :videos, :music
+	steps :basic, :genres
 
 	def show
 		@band = Band.find(session[:band_id])
@@ -19,9 +19,7 @@ class BandStepsController < ApplicationController
 	       :full_address, :video_link, user_ids: [], genre_ids: [],band_video_attributes: [:video_link, :video_name], band_music_attributes: [:name, :embed_html])
 	  	end
 
-	  	def redirect_to_finish_wizard
-	  		band = Band.find(session[:band_id])
-	  		session.destroy(:band_id)
-	  		redirect_to band
+	  	def finish_wizard_path(options = nil)
+	  		band_path(@band.name)
 	  	end
 end
