@@ -82,6 +82,7 @@ Rails.application.routes.draw do
       put 'update_musics'
       get 'delete_musics'
       put 'destroy_musics'
+      post 'update', as: 'update'
     end
     collection do
       get 'create'

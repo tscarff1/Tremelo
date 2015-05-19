@@ -89,6 +89,7 @@ class BandsController < ApplicationController
   # PATCH/PUT /bands/1
   # PATCH/PUT /bands/1.json
   def update
+    #@band = params[:id]
     #First destroy the current profile picture if we are updating it
     if !band_params[:profile_picture].nil?
       @band.profile_picture.destroy
@@ -101,7 +102,7 @@ class BandsController < ApplicationController
     #Now update
     respond_to do |format|
       if @band.update(band_params)
-        format.html { redirect_to @band, notice: 'Band was successfully updated.' }
+        format.html { redirect_to band_path(@band.name), notice: 'Band was successfully updated.' }
         format.json { render :show, status: :ok, location: @band }
       else
           format.html { render :edit }
