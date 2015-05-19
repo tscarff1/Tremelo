@@ -4,21 +4,15 @@
 
   <h1 class="page-heading"> Upload a Profile Picture</h1>
 
-  <!-- This line is needed since the page is not associated with a particular user in the params -->
-  <% @user = User.find(session[:user_id]) %>
-
   <%= form_tag update_pic_user_path, :html => { :multipart => true},
      method: :put do%>
-
-    <%= render 'shared/error_messages' %>
 
     <h4>Select files from your computer</h4>
       <div class="form-inline">
         <div class="form-group">
-          <%= file_field_tag :profile_picture, accept: 'image/png, image/gif, image/jpeg, image/bmp', id: "js-upload-files" %>
+          <%= file_field_tag :profile_picture, accept: 'image/png, image/gif, image/jpeg, image/bmp'%>
         </div>
-        <%= submit_tag "Upload Files", class: "btn btn-sm btn-primary", 
-            id: "js-upload-submit" %>
+        <%= submit_tag "Upload Files", class: "btn btn-sm btn-primary"%>
       </div>
 
     <h4>Or drag and drop files below</h4>
