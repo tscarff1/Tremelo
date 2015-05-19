@@ -1,9 +1,9 @@
-<%= render partial: 'shared/error_messages', locals: {obj: f.object} %>
-
 <div class="col-md-6 col-md-offset-3">
+  <%= render partial: 'shared/error_messages', locals: {obj: f.object} %>
+
   <div class="form-horizontal">
 
-    <div class="form-group">
+    <div class="form-group has-error has-feedback">
       <div class="col-xs-6 col-md-6">
         <%= f.label :name, "Name" %>
         <%= f.text_field :name, class: "form-control" %>
