@@ -2,11 +2,11 @@
 
 	<% user = User.find(session[:user_id]) %>
 	<h1 class="page-heading">
-		<%= user.display_name %>'s new BAND!
+		<%= user.display_name %>'s starting a new band
 	</h1>
 
 	<p class="subtitle">
-		This page will be significantly different later...Or will it? j/k
+		Get together, plug in and annoy your neighbors
 	</p>
 
 	<%= form_for(@band) do |f| %>
