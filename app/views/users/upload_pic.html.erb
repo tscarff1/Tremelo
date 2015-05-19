@@ -4,13 +4,8 @@
 
   <h1 class="page-heading"> Upload a Profile Picture</h1>
 
-  <!-- This line is needed since the page is not associated with a particular user in the params -->
-  <% @user = User.find(session[:user_id]) %>
-
   <%= form_tag update_pic_user_path, :html => { :multipart => true},
      method: :put do%>
-
-    <%= render 'shared/error_messages' %>
 
     <h4>Select files from your computer</h4>
       <div class="form-inline">
