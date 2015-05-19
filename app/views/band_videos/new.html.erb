@@ -8,7 +8,7 @@
     </p>
 
     <div class="form-horizontal">
-    <%= form_for [@band, @band_video] do |form| %>
+    <%= form_for [@band, @band_video], url: band_band_videos_path(@band.name) do |form| %>
 
       <%= render partial: form %>
 

@@ -63,7 +63,6 @@ Rails.application.routes.draw do
   end
 
   resources :bands, param: :name do
-
     member do
       get 'fetch_videos'
       get 'search_for_user'
@@ -86,17 +85,20 @@ Rails.application.routes.draw do
       post 'search_results'
       get 'access_error'
     end 
-
     resources :band_videos do
       member do
         get 'new_band_setup'
-        
+      end
+      collection do
+        post 'create'
       end
     end
     resources :band_musics do
-      collection do
+      member do
           get 'new_band_setup'
-          get 'edit'
+      end
+      collection do
+        post 'create'
       end
     end
   end

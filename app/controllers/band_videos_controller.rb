@@ -12,7 +12,7 @@ class BandVideosController < ApplicationController
       content = "#{@band.name} has added a new video: #{params[:video_name]}"
       @band.send_notification_to_members_except(content, session[:user_id])
       flash[:success] = "Video successfully added"
-      redirect_to @band
+      redirect_to band_path(@band.name)
     else
       flash[:error] = "There was a problem adding video."
       render action: :new
@@ -27,7 +27,7 @@ class BandVideosController < ApplicationController
     @band_video = @band.band_videos.find(params[:id])
     if @band_video.update_attributes(band_video_params)
       flash[:success] = "Saved video."
-      redirect_to @band
+      redirect_to band_path(@band.name)
     else
       flash[:error] = "That video could not be saved."
       render action: :edit
@@ -41,17 +41,17 @@ class BandVideosController < ApplicationController
     else
       flash[:error] = "Video could not be deleted."
     end
-    redirect_to @band
+      redirect_to band_path(@band.name)
 
 	end
 
   private
   def find_band
-    @band = current_user.bands.find(params[:band_id])
+    @band = Band.find_by(name: params[:band_name])
   end
 
   def band_video_params
-    params.require(:band_video).permit(:video_name, :video_link, band_attributes: [:id])
+    params.require(:band_video).permit(:video_name, :video_link, band_attributes: [:id, :name])
   end
 
 end

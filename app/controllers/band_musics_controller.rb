@@ -12,7 +12,7 @@ class BandMusicsController < ApplicationController
       content = "#{@band.name} has added new music: #{params[:name]}"
       @band.send_notification_to_members_except(content, session[:user_id])
       flash[:success] = "Music successfully added"
-      redirect_to new_band_band_video_path(@band)
+      redirect_to band_path(@band.name)
     else
       flash[:error] = "There was a problem adding the music."
       render action: :new
@@ -27,7 +27,7 @@ class BandMusicsController < ApplicationController
     @band_music = @band.band_musics.find(params[:id])
     if @band_music.update_attributes(band_music_params)
       flash[:success] = "Saved music."
-      redirect_to @band
+      redirect_to band_path(@band.name)
     else
       flash[:error] = "That music could not be saved."
       render action: :edit
@@ -41,7 +41,7 @@ class BandMusicsController < ApplicationController
     else
       flash[:error] = "Music could not be deleted."
     end
-    redirect_to @band
+    redirect_to band_path(@band.name)
 
   end
   def new_band_setup
@@ -51,11 +51,11 @@ class BandMusicsController < ApplicationController
   end
   private
   def find_band
-    @band = Band.find_by(name: params[:band_name])
+    @band = current_user.bands.find_by(name: params[:band_name])
   end
 
   def band_music_params
-    params.require(:band_music).permit(:embed_html, :name, band_attributes: [:name])
+    params.require(:band_music).permit(:embed_html, :name, band_attributes: [:id, :name])
   end
 
 end
