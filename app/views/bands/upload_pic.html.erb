@@ -5,12 +5,10 @@
   </h1>
   <br>
 
-  <% @band = Band.find(params[:id]) %>
-
-  <%= form_for @band, :html => { :multipart => true},
+  <%= form_for @band, :html => { :multipart => true}, url: 
       id: "js-upload-form" do |f| %>
   	
-  	<%= render 'shared/error_messages' %>
+  	<%= render partial: 'shared/error_messages', locals: {obj: f.object} %>
 
     <h4>Select files from your computer</h4>
       <div class="form-inline">

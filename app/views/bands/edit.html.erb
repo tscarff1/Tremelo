@@ -32,7 +32,7 @@
 
         <li>
           <%= link_to "Add/Change " + @band.name + " profile picture", 
-          {controller: "bands", action: "upload_pic"} %>
+          upload_pic_band_path(@band.name) %>
         </li>
 
         <li>

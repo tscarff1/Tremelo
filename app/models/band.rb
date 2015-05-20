@@ -60,6 +60,14 @@ class Band < ActiveRecord::Base
 		current_signup_step == signup_steps.last
 	end
 
+	#Address
+	def get_address
+    	if(!self.city.nil? && (!self.state.nil?))
+      		return self.city + ", "+ self.state
+    	end
+    		return self.address
+  	end
+
 
 	# Some unused soundcloud stuff
 	def self.SOUNDCLOUD_CLIENT_ID
