@@ -9,7 +9,7 @@
   	</p>
 
   	<div class="form-horizontal">
-  		<%= form_for [@band, @band_music] do |form| %>
+  		<%= form_for [@band, @band_music], url: band_band_musics_path(@band.name) do |form| %>
 
         <%= render partial: form %>
 	     <% end %>

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       get 'upload_pic'
       put 'update_pic'
       get 'edit_tags'
+      get 'edit'
     end
     collection do
       get 'notifications'
@@ -34,6 +35,7 @@ Rails.application.routes.draw do
       get 'access_error'
     end
   end
+
 
   resources :searches do
     collection do
@@ -63,8 +65,8 @@ Rails.application.routes.draw do
   end
 
   resources :bands, param: :name do
-
     member do
+      get 'edit'
       get 'fetch_videos'
       get 'search_for_user'
       get 'new_search_for_user'
@@ -79,27 +81,35 @@ Rails.application.routes.draw do
       put 'update_musics'
       get 'delete_musics'
       put 'destroy_musics'
+      post 'update', as: 'update'
     end
     collection do
+      get 'create'
+      post 'create'
       get 'search_for_user'
       get 'search'
       post 'search_results'
       get 'access_error'
     end 
-
     resources :band_videos do
       member do
         get 'new_band_setup'
-        
+      end
+      collection do
+        post 'create'
       end
     end
     resources :band_musics do
-      collection do
+      member do
           get 'new_band_setup'
-          get 'edit'
+      end
+      collection do
+        post 'create'
       end
     end
   end
+  resources :band_steps
+  
   resources :userbands
   resources :usertags
 

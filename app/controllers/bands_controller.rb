@@ -10,9 +10,60 @@ class BandsController < ApplicationController
     :destroy, :access_error,  :add_member, :destroy_videos]
   before_action :verify_admin, only: [:edit, :upload_pic, :edit_videos, :delete_videos, :edit_genres]
 
+  
+
+  #New for the mulipage signup
   def new
+    @band = Band.new
+    @genres = Genre.all
+  end
+
+  def create
+    @band = Band.new(band_params)
+    @band_params = band_params
+    if @band.save
+      session[:band_id] = @band.id
+      redirect_to band_steps_path
+    else
+      render :new
+    end
+  end
+
+  # I'm not very original...
+  def not_as_old_create
+    @band = Band.new(current_signup_step: session[:band_params]["signup_step"])
+    @band.current_signup_step = session[:band_params]["signup_step"]
+
+    # Set only vars in the session that are changed
+    if @band.current_signup_step == "basic"
+      session[:band_params]["name"] = params[:name] 
+      session[:band_params]["full_address"] = params[:full_address]
+      session[:band_params]["about_me"] = params[:about_me]
+    elsif @band.current_signup_step == "genres"
+      session[:band_params][:genre_ids] = params[:genre_ids]  
+    else
+
+      
+    end
+
+    if params[:back]
+      @band.prev_step
+    else
+      @band.next_step
+    end
+
+    @band.signup_params = session[:band_params] 
+    session[:band_params]["signup_step"] = @band.current_signup_step
+    if @band.last_step?
+      
+    end
+    render "new"
+  end
+
+  #Original new and create
+  def old_new
     if !session[:user_id].nil?
-  	  @band = Band.new
+      @band = Band.new
       @users = User.all
       @genres = Genre.all
     else
@@ -20,7 +71,7 @@ class BandsController < ApplicationController
     end
   end
 
-  def create
+  def old_create
   	@band = current_user.bands.new(band_params)
     @genres= Genre.all
     # @userband = UserBand.new(user_id: @user.id, band_id: @band.id, admin_priveleges: 1)
@@ -38,6 +89,7 @@ class BandsController < ApplicationController
   # PATCH/PUT /bands/1
   # PATCH/PUT /bands/1.json
   def update
+    #@band = params[:id]
     #First destroy the current profile picture if we are updating it
     if !band_params[:profile_picture].nil?
       @band.profile_picture.destroy
@@ -50,7 +102,7 @@ class BandsController < ApplicationController
     #Now update
     respond_to do |format|
       if @band.update(band_params)
-        format.html { redirect_to @band, notice: 'Band was successfully updated.' }
+        format.html { redirect_to band_path(@band.name), notice: 'Band was successfully updated.' }
         format.json { render :show, status: :ok, location: @band }
       else
           format.html { render :edit }
@@ -324,7 +376,10 @@ class BandsController < ApplicationController
 
   	def band_params
   		params.require(:band).permit(:name, :location, :about_me, :profile_picture,
-       :full_address, :video_link, user_ids: [], genre_ids: [],band_video_attributes: [:video_link, :video_name], band_music_attributes: [:name, :embed_html])
+       :full_address, :video_link, user_ids: [], genre_ids: [],
+       band_video_attributes: [:video_link, :video_name],
+        band_music_attributes: [:name, :embed_html], 
+        genre_ids: [], users_attributes: [])
   	end
 
     #Method to make sure the logged in user has access to the page

@@ -1,0 +1,6 @@
+<p class="fields">
+  <%= label_tag :member, "Add a Member" %>
+  <%= text_field_tag :member %>
+  <%= hidden_field_tag :_destroy %>
+  <%= link_to "Remove", '#', onclick: "remove_fields(this)", class: "nav_link" %>
+</p>

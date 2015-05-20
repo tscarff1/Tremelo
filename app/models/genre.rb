@@ -3,7 +3,7 @@ class Genre < ActiveRecord::Base
 	validates :content, presence: true
 	
   has_many :band_genres
-  has_many :bands, through: :band_genres
+  has_and_belongs_to_many :bands, through: :band_genres
 
   validates :content, presence: true,
                     uniqueness: {case_sensitive: false},

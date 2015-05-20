@@ -1,0 +1,34 @@
+<h3> Basic Info</h3><br>
+
+<%= render layout: 'form' do |band_form| %>
+    <div class="form-group">
+      <div class="col-xs-6 col-md-8">
+        <%= band_form.label :name, "Name" %>
+        <%= band_form.text_field :name, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-6 col-md-6">
+        <%= band_form.label :full_address, "Hometown" %>
+        <%= band_form.text_field :full_address, class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-12">
+        <%= band_form.label :about_me, "About Me" %>
+        <%= band_form.text_area :about_me, :size => "10x5", class: 'form-control' %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-xs-8 col-md-6">
+        <% if !@band.full_address.nil? %>
+          <b> Latitude: </b> <%= @band.latitude %>
+          <b> Longitude: </b> <%= @band.longitude %>
+        <% end %>
+      </div>
+    </div>
+<% end%>
+<%= link_to "Skip this step", next_wizard_path %>

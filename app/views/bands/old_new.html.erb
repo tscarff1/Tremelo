@@ -1,0 +1,15 @@
+<div class="container">
+
+	<% user = User.find(session[:user_id]) %>
+	<h1 class="page-heading">
+		<%= user.display_name %>'s new BAND!
+	</h1>
+
+	<p class="subtitle">
+		This page will be significantly different later...Or will it? j/k
+	</p>
+
+	<%= form_for(@band) do |f| %>
+      <%= render partial: 'form', locals: { f: f } %>
+	<% end %>
+</div>
