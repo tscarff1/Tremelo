@@ -37,6 +37,7 @@
         <div class="col-xs-6 col-md-6">
           <%= f.label :genres, "Genres" %>
           <br>
+          <% @genres = Genre.all %>
           <% @genres.each do |genre| %>
             <%= check_box_tag "band[genre_ids][]", genre.id, @band.genres.include?(genre) %>
               <%= genre.content %><br />
