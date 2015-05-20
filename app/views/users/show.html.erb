@@ -221,7 +221,7 @@
 
               <ul>
                 <% @user.bands.each do |band| %>
-                  <li><%= link_to band.name, band_path(band.name) %></li>
+                  <li><%= link_to "Create a new Band", new_band_path %></li>
                 <% end %>
               </ul>
 
