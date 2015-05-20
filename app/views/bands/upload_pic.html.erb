@@ -5,7 +5,7 @@
   </h1>
   <br>
 
-  <%= form_for @band, :html => { :multipart => true}, url: 
+  <%= form_for @band, :html => { :multipart => true}, url: band_path(@band.name), 
       id: "js-upload-form" do |f| %>
   	
   	<%= render partial: 'shared/error_messages', locals: {obj: f.object} %>

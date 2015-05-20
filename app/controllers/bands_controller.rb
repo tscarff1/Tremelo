@@ -123,7 +123,7 @@ class BandsController < ApplicationController
     respond_to do |format|
       if notification.save
           format.html { redirect_to @band, notice: 'User has been sent an invitation.' }
-          format.json { render :show, status: :ok, location: @band }
+          format.json { render :show, status: :ok, location: band_path(@band.name) }
       else
           format.html { render :edit }
           format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -291,7 +291,7 @@ class BandsController < ApplicationController
       @searching_by.push("instrument tags")
       for user in User.all
         if (params[:exact_tags].nil?)
-          if user.has_at_least_one_genre_from?(params[:tag_ids])
+          if user.has_at_least_one_tag_from?(params[:tag_ids])
             tag_results.push(user)
           end
         else
