@@ -1,8 +1,6 @@
 class NotificationsController < ApplicationController
 
   def new
-    notification = Notification.create(user_id: session[:user_id],
-                                        content: SecureRandom.hex(5))
     redirect_to index_notifications_path
   end
 
