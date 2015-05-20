@@ -1,7 +1,7 @@
 <%= form_for @user do |f| %>
-<%= render partial: 'shared/error_messages', locals: {obj: f.object} %>
 
 <div class="form-horizontal">
+  <%= render partial: 'shared/error_messages', locals: {obj: f.object} %>
 
   <!-- Check if username is available -->
   <div class="form-group required">

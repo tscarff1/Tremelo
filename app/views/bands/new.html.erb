@@ -1,6 +1,19 @@
 
 <h1 class="page-heading">
 	<% user = User.find(session[:user_id]) %>
+	<h1 class="page-heading">
+		<%= user.display_name %>'s starting a new band
+	</h1>
+
+	<p class="subtitle">
+		Get together, plug in and annoy your neighbors
+	</p>
+
+	<%= form_for(@band) do |f| %>
+      <%= render partial: 'form', locals: { f: f } %>
+	<% end %>
+</div>
+
 	<%= user.display_name %>'s new BAND!
 </h1>
 <%= nested_form_for @band do |f|%>

@@ -97,7 +97,7 @@ class UsersController < ApplicationController
         n.destroy
       end
       respond_to do |format|
-        format.html { redirect_to notifications_user_path(user), 
+        format.html { redirect_to notifications_path(user), 
         notice: "You have rejected #{band.name}" }
       end
     end #End accepting if
