@@ -184,7 +184,7 @@
               <%end%>
               </ul>
             </div>
-              <div id = "music_show" class="col-xs-6 col-md-4">
+              <div id = "music_show" class="col-xs-6 col-md-4 videoWrapper">
                 <%= render partial:'band_musics/music_show', 
                 locals: { music: BandMusic.find_by(band_id: @band.id) } %>
               </div>
