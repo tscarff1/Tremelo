@@ -30,6 +30,7 @@ class UserSessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     session[:display_name] = nil
+    session[:band_ids] = nil
     cookies.delete(:remember_me_token)
     reset_session
     redirect_to root_path, success: "Successfully logged out"

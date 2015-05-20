@@ -122,7 +122,7 @@ class BandsController < ApplicationController
       user_id: params[:user_id])
     respond_to do |format|
       if notification.save
-          format.html { redirect_to @band, notice: 'User has been sent an invitation.' }
+          format.html { redirect_to band_path(@band.name), notice: 'User has been sent an invitation.' }
           format.json { render :show, status: :ok, location: band_path(@band.name) }
       else
           format.html { render :edit }
