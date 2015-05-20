@@ -1,5 +1,8 @@
 <% provide(:title, "Notifications") %>
-<div>
+
+<div class="container">
+	<h1 class="page-heading">Notifications</h1>
+
 	<% if @notifications.count == 0 %>
 		<p> You have no notifications.
 	<% else %>
@@ -13,5 +16,6 @@
 			<% end %>
 			<hr>
 		<% end %>
-	<%end%>
+	<% end %>
+
 </div>

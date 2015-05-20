@@ -1,15 +1,24 @@
 <% provide(:title, "Reset Your Password") %>
-<h1>Reset Your Password</h1>
+<div class="container">
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
+  <h1 class="page-heading">Reset Your Password</h1>
 
-			<%= form_tag password_resets_path do %>
-			  <%= label_tag :email, "Email" %>
-			  <%= text_field_tag :email %>
+  <div class="form-horizontal">
+    <div class="col-md-6 col-md-offset-3">
 
-			  <br />
-			  <%= submit_tag "Reset Password" %>
-			<% end %>
+  			<%= form_tag password_resets_path do %>
+
+          <div class="form-group">
+            <div class="col-xs-12 col-md-12">
+      			  <%= label_tag :email, "Email" %>
+      			  <%= text_field_tag :email, nil, class: "form-control",
+                  required: "required" %>
+            </div>
+          </div>
+
+  			  <%= submit_tag "Reset Password", class: "btn btn-block" %>
+  			<% end %>
+    </div>
   </div>
+
 </div>

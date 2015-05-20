@@ -10,7 +10,7 @@ class PasswordResetsController < ApplicationController
       flash[:success] = "Password reset instructions sent! Please check your email."
       redirect_to login_path
     else
-      flash.now[:notice] = "Email not found."
+      flash.now[:error] = "Email not found."
       render action: 'new'
     end
   end
@@ -31,7 +31,7 @@ class PasswordResetsController < ApplicationController
       flash[:success] = "Password updated."
       redirect_to root_path, success: "Password updated."
     else
-      flash.now[:notice] = "Password reset token not found."
+      flash.now[:error] = "Password reset token not found."
       render action: 'edit'
     end
   end

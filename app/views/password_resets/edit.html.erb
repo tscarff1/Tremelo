@@ -1,20 +1,28 @@
 <% provide(:title, "Change Your Password") %>
-<h1>Change Your Password</h1>
+<h1 class="page-heading">Change Your Password</h1>
 
-<div class="row">
+<div class="form-horizontal">
   	<div class="col-md-6 col-md-offset-3">
-		<%= form_for @user, url: password_reset_path(@user.password_reset_token), html: { method: :patch } do |form| %>
+		<%= form_for @user, url: password_reset_path(@user.password_reset_token),
+				html: { method: :patch } do |form| %>
 
-		  <%= form.label :password %>
-		  <%= form.password_field :password %>
+			<div class="form-group">
+				<div class="col-xs-6 col-md-6">
+				  <%= form.label :password %>
+				  <%= form.password_field :password, class: "form-control",
+				  		required: "required" %>
+			  </div>
+		  </div>
 
-		  <br />
+			<div class="form-group">
+				<div class="col-xs-6 col-md-6">
+				  <%= form.label :password_confirmation, "Password (again)" %>
+				  <%= form.password_field :password_confirmation, 
+				  		class: "form-control", required: "required" %>
+		  	</div>
+		  </div>
 
-		  <%= form.label :password_confirmation, "Password (again)" %>
-		  <%= form.password_field :password_confirmation %>
-		  <br />
-
-		  <%= submit_tag "Change Password" %>
+		  <%= submit_tag "Change Password", class: "btn btn-block" %>
 		<% end %>
 	</div>
 </div>
