@@ -23,7 +23,10 @@ class BandsController < ApplicationController
     @band_params = band_params
     if @band.save
       session[:band_id] = @band.id
-      session[:band_ids].push(@band.id)
+      if session[:band_ids].nil?
+        session[:band_ids] = []
+      end
+        session[:band_ids].push(@band.id)
       redirect_to band_steps_path
     else
       render :new

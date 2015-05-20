@@ -9,12 +9,6 @@
 		Get together, plug in and annoy your neighbors
 	</p>
 
-	<%= form_for(@band) do |f| %>
-      <%= render partial: 'form', locals: { f: f } %>
-	<% end %>
-</div>
-
-	<%= user.display_name %>'s new BAND!
 </h1>
 <%= nested_form_for @band do |f|%>
       <%= render partial: 'shared/error_messages', locals: {obj: f.object} %>
