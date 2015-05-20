@@ -3,7 +3,6 @@
 <div class="container">
   <div class="col-md-8 col-md-offset-2">
 
-
   <h1 class="page-heading">Make Some Changes</h1>
   <p class="subtitle">
     Edit the profile page for <%= @band.name %>
@@ -14,35 +13,25 @@
 
   <% session[:band_id] = @band.id %>
 
-  <div class="form-horizontal">
+  <%= render partial: 'form' %>
 
-    
-      <%= render partial: 'form' %>
+    <li>
+      <%= link_to "Edit Genres", edit_genres_band_path(@band.name) %>
+    </li>
 
-    <div class="form-group">
-      <div class="col-md-8">
-    
-        <li>
-          <%= link_to "Edit Genres", edit_genres_band_path(@band.name) %>
-        </li>
+    <li>
+      <%= link_to "Add/Delete Videos", new_band_band_video_path(@band) %>
+    </li>
 
-        <li>
-          <%= link_to "Add/Delete Videos", new_band_band_video_path(@band) %>
-        </li>
+    <li>
+      <%= link_to "Add/Change " + @band.name + " profile picture", 
+      upload_pic_band_path(@band.name) %>
+    </li>
 
-        <li>
-          <%= link_to "Add/Change " + @band.name + " profile picture", 
-          upload_pic_band_path(@band.name) %>
-        </li>
-
-        <li>
-          <%= link_to "Add Band Members", search_for_user_band_path %>
-        </li>
-        
-      </div>
-    </div>
-
-  </div>
+    <li>
+      <%= link_to "Add Band Members", search_for_user_band_path %>
+    </li>
+    <br>
 
   </div>
 </div>

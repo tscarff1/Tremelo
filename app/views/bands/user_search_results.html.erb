@@ -1,28 +1,32 @@
 <% provide(:title, 'User Search Results') %>
 
-<h1> Search Results! </h1>
-<%= link_to "Search again?", search_for_user_band_path %><br><br>
+<div class="container">
+
+	<h1 class="page-heading">Search Results</h1>
+	<%= link_to "Search again?", search_for_user_band_path %><br><br>
 
 
-Searching by: <br>
-<ul>
-<% for it in @searching_by %>
-	<%= it %> <br>
-<%end%>
-</ul>
-
-<% if @results.empty? %>
-
-<h2> No results </h2>
-
-<% else %>
+	Searching by: <br>
 	<ul>
-	<% for result in @results %>
-		<li>
-			 <%= render partial: 'users/user_result', locals: {user: result} %>
-			 <br>
-        	<%= link_to "add member", add_member_band_path(:user_id => result.id), method: :put %>
-        </li>
+	<% for it in @searching_by %>
+		<%= it %> <br>
 	<%end%>
 	</ul>
-<%end%>
+
+	<% if @results.empty? %>
+
+	<h2> No results </h2>
+
+	<% else %>
+		<ul>
+		<% for result in @results %>
+			<li>
+				 <%= render partial: 'users/user_result', locals: {user: result} %>
+				 <br>
+	        	<%= link_to "add member", add_member_band_path(:user_id => result.id), method: :put %>
+	        </li>
+		<%end%>
+		</ul>
+	<%end%>
+
+</div>

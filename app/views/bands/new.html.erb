@@ -1,46 +1,58 @@
+<% user = User.find(session[:user_id]) %>
 
-<h1 class="page-heading">
-	<% user = User.find(session[:user_id]) %>
-	<h1 class="page-heading">
-		<%= user.display_name %>'s starting a new band
-	</h1>
+<div class="container">
 
-	<p class="subtitle">
-		Get together, plug in and annoy your neighbors
-	</p>
+  <h1 class="page-heading">
+  	<%= user.display_name %>'s starting a new band
+  </h1>
 
-</h1>
-<%= nested_form_for @band do |f|%>
+  <p class="subtitle">
+  	Get together, plug in and annoy your neighbors
+  </p>
+
+  <div class="form-horizontal">
+
+    <%= nested_form_for @band do |f|%>
       <%= render partial: 'shared/error_messages', locals: {obj: f.object} %>
 
-    <div class="form-group">
-      <div class="col-xs-6 col-md-8">
-        <%= f.label :name, "Name" %>
-        <%= f.text_field :name, class: "form-control" %>
-      </div>
-    </div>
+        <div class="form-group">
+          <div class="col-xs-6 col-md-8">
+            <%= f.label :name, "Name" %>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+        </div>
 
-    <div class="form-group">
-      <div class="col-xs-6 col-md-6">
-        <%= f.label :full_address, "Hometown" %>
-        <%= f.text_field :full_address, class: 'form-control' %>
-      </div>
-    </div>
+        <div class="form-group">
+          <div class="col-xs-6 col-md-6">
+            <%= f.label :city, "City" %>
+            <%= f.text_field :city, class: 'form-control' %>
+          </div>
 
-    <div class="form-group">
-      <div class="col-md-12">
-        <%= f.label :about_me, "About Me" %>
-        <%= f.text_area :about_me, :size => "10x5", class: 'form-control' %>
-      </div>
-    </div>
+          <div class="col-xs-6 col-md-6">
+            <%= f.label :state, "State" %>
+            <%= f.select :state, options_for_select(us_states, @user.state), {},
+            { :class => 'form-control' } %>
+          </div>
+        </div>
 
-    <div class="form-group">
-      <div class="col-xs-8 col-md-6">
-        <% if !@band.full_address.nil? %>
-          <b> Latitude: </b> <%= @band.latitude %>
-          <b> Longitude: </b> <%= @band.longitude %>
-        <% end %>
-      </div>
-    </div>
-<%= f.submit "Next" %>
-<% end%>
+        <div class="form-group">
+          <div class="col-md-12">
+            <%= f.label :about_me, "About Me" %>
+            <%= f.text_area :about_me, :size => "10x5", class: 'form-control' %>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-8 col-md-6">
+            <% if !@band.full_address.nil? %>
+              <b> Latitude: </b> <%= @band.latitude %>
+              <b> Longitude: </b> <%= @band.longitude %>
+            <% end %>
+          </div>
+        </div>
+
+        <%= f.submit "Next", class: "btn btn-block" %>
+    <% end %>
+
+  </div>
+</div>

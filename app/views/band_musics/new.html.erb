@@ -1,19 +1,20 @@
-<% provide(:title, "Adding Music") %>
+<% provide(:title, "Add Music") %>
 
 <div class="container">
   <div class="col-md-8 col-md-offset-2">
 
-  	<h1 class="page-heading">More Music, More Problems</h1>
+  	<h1 class="page-heading">Music is Life</h1>
   	<p class="subtitle">
-  		Link your band's music from Soundcloud
+  		Link to your band's music on Soundcloud
   	</p>
 
   	<div class="form-horizontal">
-  		<%= form_for [@band, @band_music], url: band_band_musics_path(@band.name) do |form| %>
+  		<%= form_for [@band, @band_music], 
+          url: band_band_musics_path(@band.name) do |form| %>
 
         <%= render partial: form %>
-	     <% end %>
-
-	</div>
+      <% end %>
+  	</div>
+    
 	</div>
 </div>
