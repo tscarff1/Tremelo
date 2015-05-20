@@ -20,7 +20,7 @@
           <ul>
           <% userbands.each do |userband| %>
             <% band = Band.find(userband.band_id) %>
-              <li><%= link_to band.name, band %>
+              <li><%= link_to band.name, band_path(band.name) %>
                 ( <%= link_to "Leave", {controller: "users", action: "leave_band", 
                                         userband_id: userband.id}%> )
               </li>

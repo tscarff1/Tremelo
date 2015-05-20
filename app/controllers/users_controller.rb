@@ -77,6 +77,7 @@ class UsersController < ApplicationController
     band = Band.find(band_id)
     if accepting == 'true'
       userband = UserBand.new(band_id: band_id, user_id: user_id, admin_priveleges: 0)
+      session[:band_ids].push(band_id)
       
       respond_to do |format|
         if userband.save
